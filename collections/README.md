@@ -34,6 +34,26 @@ deoxycytidine and thymidine. Its `ncit_code` and `moiety_unii` are therefore emp
 doxecitine C420 / 0W860991D6; doxribtimine C880 (NCIt preferred name Thymidine) / VC2W18DGKR.
 It stays in this file unchanged for trial archaeology.
 
+Code harvest, 2026-11-07 (AACT 2026-11-07): 81 candidates for 29 brands; 8 URL-cited web candidates for December codes
+the harvest did not find (`fda_novel_2025_web_candidates.csv`). Review walked through by KF and Claude,
+conservative/strict: 61 review rows, 54 confirmed by KF, 7 held (`claude-proposed`): atrasentan CHK-01, EXV811 (prefix
+origin not verified); avutometinib CKI-27, R-7304, RG7304 and mirdametinib PD-901 (AACT only in academic records that
+copy the NCIt synonym list, not independent of NCIt); vimseltinib DP-6865 (no trials). Held rows stay in search
+(precedent AGN241780, CH5534262); all their trials name the INN. The other 20 candidates are PubChem-only without
+trials (`unconfirmed`).
+
+Review against this file (the December codes are not changed here; trial archaeology keeps using them):
+- Classes reversed: acoltremon AR-15512 current, AVX-012 legacy (Avizorex code, NCT03162094; Aerie acquired Avizorex
+  2019); atrasentan ABT-627 legacy (Abbott); delgocitinib LEO 124249 current (LEO sponsors the US approval), JTE-052 legacy
+  (Japan Tobacco). Elamipretide SS-31 legacy (Szeto-Schiller research name), no current code.
+- Tryptyr `sponsor` "Averitas/Arcutis" matches none of the sources (Avizorex, Aerie, Alcon).
+- Treosulfan NSC-39069: `not_a_code` (NSC number), not used in the harvest output; 0 trials.
+- Combinations kept out: aceclidine PRX-100 (aceclidine + tropicamide, NCT03201562), LNZ101 (aceclidine + brimonidine).
+- Added by the harvest: taletrectinib DS-6051, DS-6051a (free base of DS-6051b, NCT02279433); mirdametinib PD-325901;
+  held: CHK-01, EXV811, CKI-27, R-7304, RG7304, PD-901, DP-6865.
+- Accepted on one Registry line: LNZ100, SAR444671, DS-6051b, and the held CHK-01, EXV811.
+- For Wikidata, beyond D0–D10: SS-31 and TIC10 are research names, not company codes (hold); ETX0914 is web-only (hold).
+
 ## top_sellers_fy2025.csv
 
 Top three selling medicines per company, FY2025, for 12 companies with FY2025 revenue USD 41–65 B.
