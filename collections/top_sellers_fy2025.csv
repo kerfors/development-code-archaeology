@@ -1,0 +1,31 @@
+company,company_fy2025_revenue_usd_b,brand,inn,ncit_code,moiety_unii,is_combination,brand_to_inn_source
+GSK,41.1,Trelegy Ellipta,fluticasone furoate; umeclidinium; vilanterol,C77003; C152797; C152875,JS86977WNV; 7AN603V4JV; 028LZY775B,Y,openFDA label
+GSK,41.1,Dovato,dolutegravir; lamivudine,C121543; C1471,DKO1W9H7M1; 2T8Q726O95,Y,openFDA label
+Novo Nordisk,44.8,Ozempic,semaglutide,C152328,53AXN4NNHX,N,openFDA label
+Novo Nordisk,44.8,Wegovy,semaglutide,C152328,53AXN4NNHX,N,openFDA label
+Novo Nordisk,44.8,Rybelsus,semaglutide,C152328,53AXN4NNHX,N,openFDA label
+Sanofi,46.0,Dupixent,dupilumab,C162455,420K487FSG,N,openFDA label
+Bristol Myers Squibb,48.2,Opdivo,nivolumab,C68814,31YO63LBSN,N,openFDA label
+Bristol Myers Squibb,48.2,Eliquis,apixaban,C61308,3Z9Y7UWC1J,N,openFDA label
+Bristol Myers Squibb,48.2,Orencia,abatacept,C28898,7D0YB67S97,N,openFDA label
+Roche,53.6,Ocrevus,ocrelizumab,C66250,A10SJL62JY,N,openFDA label
+Roche,53.6,Hemlibra,emicizumab,C159541,7NL2E3F6K3,N,openFDA label
+Roche,53.6,Vabysmo,faricimab,C174885,QC4F7FKK7I,N,openFDA label
+Novartis,54.5,Entresto,sacubitril; valsartan,C152281; C47781,17ERJ0MKGI; 80M03YXJ7I,Y,openFDA label
+Novartis,54.5,Cosentyx,secukinumab,C152315,DLG4EML025,N,openFDA label
+Novartis,54.5,Kisqali,ribociclib,C95701,TK8ERE8P56,N,openFDA label
+Merck,58.1,Keytruda,pembrolizumab,C106432,DPT0O3T46P,N,openFDA label
+AstraZeneca,58.7,Farxiga,dapagliflozin,C78126,1ULL0QJ8UC,N,openFDA label
+AstraZeneca,58.7,Tagrisso,osimertinib,C116377,3C06JJ0Z2O,N,NCIt brand synonym (C170266)
+AstraZeneca,58.7,Imfinzi,durvalumab,C103194,28X28X9OKV,N,openFDA label
+Johnson & Johnson,60.4,Darzalex,daratumumab,C74007,4Z63YK6E0E,N,NCIt brand synonym (C74007)
+Johnson & Johnson,60.4,Stelara,ustekinumab,C84237,FU77B4U5Z0,N,openFDA label
+Johnson & Johnson,60.4,Tremfya,guselkumab,C150390,089658A12D,N,openFDA label
+AbbVie,61.2,Skyrizi,risankizumab,C152227,90ZX3Q3FR7,N,openFDA label
+AbbVie,61.2,Rinvoq,upadacitinib,C152802,4RA0KN46E0,N,openFDA label
+AbbVie,61.2,Vraylar,cariprazine,C169826,F6RJL8B278,N,openFDA label
+Pfizer,62.6,Eliquis,apixaban,C61308,3Z9Y7UWC1J,N,openFDA label
+Pfizer,62.6,Vyndaqel,tafamidis,C84193,8FG9H9D31J,N,openFDA label
+Eli Lilly,65.2,Mounjaro,tirzepatide,C174817,OYN3CCI6QE,N,openFDA label
+Eli Lilly,65.2,Zepbound,tirzepatide,C174817,OYN3CCI6QE,N,openFDA label
+Eli Lilly,65.2,Verzenio,abemaciclib,C97660,60UAB198HK,N,NCIt brand synonym (C97660)

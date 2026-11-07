@@ -1,0 +1,31 @@
+brand,inn,current_code,legacy_codes,sponsor
+Trelegy Ellipta,fluticasone furoate; umeclidinium; vilanterol,GSK 2834425; GSK-573719; GW-642444,GSK-573719A; GSK-642444; GW-685698; GW-685698X; GW642444H; GW642444M,GSK
+Dovato,dolutegravir; lamivudine,GSK-1349572; GSK3515864,BCH-189; BCH-790; GR-109714X; GR109714; GSK-1349572A; NGPB 21; S-349572; S/GSK1349572,GSK
+Ozempic,semaglutide,NN-9535,NN-9931; NN9536; NN9924; NN9932; NNC 0113-0217,Novo Nordisk
+Wegovy,semaglutide,NN-9535,NN-9931; NN9536; NN9924; NN9932; NNC 0113-0217,Novo Nordisk
+Rybelsus,semaglutide,NN-9535,NN-9931; NN9536; NN9924; NN9932; NNC 0113-0217,Novo Nordisk
+Dupixent,dupilumab,,REGN-668; SAR-231893,Sanofi
+Opdivo,nivolumab,BMS-936558,BMS-936558-01; MDX-1106; ONO-4538,Bristol Myers Squibb
+Eliquis,apixaban,BMS-562247,BMS 562247-01,Bristol Myers Squibb
+Orencia,abatacept,,BMS-188667; ONO-4164,Bristol Myers Squibb
+Ocrevus,ocrelizumab,RO4964913,PRO-70769; RG1594,Roche
+Hemlibra,emicizumab,RO5534262,ACE-910; CH5534262; RG6013,Roche
+Vabysmo,faricimab,RO-6867461,RG-7716,Roche
+Entresto,sacubitril; valsartan,LCZ696,AHU-377; CGP-48933; LCZ696A; VAL-489,Novartis
+Cosentyx,secukinumab,AIN457,AIN457A,Novartis
+Kisqali,ribociclib,LEE-011,,Novartis
+Keytruda,pembrolizumab,MK-3475,H409A11; Merck 3475; SCH-900475,Merck
+Farxiga,dapagliflozin,,BMS-512148; BMS-512148-05,AstraZeneca
+Tagrisso,osimertinib,AZD-9291,,AstraZeneca
+Imfinzi,durvalumab,MEDI-4736,,AstraZeneca
+Darzalex,daratumumab,JNJ-54767414,HuMax-CD38,Johnson & Johnson
+Stelara,ustekinumab,CNTO 1275,,Johnson & Johnson
+Tremfya,guselkumab,CNTO-1959,,Johnson & Johnson
+Skyrizi,risankizumab,ABBV-066,BI-655066,AbbVie
+Rinvoq,upadacitinib,ABT-494,,AbbVie
+Vraylar,cariprazine,,AGN-241780; MP-214; RGH-188,AbbVie
+Eliquis,apixaban,BMS-562247,BMS 562247-01,Pfizer
+Vyndaqel,tafamidis,PF-06291826,FX-1006; Fx-1006A; PF-6291826,Pfizer
+Mounjaro,tirzepatide,LY3298176,,Eli Lilly
+Zepbound,tirzepatide,LY3298176,,Eli Lilly
+Verzenio,abemaciclib,LY-2835219,,Eli Lilly
