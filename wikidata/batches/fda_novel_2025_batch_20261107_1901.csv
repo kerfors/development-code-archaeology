@@ -1,0 +1,43 @@
+code_key,inn,level,target_qid,target_label,company_qid,company_label,decision,value,reference,nct_id,start_date,lead_sponsor,matched_field,matched_value,n_trials,ncit_code,result,reason
+AR15512,acoltremon,moiety,Q27089230,acoltremon,Q25245434,Aerie Pharmaceuticals,,AR-15512,ClinicalTrials.gov,NCT04498182,2020-10-26,Aerie Pharmaceuticals,interventions.name,AR-15512 Ophthalmic Solution,5,,publish,
+AVX012,acoltremon,moiety,Q27089230,acoltremon,Q30268756,Avizorex Pharma,,,,,,,,,,,not published,no trial pick; NCIt not a source
+ABT627,atrasentan,moiety,Q125083,atrasentan,Q306764,Abbott Laboratories,D2,,,,,,,,,,hold,"held (D2): Abbott prefix, AbbVie and Novartis trials (as ABT494)"
+VS6766,avutometinib,moiety,Q27147976,avutometinib,Q30289308,Verastem,,VS-6766,ClinicalTrials.gov,NCT04625270,2020-12-21,"Verastem, Inc.",intervention_other_names.name,avutometinib (VS-6766) and VS-6063,9,,publish,
+RO5126766,avutometinib,moiety,Q27147976,avutometinib,Q212646,Hoffmann-La Roche,,RO5126766,ClinicalTrials.gov,NCT00773526,2008-11-30,Hoffmann-La Roche,interventions.name,RO5126766,1,,publish,
+CH5126766,avutometinib,moiety,Q27147976,avutometinib,Q750619,Chugai Pharmaceutical,,,,,,,,,,,not published,"no trial pick; NCIt C80060 has several spellings (term types): [('CH-5126766', 'CN'), ('CH5126766', 'CN')]"
+INS1007,brensocatib,moiety,Q105334645,brensocatib,Q30281842,Insmed,,,,,,,,,,,not published,"no trial pick; NCIt C171778 has several spellings (term types): [('INS 1007', 'CN'), ('INS-1007', 'CN'), ('INS1007', 'CN')]"
+AZD7986,brensocatib,moiety,Q105334645,brensocatib,Q731938,AstraZeneca,,AZD7986,ClinicalTrials.gov,NCT02303574,2014-12-03,AstraZeneca,interventions.name,"AZD7986, oral solution, 1 to 50 mg/mL",2,,publish,
+VS6063,defactinib,moiety,Q27077009,defactinib,Q30289308,Verastem,,VS-6063,ClinicalTrials.gov,NCT01778803,2013-02-26,"Verastem, Inc.",intervention_other_names.name,VS-6063,14,,publish,
+PF04554878,defactinib,moiety,Q27077009,defactinib,Q206921,Pfizer,,PF-04554878,NCI Thesaurus,,,,,,,C79809,publish,
+LEO124249,delgocitinib,moiety,Q76620858,delgocitinib,Q1798020,LEO Pharma,,LEO 124249,ClinicalTrials.gov,NCT02561585,2016-01-31,LEO Pharma,interventions.name,LEO 124249,13,,publish,
+JTE052,delgocitinib,moiety,Q76620858,delgocitinib,Q898568,Japan Tobacco,D0,,,,,,,,,,hold,held (D0): web evidence only
+ONC201,dordaviprone,moiety,Q27895916,Dordaviprone,Q30288482,Oncoceutics,,,,,,,,,,,not published,"no trial pick; NCIt C113792 has several spellings (term types): [('ONC 201', 'CN'), ('ONC-201', 'CN'), ('ONC201', 'CN'), ('ONC201', 'SY')]"
+TIC10,dordaviprone,moiety,Q27895916,Dordaviprone,,,D12,,,,,,,,,,hold,"held (D12): academic name, assigner not a company (KF 2026-11-07)"
+MTP131,elamipretide,moiety,Q27269822,elamipretide,Q30269327,Stealth BioTherapeutics,,,,,,,,,,,not published,no trial pick; NCIt not a source
+SS31,elamipretide,moiety,Q27269822,elamipretide,,,D12,,,,,,,,,,hold,"held (D12): Szeto-Schiller peptide name, assigner not a company (KF 2026-11-07)"
+BAY3427080,elinzanetant,moiety,Q108453435,elinzanetant,Q152051,Bayer,,BAY3427080,ClinicalTrials.gov,NCT02865538,2016-08-01,Bayer,interventions.name,Placebo (for BAY3427080),19,,publish,
+NT814,elinzanetant,moiety,Q108453435,elinzanetant,Q30269153,NeRRe Therapeutics,,,,,,,,,,,not published,"no trial pick; NCIt C174774 has several spellings (term types): [('NT 814', 'CN'), ('NT-814', 'CN'), ('NT814', 'CN')]"
+GSK1144814,elinzanetant,moiety,Q108453435,elinzanetant,Q212322,GSK,,GSK1144814,ClinicalTrials.gov,NCT01381419,2008-10-20,GlaxoSmithKline,interventions.name,GSK1144814,3,,publish,
+MSP2017,etripamil,moiety,Q27289030,etripamil,,Milestone Pharmaceuticals,D4,,,,,,,,,,hold,held (D4): no Wikidata item found
+GSK2140944,gepotidacin,moiety,Q19597285,gepotidacin,Q212322,GSK,,GSK2140944,ClinicalTrials.gov,NCT02202187,2011-09-26,GlaxoSmithKline,interventions.name,GSK2140944,10,,publish,
+LY3484356,imlunestrant,moiety,Q123582076,imlunestrant,Q632240,Eli Lilly and Company,,LY3484356,ClinicalTrials.gov,NCT04188548,2019-12-10,Eli Lilly and Company,interventions.name,LY3484356,13,,publish,
+PD0325901,mirdametinib,moiety,Q27088255,mirdametinib,Q4046487,Parke-Davis,D2,,,,,,,,,,hold,"held (D2): Parke-Davis prefix, Pfizer and SpringWorks trials"
+PD325901,mirdametinib,moiety,Q27088255,mirdametinib,Q4046487,Parke-Davis,D2,,,,,,,,,,hold,held (D2): as PD0325901; and second spelling (D7)
+BI1015550,nerandomilast,moiety,,,Q699532,Boehringer Ingelheim,D11,,,,,,,,,,hold,held (D11): item Q136594966 has no UNII (and no InChIKey)
+CRN00808,paltusotine,moiety,Q115869831,paltusotine,Q30283245,Crinetics Pharmaceuticals,,CRN00808,ClinicalTrials.gov,NCT03276858,2017-09-22,Crinetics Pharmaceuticals Inc.,interventions.name,CRN00808,7,,publish,
+LOU064,remibrutinib,moiety,Q123499462,remibrutinib,Q507154,Novartis,,,,,,,,,,,not published,no trial pick; NCIt not a source
+PRN1008,rilzabrutinib,moiety,,,Q30269215,Principia Biopharma,D11,,,,,,,,,,hold,held (D11): no Wikidata item for rilzabrutinib
+KVD900,sebetralstat,moiety,Q131152152,sebetralstat,Q132101891,KalVista Pharmaceuticals,D13,,,,,,,,,,hold,"held (D13): company item Q132101891 has only an all-caps label, type 'organization' (register import?)"
+PTC923,sepiapterin,moiety,Q100606475,L-sepiapterin,Q7120959,PTC Therapeutics,,PTC923,ClinicalTrials.gov,NCT03519711,2019-01-03,PTC Therapeutics,interventions.name,PTC923,4,,publish,
+CNSA001,sepiapterin,moiety,Q100606475,L-sepiapterin,,Censa Pharmaceuticals,D4,,,,,,,,,,hold,held (D4): no Wikidata item found; trials under PTC (D1)
+BAY2927088,sevabertinib,moiety,Q137258574,sevabertinib,Q152051,Bayer,,BAY2927088,ClinicalTrials.gov,NCT05099172,2021-10-25,Bayer,interventions.name,BAY2927088_formulation B_3,9,,publish,
+DZD9008,sunvozertinib,moiety,Q130051139,sunvozertinib,Q140045773,Dizal Pharmaceutical,D13,,,,,,,,,,hold,"held (D13): only item is 'Dizal (Jiangsu) Pharmaceutical Co., Ltd. (China)', a specific legal entity; sponsor 'Dizal Pharmaceuticals'"
+VX548,suzetrigine,moiety,Q123481189,suzetrigine,Q2744099,Vertex Pharmaceuticals,,,,,,,,,,,not published,no trial pick; NCIt not a source
+AB106,taletrectinib,moiety,,,,AnHeart Therapeutics,D11,,,,,,,,,,hold,held (D11): no Wikidata item for taletrectinib; no company item found
+DS6051,taletrectinib,moiety,,,Q669441,Daiichi Sankyo,D11,,,,,,,,,,hold,held (D11): no Wikidata item for taletrectinib
+DS6051A,taletrectinib,moiety,,,Q669441,Daiichi Sankyo,D11,,,,,,,,,,hold,held (D11): no Wikidata item for taletrectinib
+DCC3014,vimseltinib,moiety,Q106440798,vimseltinib,Q104480282,Deciphera Pharmaceuticals,,,,,,,,,,,not published,"no trial pick; NCIt C175876 has several spellings (term types): [('DCC 3014', 'CN'), ('DCC-3014', 'CN'), ('DCC-3014', 'SY'), ('DCC3014', 'CN')]"
+KO539,ziftomenib,moiety,Q133521494,ziftomenib,Q30269121,Kura Oncology,,KO-539,ClinicalTrials.gov,NCT04067336,2019-09-12,"Kura Oncology, Inc.",intervention_other_names.name,KO-539,4,,publish,
+ETX0914,zoliflodacin,moiety,Q27278240,zoliflodacin,Q100956344,Entasis Therapeutics,D0,,,,,,,,,,hold,held (D0): web evidence only
+AZD0914,zoliflodacin,moiety,Q27278240,zoliflodacin,Q731938,AstraZeneca,,,,,,,,,,,not published,no trial pick; NCIt not a source
+BI1810631,zongertinib,moiety,Q135706605,zongertinib,Q699532,Boehringer Ingelheim,,BI 1810631,ClinicalTrials.gov,NCT04886804,2021-07-02,Boehringer Ingelheim,intervention_other_names.name,"BI 1810631, Hernexeos®",13,,publish,

@@ -110,6 +110,6 @@ Posted 2026-10-16. Texts on the talk pages:
 | P15001 created, aliases added | done |
 | Statements before the first batch (manual and test batch, 2026-10-26) | AZD4522, BMS-562247, LY3298176, REGN668; plus 4 examples by the property creator |
 | Batch for `top_sellers_fy2025` | Sent 2026-11-07 (run 20261107_1520, `batches/`): 25 statements, verified on Wikidata. 53 codes mapped: 15 held (D2–D4, D7, D8); 13 without a reference under D1, D6, D10; 10 web-only held (D0) |
-| Targets for `fda_novel_2025` | `fda_novel_2025_code_targets.csv`, 2026-11-07: 42 codes, 26 include, 16 hold (D0, D2, D4, D11, D12, D13). Of the 29 moieties, 25 of the 26 items found by UNII lack P2275 (suzetrigine has it in Arabic only) |
+| Batch for `fda_novel_2025` | Sent 2026-11-07 (run 20261107_1901, `batches/`): 16 statements (15 ClinicalTrials.gov reference, 1 NCIt), verified on Wikidata. 42 codes mapped: 16 held (D0, D2, D4, D11, D12, D13); 10 without a reference (5 under D10, 5 with no trial pick and NCIt not a source). P15001 total after the batch: 49 statements on 39 items. Of the 29 moieties, 25 of the 26 items found by UNII lack P2275 (suzetrigine has it in Arabic only) |
 | P2275 INN on 11 items that lack it, referenced to the WHO Recommended INN list | not started |
 | Abatacept alias removal | not done; no reply on the talk page |
