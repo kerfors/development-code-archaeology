@@ -13,11 +13,26 @@ FDA novel drug approvals 2025. Copied by script from `development_code_trial_arc
 | `current_code` | Sponsor code at approval |
 | `legacy_codes` | Earlier codes, `; `-separated |
 | `sponsor` | Sponsor(s) |
+| `ncit_code` | NCI Thesaurus concept per INN (added 2026-11-07; read by the code harvest only) |
+| `moiety_unii` | FDA UNII per NCIt concept (added 2026-11-07) |
 
 Codes verified against DrugBank, AdisInsight, Wikipedia, company press releases and SEC filings, patent assignee
 history and PubChem synonym lists. NSC (NCI) codes excluded except Grafapex (only code).
 
 Kygevvi (doxecitine and doxribtimine) is a combination; the February 2026 PubChem checks excluded it (29 single-entity drugs; `docs/background.md`).
+
+`ncit_code` and `moiety_unii`, 2026-11-07: NCIt exact-name search per INN (NCI EVS API, NCIt 26.10d), concept property
+`FDA_UNII_Code`; each UNII cross-checked in GSRS (preferred name, substance class, active-moiety relationship).
+One NCIt concept per INN; no UNII is a salt. Accepted by KF 2026-11-07. Flags:
+- rilzabrutinib: GSRS substance class mixture, (E)- and (Z)-isomers; NWN58M4F5T is its own active moiety in GSRS.
+- sepiapterin: GSRS record has no relationships, so the active-moiety relation cannot be checked; single neutral
+  moiety C9H11N5O3, the only GSRS substance of that name.
+
+Kygevvi is left out of the code harvest (`EXCLUDE_BRANDS` in `code_harvest/tools/build_harvest_notebook.py`,
+KF 2026-11-07): its only code, MT-1621, names the combination, and the components are the nucleosides
+deoxycytidine and thymidine. Its `ncit_code` and `moiety_unii` are therefore empty. Looked up, for the record:
+doxecitine C420 / 0W860991D6; doxribtimine C880 (NCIt preferred name Thymidine) / VC2W18DGKR.
+It stays in this file unchanged for trial archaeology.
 
 ## top_sellers_fy2025.csv
 

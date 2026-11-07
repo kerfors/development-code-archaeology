@@ -1,31 +1,31 @@
-brand,inn,current_code,legacy_codes,sponsor
-Cardamyst,etripamil,MSP-2017,,Milestone Pharma
-Nuzolvence,zoliflodacin,ETX0914,AZD0914,Entasis/AstraZeneca
-Hyrnuo,sevabertinib,BAY 2927088,,Bayer
-Komzifti,ziftomenib,KO-539,,Kura Oncology
-Kygevvi,doxecitine and doxribtimine,MT-1621,,UCB/Zogenix
-Lynkuet,elinzanetant,BAY 3427080,GSK1144814; NT-814,Bayer/GSK
-Jascayd,nerandomilast,BI 1015550,,Boehringer Ingelheim
-Rhapsido,remibrutinib,LOU064,,Novartis
-Palsonify,paltusotine,CRN00808,,Crinetics
-Inluriyo,imlunestrant,LY3484356,,Eli Lilly
-Forzinity,elamipretide,SS-31,MTP-131,Stealth BioTherapeutics
-Wayrilz,rilzabrutinib,SAR444671,PRN1008,Sanofi/Principia
-Brinsupri,brensocatib,INS1007,AZD7986,Insmed/AstraZeneca
-Hernexeos,zongertinib,BI 1810631,,Boehringer Ingelheim
-Modeyso,dordaviprone,ONC201,TIC10,Chimerix
-Vizz,aceclidine,LNZ100,,Lenz Therapeutics
-Sephience,sepiapterin,PTC923,CNSA-001,PTC Therapeutics
-Anzupgo,delgocitinib,JTE-052,LEO 124249,Leo Pharma/Japan Tobacco
-Ekterly,sebetralstat,KVD900,,KalVista
-Zegfrovy,sunvozertinib,DZD9008,,Dizal Pharma
-Ibtrozi,taletrectinib,AB-106,DS-6051b,AnHeart/Nuvation
-Tryptyr,acoltremon,AVX-012,AR-15512,Averitas/Arcutis
-Avmapki,avutometinib,VS-6766,RO5126766; CH5126766,Verastem/Chugai
-Fakzynja,defactinib,VS-6063,PF-04554878,Verastem/Pfizer
-Vanrafia,atrasentan,ABT-627,,Chinook/AbbVie
-Blujepa,gepotidacin,GSK2140944,,GSK
-Romvimza,vimseltinib,DCC-3014,,Deciphera
-Gomekli,mirdametinib,PD-0325901,,SpringWorks
-Journavx,suzetrigine,VX-548,,Vertex
-Grafapex,treosulfan,,NSC-39069,medac
+brand,inn,current_code,legacy_codes,sponsor,ncit_code,moiety_unii
+Cardamyst,etripamil,MSP-2017,,Milestone Pharma,C169972,S82A18Y42P
+Nuzolvence,zoliflodacin,ETX0914,AZD0914,Entasis/AstraZeneca,C152962,FWL2263R77
+Hyrnuo,sevabertinib,BAY 2927088,,Bayer,C185187,2A7VPM5RWH
+Komzifti,ziftomenib,KO-539,,Kura Oncology,C164227,4MOD1F4ENC
+Kygevvi,doxecitine and doxribtimine,MT-1621,,UCB/Zogenix,,
+Lynkuet,elinzanetant,BAY 3427080,GSK1144814; NT-814,Bayer/GSK,C174774,NZW2BOW35N
+Jascayd,nerandomilast,BI 1015550,,Boehringer Ingelheim,C203229,I5DGT51IB8
+Rhapsido,remibrutinib,LOU064,,Novartis,C175851,I7MVZ8HDNU
+Palsonify,paltusotine,CRN00808,,Crinetics,C175836,F2IBD1GMD3
+Inluriyo,imlunestrant,LY3484356,,Eli Lilly,C174042,9CXQ3PF69U
+Forzinity,elamipretide,SS-31,MTP-131,Stealth BioTherapeutics,C171874,87GWG91S09
+Wayrilz,rilzabrutinib,SAR444671,PRN1008,Sanofi/Principia,C174769,NWN58M4F5T
+Brinsupri,brensocatib,INS1007,AZD7986,Insmed/AstraZeneca,C171778,25CG88L0BB
+Hernexeos,zongertinib,BI 1810631,,Boehringer Ingelheim,C199022,DRH7R67UVL
+Modeyso,dordaviprone,ONC201,TIC10,Chimerix,C113792,9U35A31JAI
+Vizz,aceclidine,LNZ100,,Lenz Therapeutics,C81044,0578K3ELIO
+Sephience,sepiapterin,PTC923,CNSA-001,PTC Therapeutics,C188559,CJQ26KO7HP
+Anzupgo,delgocitinib,JTE-052,LEO 124249,Leo Pharma/Japan Tobacco,C171928,9L0Q8KK220
+Ekterly,sebetralstat,KVD900,,KalVista,C184930,O5ZD2TU2B7
+Zegfrovy,sunvozertinib,DZD9008,,Dizal Pharma,C167205,L1Q2K5JYO8
+Ibtrozi,taletrectinib,AB-106,DS-6051b,AnHeart/Nuvation,C118948,W4141180YD
+Tryptyr,acoltremon,AVX-012,AR-15512,Averitas/Arcutis,C189962,1L7BVT4Z4Z
+Avmapki,avutometinib,VS-6766,RO5126766; CH5126766,Verastem/Chugai,C80060,D0D4252V97
+Fakzynja,defactinib,VS-6063,PF-04554878,Verastem/Pfizer,C79809,53O87HA2QU
+Vanrafia,atrasentan,ABT-627,,Chinook/AbbVie,C61606,V6D7VK2215
+Blujepa,gepotidacin,GSK2140944,,GSK,C170025,DVF0PR037D
+Romvimza,vimseltinib,DCC-3014,,Deciphera,C175876,PX9FTM69BF
+Gomekli,mirdametinib,PD-0325901,,SpringWorks,C52195,86K0J5AK6M
+Journavx,suzetrigine,VX-548,,Vertex,C199115,LOG73M21H5
+Grafapex,treosulfan,,NSC-39069,medac,C1257,CO61ER3EPI

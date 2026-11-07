@@ -50,6 +50,8 @@ provenance of each code lives in someone's head. This notebook reverses the orde
 ### Inputs and outputs
 
 - **Input:** `collections/<COLLECTION>.csv` — one row per brand, column `inn` (`; `-separated for combinations) and `ncit_code`
+- **Sponsor column:** `SPONSOR_COLUMN` in section 1, per collection (top_sellers_fy2025: `company`; fda_novel_2025: `sponsor`)
+- **Excluded brands:** `EXCLUDE_BRANDS` in section 1, per collection, with the reason (fda_novel_2025: Kygevvi)
 - **Input (optional):** `collections/<COLLECTION>_code_review.csv` — human review decisions
 - **Input (optional):** `collections/<COLLECTION>_web_candidates.csv` — URL-cited web candidates
 - **Output:** `collections/<COLLECTION>_code_evidence.csv` — one row per INN × candidate code, with sources, evidence and review class
@@ -69,6 +71,13 @@ from dotenv import dotenv_values
 
 COLLECTION = "top_sellers_fy2025"
 REPO_ROOT = "../.."
+
+# Column holding the company/sponsor per brand; collections name it differently
+SPONSOR_COLUMN = {"top_sellers_fy2025": "company", "fda_novel_2025": "sponsor"}
+
+# Brands left out of the harvest, per collection. They stay in the collection file (trial archaeology uses it).
+# fda_novel_2025 Kygevvi: combination of two nucleosides; its only code MT-1621 names the combination (KF 2026-11-07)
+EXCLUDE_BRANDS = {"fda_novel_2025": ["Kygevvi"]}
 
 # AACT credentials from REPO_ROOT/.env (git-ignored, keys as in .env.example); values are never printed
 ENV_FILE = f"{REPO_ROOT}/.env"
@@ -123,8 +132,12 @@ http.mount("https://", HTTPAdapter(max_retries=Retry(total=5, backoff_factor=1,
 os.makedirs(f"{REPO_ROOT}/code_harvest/output", exist_ok=True)
 
 collection = pd.read_csv(f"{REPO_ROOT}/collections/{COLLECTION}.csv", dtype=str)
-for col in ["brand", "inn", "ncit_code"]:
+for col in ["brand", "inn", "ncit_code", SPONSOR_COLUMN[COLLECTION]]:
     assert col in collection.columns, f"Collection file lacks column '{col}'"
+excluded = EXCLUDE_BRANDS.get(COLLECTION, [])
+unknown = [b for b in excluded if b not in set(collection["brand"])]
+assert not unknown, f"EXCLUDE_BRANDS not in {COLLECTION}.csv: {unknown}"
+collection = collection[~collection["brand"].isin(excluded)].reset_index(drop=True)
 
 # One row per (INN, NCIt code) — combinations split into components
 inn_rows = []
@@ -591,7 +604,7 @@ for _, b in collection.iterrows():
     legacy = sorted(set(preferred(v) for v in u.loc[u["code_class"].isin(["legacy", "partner"]), "variants"]))
     legacy = [c for c in legacy if c not in current]
     rows.append({"brand": b["brand"], "inn": b["inn"], "current_code": "; ".join(current),
-                 "legacy_codes": "; ".join(legacy), "sponsor": b["company"]})
+                 "legacy_codes": "; ".join(legacy), "sponsor": b[SPONSOR_COLUMN[COLLECTION]]})
 
 codes = pd.DataFrame(rows)
 codes.to_csv(f"{REPO_ROOT}/collections/{COLLECTION}_codes.csv", index=False)
@@ -608,7 +621,7 @@ for inn_ in inns["inn"]:
     legacy = [c for c in legacy if c not in current]
     moiety_rows.append({"brand": "; ".join(collection.loc[in_brand, "brand"].unique()), "inn": inn_,
                         "current_code": "; ".join(current), "legacy_codes": "; ".join(legacy),
-                        "sponsor": "; ".join(collection.loc[in_brand, "company"].unique())})
+                        "sponsor": "; ".join(collection.loc[in_brand, SPONSOR_COLUMN[COLLECTION]].unique())})
 moiety_codes = pd.DataFrame(moiety_rows)
 moiety_codes.to_csv(f"{REPO_ROOT}/collections/{COLLECTION}_moiety_codes.csv", index=False)
 print(f"Moiety-level file: {len(moiety_codes)} active moieties")
