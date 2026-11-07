@@ -64,7 +64,9 @@ Run outputs go to `<folder>/output/`, which is not tracked.
 ## Status
 
 Exploratory. Results depend on the AACT snapshot and on the source versions at harvest time; each run records
-its dates. `top_sellers_fy2025`: 2 codes held for an expert question.
+its dates. `top_sellers_fy2025`: 2 codes held for an expert question. `fda_novel_2025`: codes harvested and
+reviewed 2026-11-07 (54 confirmed, 7 held); its trial counts above still use the December codes.
+Wikidata: 41 P15001 statements published from both collections (25 + 16, 2026-11-07; `wikidata/README.md`).
 
 ## Licence
 
