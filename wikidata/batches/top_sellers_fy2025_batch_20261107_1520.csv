@@ -1,0 +1,54 @@
+code_key,inn,level,target_qid,target_label,company_qid,company_label,decision,value,reference,nct_id,start_date,lead_sponsor,matched_field,matched_value,n_trials,ncit_code,result,reason
+BMS188667,abatacept,moiety,Q2697833,abatacept,Q266423,Bristol-Myers Squibb,,BMS-188667,ClinicalTrials.gov,NCT00162266,2000-10-31,Bristol-Myers Squibb,interventions.name,Abatacept (BMS-188667),33,,publish,
+ONO4164,abatacept,moiety,Q2697833,abatacept,Q11464265,Ono Pharmaceutical,,,,,,,,,,,not published,no trial pick; NCIt not a source
+LY2835219,abemaciclib,moiety,Q23901483,abemaciclib,Q632240,Eli Lilly and Company,,LY2835219,ClinicalTrials.gov,NCT01394016,2009-12-07,Eli Lilly and Company,intervention_other_names.name,LY2835219,57,,publish,
+BMS56224701,apixaban,moiety,Q414462,apixaban,Q266423,Bristol-Myers Squibb,,BMS-562247-01,NCI Thesaurus,,,,,,,C61308,publish,
+RGH188,cariprazine,moiety,Q2938837,cariprazine,Q630125,Gedeon Richter,,,,,,,,,,,not published,no trial pick; NCIt not a source
+BMS512148,dapagliflozin,moiety,Q409898,dapagliflozin,Q266423,Bristol-Myers Squibb,D6,,,,,,,,,,not published,no trial pick; NCIt not a source
+BMS51214805,dapagliflozin,moiety,Q409898,dapagliflozin,Q266423,Bristol-Myers Squibb,,BMS-512148-05,NCI Thesaurus,,,,,,,C78126,publish,
+JNJ54767414,daratumumab,moiety,Q5222113,daratumumab,Q333718,Johnson & Johnson,D3,,,,,,,,,,hold,held (D3): JNJ prefix = Johnson & Johnson; trials by its Janssen R&D unit: same company?
+HUMAXCD38,daratumumab,moiety,Q5222113,daratumumab,Q2076526,Genmab,,,,,,,,,,,not published,no trial pick; NCIt not a source
+GSK1349572,dolutegravir,moiety,Q937224,dolutegravir,Q212322,GSK,D5,GSK1349572,ClinicalTrials.gov,NCT00555035,2007-11-30,GlaxoSmithKline,interventions.name,GSK1349572,9,,publish,
+SAR231893,dupilumab,moiety,Q5315925,dupilumab,Q158205,Sanofi,,SAR231893,ClinicalTrials.gov,NCT01312961,2011-03-31,Sanofi,intervention_other_names.name,SAR231893,50,,publish,
+MEDI4736,durvalumab,moiety,Q19904005,durvalumab,Q1335294,MedImmune,,MEDI4736,ClinicalTrials.gov,NCT01693562,2012-09-05,MedImmune LLC,interventions.name,MEDI4736,17,,publish,
+RO5534262,emicizumab,moiety,Q27155409,emicizumab,Q212646,Hoffmann-La Roche,,RO5534262,ClinicalTrials.gov,NCT02622321,2015-11-18,Hoffmann-La Roche,intervention_other_names.name,RO5534262,12,,publish,
+ACE910,emicizumab,moiety,Q27155409,emicizumab,Q750619,Chugai Pharmaceutical,,,,,,,,,,,not published,"no trial pick; NCIt C159541 has several spellings (term types): [('ACE 910', 'CN'), ('ACE-910', 'CN'), ('ACE910', 'CN')]"
+RG6013,emicizumab,moiety,Q27155409,emicizumab,Q212646,Hoffmann-La Roche,,RG6013,ClinicalTrials.gov,NCT02622321,2015-11-18,Hoffmann-La Roche,intervention_other_names.name,RG6013,8,,publish,
+RO6867461,faricimab,moiety,Q60785557,faricimab,Q212646,Hoffmann-La Roche,,RO6867461,ClinicalTrials.gov,NCT01941082,2013-12-31,Hoffmann-La Roche,interventions.name,RO6867461,18,,publish,
+RG7716,faricimab,moiety,Q60785557,faricimab,Q212646,Hoffmann-La Roche,,RG7716,ClinicalTrials.gov,NCT02484690,2015-08-11,Hoffmann-La Roche,intervention_other_names.name,RG7716,16,,publish,
+GSK2834425,fluticasone furoate; umeclidinium; vilanterol,combination,Q48566801,fluticasone / umeclidinium / vilanterol,Q212322,GSK,,,,,,,,,,,not published,no trial pick; NCIt not a source
+GW685698X,fluticasone furoate,moiety,Q2166700,fluticasone furoate,Q212322,GSK,D2,,,,,,,,,,hold,held (D2): GW = Glaxo Wellcome numbering; trials by GSK; assigner GSK or Glaxo Wellcome (Q911693)?
+GW685698,fluticasone furoate,moiety,Q2166700,fluticasone furoate,Q212322,GSK,D2,,,,,,,,,,hold,held (D2): as GW685698X
+CNTO1959,guselkumab,moiety,Q15708315,guselkumab,Q1053653,Centocor,,CNTO 1959,ClinicalTrials.gov,NCT00925574,2009-06-04,"Centocor, Inc.",interventions.name,CNTO 1959; Placebo,1,,publish,
+GR109714X,lamivudine,moiety,Q422631,lamivudine,Q1453158,Glaxo,,GR109714X,NCI Thesaurus,,,,,,,C1471,publish,
+BCH189,lamivudine,moiety,Q422631,lamivudine,,BioChem Pharma,D4,,,,,,,,,,hold,"held (D4): no Wikidata item, not an AACT lead sponsor; NCIt reads BCH-189 as the racemate (level question 2026-10-16)"
+MDX1106,nivolumab,moiety,Q7041828,nivolumab,Q6805152,Medarex,,,,,,,,,,,not published,"no trial pick; NCIt C68814 has several spellings (term types): [('MDX 1106', 'CN'), ('MDX-1106', 'CN'), ('MDX1106', 'CN')]"
+BMS93655801,nivolumab,moiety,Q7041828,nivolumab,Q266423,Bristol-Myers Squibb,,BMS-936558-01,ClinicalTrials.gov,NCT03899155,2019-08-09,Bristol-Myers Squibb,intervention_other_names.name,BMS-936558-01,4,,publish,
+RO4964913,ocrelizumab,moiety,Q2013780,ocrelizumab,Q212646,Hoffmann-La Roche,,RO4964913,ClinicalTrials.gov,NCT02723071,2005-05-31,Hoffmann-La Roche,intervention_other_names.name,RO4964913,16,,publish,
+PRO70769,ocrelizumab,moiety,Q2013780,ocrelizumab,Q899140,Genentech,,,,,,,,,,,not published,"no trial pick; NCIt C66250 has several spellings (term types): [('PRO-70769', 'CN'), ('PRO70769', 'CN')]"
+AZD9291,osimertinib,moiety,Q21506464,osimertinib,Q731938,AstraZeneca,,AZD9291,ClinicalTrials.gov,NCT01802632,2013-03-04,AstraZeneca,interventions.name,AZD9291,36,,publish,
+MK3475,pembrolizumab,moiety,Q13896859,pembrolizumab,Q247489,Merck & Co.,,MK-3475,ClinicalTrials.gov,NCT01295827,2011-03-04,Merck Sharp & Dohme LLC,intervention_other_names.name,MK-3475,241,,publish,
+SCH900475,pembrolizumab,moiety,Q13896859,pembrolizumab,Q249723,Schering-Plough,,,,,,,,,,,not published,"no trial pick; NCIt C106432 has several spellings (term types): [('SCH 900475', 'CN'), ('SCH-900475', 'CN'), ('SCH900475', 'CN')]"
+LEE011,ribociclib,moiety,Q27088552,ribociclib,Q507154,Novartis,D6,,,,,,,,,,not published,"no trial pick; NCIt C95701 has several spellings (term types): [('LEE 011', 'CN'), ('LEE-011', 'CN'), ('LEE011', 'CN')]"
+ABBV066,risankizumab,moiety,Q25112466,risankizumab,Q14662364,AbbVie,,ABBV-066,ClinicalTrials.gov,NCT01577550,2012-04-30,AbbVie,intervention_other_names.name,ABBV-066,53,,publish,
+BI655066,risankizumab,moiety,Q25112466,risankizumab,Q699532,Boehringer Ingelheim,,BI 655066,ClinicalTrials.gov,NCT02054481,2014-02-28,Boehringer Ingelheim,interventions.name,BI 655066,1,,publish,
+AHU377,sacubitril,moiety,Q17811448,sacubitril,Q507154,Novartis,D6,,,,,,,,,,not published,"no trial pick; NCIt C152281 has several spellings (term types): [('AHU 377', 'CN'), ('AHU-377', 'CN'), ('AHU377', 'CN')]"
+AIN457,secukinumab,moiety,Q7444755,secukinumab,Q507154,Novartis,D6,AIN457,ClinicalTrials.gov,NCT01103024,2010-12-31,Novartis,interventions.name,AIN457,1,,publish,
+AIN457A,secukinumab,moiety,Q7444755,secukinumab,Q507154,Novartis,D6,,,,,,,,,,not published,no trial pick; NCIt not a source
+NN9535,semaglutide,moiety,Q27261089,semaglutide,Q818846,Novo Nordisk,D8,,,,,,,,,,hold,"held (D8): programme: subcutaneous semaglutide, type 2 diabetes; Novo study-ID prefix"
+NN9924,semaglutide,moiety,Q27261089,semaglutide,Q818846,Novo Nordisk,D8,,,,,,,,,,hold,"held (D8): programme: oral semaglutide (tablets), type 2 diabetes; Novo study-ID prefix"
+NN9536,semaglutide,moiety,Q27261089,semaglutide,Q818846,Novo Nordisk,D8,,,,,,,,,,hold,"held (D8): programme: semaglutide, obesity; Novo study-ID prefix"
+NN9932,semaglutide,moiety,Q27261089,semaglutide,Q818846,Novo Nordisk,D8,,,,,,,,,,hold,"held (D8): programme: oral semaglutide (tablets), obesity; Novo study-ID prefix"
+NN9931,semaglutide,moiety,Q27261089,semaglutide,Q818846,Novo Nordisk,D8,,,,,,,,,,hold,"held (D8): programme: semaglutide, liver (NASH); Novo study-ID prefix"
+NNC01130217,semaglutide,moiety,Q27261089,semaglutide,Q818846,Novo Nordisk,,NNC 0113-0217,ClinicalTrials.gov,NCT03144271,2007-06-11,Novo Nordisk A/S,intervention_other_names.name,NNC 0113-0217,1,,publish,
+PF06291826,tafamidis,moiety,Q519447,tafamidis,Q206921,Pfizer,,PF-06291826,ClinicalTrials.gov,NCT01369836,2011-07-31,Pfizer,intervention_other_names.name,PF-06291826,2,,publish,
+FX1006A,tafamidis,moiety,Q519447,tafamidis,,FoldRx,D4,,,,,,,,,,hold,"held (D4): FoldRx: no Wikidata item, not an AACT lead sponsor; A suffix unverified (decision: moiety)"
+PF6291826,tafamidis,moiety,Q519447,tafamidis,Q206921,Pfizer,D7,,,,,,,,,,hold,held (D7): spelling variant of PF06291826 (leading zero dropped); alias only
+FX1006,tafamidis,moiety,Q519447,tafamidis,,FoldRx,D4,,,,,,,,,,hold,held (D4): as FX1006A
+GSK573719,umeclidinium,moiety,Q21011235,umeclidinium,Q212322,GSK,,GSK573719,ClinicalTrials.gov,NCT00475436,2007-05-14,GlaxoSmithKline,interventions.name,GSK573719,27,,publish,
+ABT494,upadacitinib,moiety,Q27074125,upadacitinib,Q14662364,AbbVie,D2,,,,,,,,,,hold,held (D2): ABT = Abbott prefix; assigner Abbott (Q306764) or AbbVie?
+CNTO1275,ustekinumab,moiety,Q420305,ustekinumab,Q1053653,Centocor,,CNTO 1275,ClinicalTrials.gov,NCT00320216,2003-11-30,"Centocor, Inc.",intervention_other_names.name,CNTO 1275,5,,publish,
+VAL489,valsartan,moiety,Q155472,valsartan,Q507154,Novartis,D6,,,,,,,,,,not published,no trial pick; NCIt not a source
+CGP48933,valsartan,moiety,Q155472,valsartan,Q21278763,Ciba-Geigy,,CGP 48933,NCI Thesaurus,,,,,,,C47781,publish,
+GW642444,vilanterol,moiety,Q15053666,vilanterol,Q212322,GSK,D2,,,,,,,,,,hold,"held (D2): as GW685698X: GW numbering, assigner GSK or Glaxo Wellcome?"
+GW642444M,vilanterol,salt,Q27145087,vilanterol trifenatate,Q212322,GSK,D2,,,,,,,,,,hold,held (D2): M = trifenatate (decision 2026-10-16: salt item)

@@ -1,0 +1,54 @@
+inn,code_key,code_class,level,target_qid,target_label,company_label,company_qid,lead_sponsor_names,status,decision,reviewer,note
+abatacept,BMS188667,legacy,moiety,Q2697833,abatacept,Bristol-Myers Squibb,Q266423,Bristol-Myers Squibb,include,,KF,
+abatacept,ONO4164,partner,moiety,Q2697833,abatacept,Ono Pharmaceutical,Q11464265,"Ono Pharmaceutical Co., Ltd.",include,,KF,partner code; AACT evidence has BMS as lead sponsor of its one trial
+abemaciclib,LY2835219,current,moiety,Q23901483,abemaciclib,Eli Lilly and Company,Q632240,Eli Lilly and Company,include,,KF,
+apixaban,BMS56224701,legacy,moiety,Q414462,apixaban,Bristol-Myers Squibb,Q266423,Bristol-Myers Squibb,include,,KF,"-01 suffix, meaning unverified (decision 2026-10-16: moiety)"
+cariprazine,RGH188,legacy,moiety,Q2938837,cariprazine,Gedeon Richter,Q630125,Gedeon Richter Plc.,include,,KF,"Q1249087 is the pharmacist, not the company"
+dapagliflozin,BMS512148,legacy,moiety,Q409898,dapagliflozin,Bristol-Myers Squibb,Q266423,Bristol-Myers Squibb,include,D6,KF,"AstraZeneca is lead sponsor of all company trials, also those starting 2005 (before the BMS-AZ collaboration); not counted (D1, D6)"
+dapagliflozin,BMS51214805,legacy,moiety,Q409898,dapagliflozin,Bristol-Myers Squibb,Q266423,Bristol-Myers Squibb,include,,KF,"-05 suffix, meaning unverified (decision 2026-10-16: moiety); no AACT trials"
+daratumumab,JNJ54767414,current,moiety,Q5222113,daratumumab,Johnson & Johnson,Q333718,"Janssen Research & Development, LLC",hold,D3,KF,JNJ prefix = Johnson & Johnson; trials by its Janssen R&D unit: same company?
+daratumumab,HUMAXCD38,legacy,moiety,Q5222113,daratumumab,Genmab,Q2076526,Genmab,include,,KF,"Genmab; Janssen (Q903523) is licensee, not successor"
+dolutegravir,GSK1349572,current,moiety,Q937224,dolutegravir,GSK,Q212322,GlaxoSmithKline,include,D5,KF,ViiV Healthcare (GSK-majority JV) lead sponsor on 25 trials: successor or partner?
+dupilumab,SAR231893,partner,moiety,Q5315925,dupilumab,Sanofi,Q158205,Sanofi,include,,KF,
+durvalumab,MEDI4736,current,moiety,Q19904005,durvalumab,MedImmune,Q1335294,MedImmune LLC,include,,KF,"Q1335294 label is AstraZeneca (United States), alias MedImmune"
+emicizumab,RO5534262,current,moiety,Q27155409,emicizumab,Hoffmann-La Roche,Q212646,Hoffmann-La Roche,include,,KF,
+emicizumab,ACE910,legacy,moiety,Q27155409,emicizumab,Chugai Pharmaceutical,Q750619,Chugai Pharmaceutical,include,,KF,"Chugai is Roche majority-owned; Roche is parent, not successor"
+emicizumab,RG6013,legacy,moiety,Q27155409,emicizumab,Hoffmann-La Roche,Q212646,Hoffmann-La Roche,include,,KF,
+faricimab,RO6867461,current,moiety,Q60785557,faricimab,Hoffmann-La Roche,Q212646,Hoffmann-La Roche,include,,KF,
+faricimab,RG7716,legacy,moiety,Q60785557,faricimab,Hoffmann-La Roche,Q212646,Hoffmann-La Roche,include,,KF,
+fluticasone furoate; umeclidinium; vilanterol,GSK2834425,current,combination,Q48566801,fluticasone / umeclidinium / vilanterol,GSK,Q212322,GlaxoSmithKline,include,,KF,one statement for the three evidence rows
+fluticasone furoate,GW685698X,legacy,moiety,Q2166700,fluticasone furoate,GSK,Q212322,GlaxoSmithKline,hold,D2,KF,GW = Glaxo Wellcome numbering; trials by GSK; assigner GSK or Glaxo Wellcome (Q911693)?
+fluticasone furoate,GW685698,legacy,moiety,Q2166700,fluticasone furoate,GSK,Q212322,GlaxoSmithKline,hold,D2,KF,as GW685698X
+guselkumab,CNTO1959,current,moiety,Q15708315,guselkumab,Centocor,Q1053653,"Centocor, Inc.",include,,KF,"Q1053653 label is Janssen Biotech, alias Centocor"
+lamivudine,GR109714X,legacy,moiety,Q422631,lamivudine,Glaxo,Q1453158,,include,,KF,GR = Glaxo Group Research; Glaxo not an AACT lead sponsor
+lamivudine,BCH189,legacy,moiety,Q422631,lamivudine,BioChem Pharma,,,hold,D4,KF,"no Wikidata item, not an AACT lead sponsor; NCIt reads BCH-189 as the racemate (level question 2026-10-16)"
+nivolumab,MDX1106,legacy,moiety,Q7041828,nivolumab,Medarex,Q6805152,,include,,KF,Medarex not an AACT lead sponsor
+nivolumab,BMS93655801,legacy,moiety,Q7041828,nivolumab,Bristol-Myers Squibb,Q266423,Bristol-Myers Squibb,include,,KF,"-01 suffix, meaning unverified (decision 2026-10-16: moiety)"
+ocrelizumab,RO4964913,current,moiety,Q2013780,ocrelizumab,Hoffmann-La Roche,Q212646,Hoffmann-La Roche,include,,KF,
+ocrelizumab,PRO70769,legacy,moiety,Q2013780,ocrelizumab,Genentech,Q899140,"Genentech, Inc.",include,,KF,
+osimertinib,AZD9291,current,moiety,Q21506464,osimertinib,AstraZeneca,Q731938,AstraZeneca,include,,KF,
+pembrolizumab,MK3475,current,moiety,Q13896859,pembrolizumab,Merck & Co.,Q247489,Merck Sharp & Dohme LLC,include,,KF,MSD is Merck & Co. outside US and Canada
+pembrolizumab,SCH900475,legacy,moiety,Q13896859,pembrolizumab,Schering-Plough,Q249723,Schering-Plough,include,,KF,
+ribociclib,LEE011,current,moiety,Q27088552,ribociclib,Novartis,Q507154,Novartis,include,D6,KF,
+risankizumab,ABBV066,current,moiety,Q25112466,risankizumab,AbbVie,Q14662364,AbbVie,include,,KF,
+risankizumab,BI655066,legacy,moiety,Q25112466,risankizumab,Boehringer Ingelheim,Q699532,Boehringer Ingelheim,include,,KF,"AbbVie is licensee, not successor"
+sacubitril,AHU377,legacy,moiety,Q17811448,sacubitril,Novartis,Q507154,Novartis,include,D6,KF,
+secukinumab,AIN457,current,moiety,Q7444755,secukinumab,Novartis,Q507154,Novartis,include,D6,KF,
+secukinumab,AIN457A,legacy,moiety,Q7444755,secukinumab,Novartis,Q507154,Novartis,include,D6,KF,"A suffix, meaning unverified (decision 2026-10-16: moiety)"
+semaglutide,NN9535,current,moiety,Q27261089,semaglutide,Novo Nordisk,Q818846,Novo Nordisk A/S,hold,D8,KF,"programme: subcutaneous semaglutide, type 2 diabetes; Novo study-ID prefix"
+semaglutide,NN9924,legacy,moiety,Q27261089,semaglutide,Novo Nordisk,Q818846,Novo Nordisk A/S,hold,D8,KF,"programme: oral semaglutide (tablets), type 2 diabetes; Novo study-ID prefix"
+semaglutide,NN9536,legacy,moiety,Q27261089,semaglutide,Novo Nordisk,Q818846,Novo Nordisk A/S,hold,D8,KF,"programme: semaglutide, obesity; Novo study-ID prefix"
+semaglutide,NN9932,legacy,moiety,Q27261089,semaglutide,Novo Nordisk,Q818846,Novo Nordisk A/S,hold,D8,KF,"programme: oral semaglutide (tablets), obesity; Novo study-ID prefix"
+semaglutide,NN9931,legacy,moiety,Q27261089,semaglutide,Novo Nordisk,Q818846,Novo Nordisk A/S,hold,D8,KF,"programme: semaglutide, liver (NASH); Novo study-ID prefix"
+semaglutide,NNC01130217,legacy,moiety,Q27261089,semaglutide,Novo Nordisk,Q818846,Novo Nordisk A/S,include,,KF,
+tafamidis,PF06291826,current,moiety,Q519447,tafamidis,Pfizer,Q206921,Pfizer,include,,KF,
+tafamidis,FX1006A,legacy,moiety,Q519447,tafamidis,FoldRx,,,hold,D4,KF,"FoldRx: no Wikidata item, not an AACT lead sponsor; A suffix unverified (decision: moiety)"
+tafamidis,PF6291826,legacy,moiety,Q519447,tafamidis,Pfizer,Q206921,Pfizer,hold,D7,KF,spelling variant of PF06291826 (leading zero dropped); alias only
+tafamidis,FX1006,legacy,moiety,Q519447,tafamidis,FoldRx,,,hold,D4,KF,as FX1006A
+umeclidinium,GSK573719,current,moiety,Q21011235,umeclidinium,GSK,Q212322,GlaxoSmithKline,include,,KF,"moiety item (0 sitelinks, UNII GE2T1418SV); GSK573719A already on the bromide item"
+upadacitinib,ABT494,current,moiety,Q27074125,upadacitinib,AbbVie,Q14662364,AbbVie,hold,D2,KF,ABT = Abbott prefix; assigner Abbott (Q306764) or AbbVie?
+ustekinumab,CNTO1275,current,moiety,Q420305,ustekinumab,Centocor,Q1053653,"Centocor, Inc.",include,,KF,
+valsartan,VAL489,legacy,moiety,Q155472,valsartan,Novartis,Q507154,Novartis,include,D6,KF,
+valsartan,CGP48933,legacy,moiety,Q155472,valsartan,Ciba-Geigy,Q21278763,,include,,KF,CGP = Ciba-Geigy; not an AACT lead sponsor
+vilanterol,GW642444,current,moiety,Q15053666,vilanterol,GSK,Q212322,GlaxoSmithKline,hold,D2,KF,"as GW685698X: GW numbering, assigner GSK or Glaxo Wellcome?"
+vilanterol,GW642444M,legacy,salt,Q27145087,vilanterol trifenatate,GSK,Q212322,GlaxoSmithKline,hold,D2,KF,M = trifenatate (decision 2026-10-16: salt item)
