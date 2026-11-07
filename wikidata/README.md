@@ -83,6 +83,9 @@ them, and only confirmed rows go into a batch.
 | D8 | 2026-11-07 | Hold programme codes: codes that follow one formulation × indication programme (seen as prefixes of the sponsor's study IDs) rather than the substance. Wikidata has no item for that level | NN9535, NN9924, NN9536, NN9932, NN9931 (NNC0113-0217, the compound code, is not held) |
 | D9 | 2026-11-07 | Withdrawn trials count for the trial pick: the record still shows the company using the code for the compound | AIN457 (NCT01103024, withdrawn; the only trial with "Novartis" as lead sponsor, D6) |
 | D10 | 2026-11-07 | Where NCIt writes a code in several spellings, no spelling is chosen: NCIt tags all of them with term type CN (drug study code, NCIt C45773), so its own model gives no preferred one. The notebook keeps NCIT_MULTIPLE = "hold" | ACE910, MDX1106, PRO70769, SCH900475, LEE011, AHU377 (aliases only) |
+| D11 | 2026-11-07 | Hold where the moiety has no Wikidata item found by UNII (P652). An item without UNII is not matched by label | fda_novel_2025: BI1015550 (nerandomilast Q136594966 has no UNII or InChIKey); PRN1008 (rilzabrutinib), AB106, DS6051, DS6051A (taletrectinib): no item |
+| D12 | 2026-11-07 | Research names given by academic discoverers are not company codes: kept for search, not published | fda_novel_2025: SS31 (Szeto-Schiller peptide), TIC10 (TRAIL-inducing compound 10) |
+| D13 | 2026-11-07 | Hold where the company item found is not clearly the company that assigned the code (a specific legal entity, or a register-style item) | fda_novel_2025: DZD9008 (only item 'Dizal (Jiangsu) Pharmaceutical Co., Ltd. (China)'); KVD900 (Q132101891, all-caps label, type 'organization') |
 
 Earlier decisions (2026-10-16): only confirmed codes are published; a code goes on the item of the level it
 names; reference rules as above; codes held for an expert question (AGN241780, CH5534262) or accepted on one
@@ -107,5 +110,6 @@ Posted 2026-10-16. Texts on the talk pages:
 | P15001 created, aliases added | done |
 | Statements before the first batch (manual and test batch, 2026-10-26) | AZD4522, BMS-562247, LY3298176, REGN668; plus 4 examples by the property creator |
 | Batch for `top_sellers_fy2025` | Sent 2026-11-07 (run 20261107_1520, `batches/`): 25 statements, verified on Wikidata. 53 codes mapped: 15 held (D2–D4, D7, D8); 13 without a reference under D1, D6, D10; 10 web-only held (D0) |
+| Targets for `fda_novel_2025` | `fda_novel_2025_code_targets.csv`, 2026-11-07: 42 codes, 26 include, 16 hold (D0, D2, D4, D11, D12, D13). Of the 29 moieties, 25 of the 26 items found by UNII lack P2275 (suzetrigine has it in Arabic only) |
 | P2275 INN on 11 items that lack it, referenced to the WHO Recommended INN list | not started |
 | Abatacept alias removal | not done; no reply on the talk page |

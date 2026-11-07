@@ -65,3 +65,28 @@ follows one formulation × indication programme. Trials with Novo Nordisk A/S as
 The compound code is NNC0113-0217. The programme level sits between active moiety and product (one moiety,
 several programmes; two of them tablets for different indications). Wikidata has no items for it, and ISO IDMP
 has no concept for it either. Held under D8.
+
+## fda_novel_2025 (2026-11-07): sponsor names that D6 does not match
+
+D6 is applied as written; these are recorded, not fixed. Sponsor names from ClinicalTrials.gov, 2026-11-07.
+
+| Code | Company item | Lead sponsor name | Why D6 does not match |
+|------|--------------|-------------------|-----------------------|
+| INS1007 | Insmed (Q30281842) | Insmed Incorporated | "Incorporated" is not in the legal-suffix list |
+| VX548 | Vertex Pharmaceuticals (Q2744099) | Vertex Pharmaceuticals Incorporated | as above |
+| AVX012 | Avizorex Pharma (Q30268756) | Avizorex Pharma, S.L. | "S.L." is not in the legal-suffix list |
+| MTP131 | Stealth BioTherapeutics (United States) (Q30269327) | Stealth BioTherapeutics Inc. | item label carries a country |
+| DCC3014 | Deciphera Pharmaceuticals (United States) (Q104480282) | Deciphera Pharmaceuticals, LLC | as above |
+| LOU064 | Novartis (Q507154) | Novartis Pharmaceuticals | as for the top_sellers Novartis codes |
+
+Several smaller companies exist on Wikidata only as items labelled "<name> (<country>)", described as
+"company in <city>, <country>"; they look like imports from an organisation register. Oncoceutics, NeRRe
+Therapeutics and Principia Biopharma are of this kind as well.
+
+Companies without an item found: Milestone Pharmaceuticals (MSP2017), Censa Pharmaceuticals (CNSA001), AnHeart
+Therapeutics (AB106), KaNDy Therapeutics.
+
+Successor sponsors (D1): ONC201 (Oncoceutics code; trials now under Jazz Pharmaceuticals), NT814 (NeRRe code;
+trials under Bayer), CNSA001 (Censa code; trials under PTC Therapeutics), AZD0914 (AstraZeneca code; trials under
+NIAID and Entasis).
+

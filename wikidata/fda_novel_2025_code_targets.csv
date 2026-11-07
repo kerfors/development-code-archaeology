@@ -1,0 +1,43 @@
+inn,code_key,code_class,level,target_qid,target_label,company_label,company_qid,lead_sponsor_names,status,decision,reviewer,note
+acoltremon,AR15512,current,moiety,Q27089230,acoltremon,Aerie Pharmaceuticals,Q25245434,Aerie Pharmaceuticals,include,,KF,
+acoltremon,AVX012,legacy,moiety,Q27089230,acoltremon,Avizorex Pharma,Q30268756,,include,,KF,"sponsor 'Avizorex Pharma, S.L.': 'S.L.' is not in the D6 suffix list"
+atrasentan,ABT627,legacy,moiety,Q125083,atrasentan,Abbott Laboratories,Q306764,,hold,D2,KF,"Abbott prefix, AbbVie and Novartis trials (as ABT494)"
+avutometinib,VS6766,current,moiety,Q27147976,avutometinib,Verastem,Q30289308,"Verastem, Inc.",include,,KF,
+avutometinib,RO5126766,legacy,moiety,Q27147976,avutometinib,Hoffmann-La Roche,Q212646,Hoffmann-La Roche,include,,KF,
+avutometinib,CH5126766,legacy,moiety,Q27147976,avutometinib,Chugai Pharmaceutical,Q750619,,include,,KF,no Chugai trial; NCIt fallback decides
+brensocatib,INS1007,current,moiety,Q105334645,brensocatib,Insmed,Q30281842,,include,,KF,sponsor 'Insmed Incorporated': 'Incorporated' is not in the D6 suffix list; NCIt fallback decides
+brensocatib,AZD7986,legacy,moiety,Q105334645,brensocatib,AstraZeneca,Q731938,AstraZeneca,include,,KF,
+defactinib,VS6063,current,moiety,Q27077009,defactinib,Verastem,Q30289308,"Verastem, Inc.",include,,KF,
+defactinib,PF04554878,legacy,moiety,Q27077009,defactinib,Pfizer,Q206921,,include,,KF,no Pfizer trial; NCIt fallback decides
+delgocitinib,LEO124249,current,moiety,Q76620858,delgocitinib,LEO Pharma,Q1798020,LEO Pharma,include,,KF,
+delgocitinib,JTE052,legacy,moiety,Q76620858,delgocitinib,Japan Tobacco,Q898568,,hold,D0,KF,web evidence only
+dordaviprone,ONC201,current,moiety,Q27895916,Dordaviprone,Oncoceutics,Q30288482,,include,,KF,trials now under Jazz (D1); NCIt fallback decides
+dordaviprone,TIC10,legacy,moiety,Q27895916,Dordaviprone,,,,hold,D12,KF,"academic name, assigner not a company (KF 2026-11-07)"
+elamipretide,MTP131,legacy,moiety,Q27269822,elamipretide,Stealth BioTherapeutics,Q30269327,,include,,KF,item label 'Stealth BioTherapeutics (United States)' does not equal sponsor 'Stealth BioTherapeutics Inc.' (D6); no NCIt
+elamipretide,SS31,legacy,moiety,Q27269822,elamipretide,,,,hold,D12,KF,"Szeto-Schiller peptide name, assigner not a company (KF 2026-11-07)"
+elinzanetant,BAY3427080,current,moiety,Q108453435,elinzanetant,Bayer,Q152051,Bayer,include,,KF,
+elinzanetant,NT814,legacy,moiety,Q108453435,elinzanetant,NeRRe Therapeutics,Q30269153,,include,,KF,trials under Bayer (D1); NCIt fallback decides
+elinzanetant,GSK1144814,legacy,moiety,Q108453435,elinzanetant,GSK,Q212322,GlaxoSmithKline,include,,KF,
+etripamil,MSP2017,current,moiety,Q27289030,etripamil,Milestone Pharmaceuticals,,,hold,D4,KF,no Wikidata item found
+gepotidacin,GSK2140944,current,moiety,Q19597285,gepotidacin,GSK,Q212322,GlaxoSmithKline,include,,KF,
+imlunestrant,LY3484356,current,moiety,Q123582076,imlunestrant,Eli Lilly and Company,Q632240,Eli Lilly and Company,include,,KF,
+mirdametinib,PD0325901,current,moiety,Q27088255,mirdametinib,Parke-Davis,Q4046487,,hold,D2,KF,"Parke-Davis prefix, Pfizer and SpringWorks trials"
+mirdametinib,PD325901,legacy,moiety,Q27088255,mirdametinib,Parke-Davis,Q4046487,,hold,D2,KF,as PD0325901; and second spelling (D7)
+nerandomilast,BI1015550,current,moiety,,,Boehringer Ingelheim,Q699532,,hold,D11,KF,item Q136594966 has no UNII (and no InChIKey)
+paltusotine,CRN00808,current,moiety,Q115869831,paltusotine,Crinetics Pharmaceuticals,Q30283245,Crinetics Pharmaceuticals Inc.,include,,KF,
+remibrutinib,LOU064,current,moiety,Q123499462,remibrutinib,Novartis,Q507154,,include,,KF,sponsor 'Novartis Pharmaceuticals' (D6); no NCIt
+rilzabrutinib,PRN1008,legacy,moiety,,,Principia Biopharma,Q30269215,,hold,D11,KF,no Wikidata item for rilzabrutinib
+sebetralstat,KVD900,current,moiety,Q131152152,sebetralstat,KalVista Pharmaceuticals,Q132101891,,hold,D13,KF,"company item Q132101891 has only an all-caps label, type 'organization' (register import?)"
+sepiapterin,PTC923,current,moiety,Q100606475,L-sepiapterin,PTC Therapeutics,Q7120959,PTC Therapeutics,include,,KF,"target item label 'L-sepiapterin', 0 sitelinks; UNII matches"
+sepiapterin,CNSA001,legacy,moiety,Q100606475,L-sepiapterin,Censa Pharmaceuticals,,,hold,D4,KF,no Wikidata item found; trials under PTC (D1)
+sevabertinib,BAY2927088,current,moiety,Q137258574,sevabertinib,Bayer,Q152051,Bayer,include,,KF,
+sunvozertinib,DZD9008,current,moiety,Q130051139,sunvozertinib,Dizal Pharmaceutical,Q140045773,,hold,D13,KF,"only item is 'Dizal (Jiangsu) Pharmaceutical Co., Ltd. (China)', a specific legal entity; sponsor 'Dizal Pharmaceuticals'"
+suzetrigine,VX548,current,moiety,Q123481189,suzetrigine,Vertex Pharmaceuticals,Q2744099,,include,,KF,sponsor 'Vertex Pharmaceuticals Incorporated': 'Incorporated' is not in the D6 suffix list; no NCIt
+taletrectinib,AB106,current,moiety,,,AnHeart Therapeutics,,,hold,D11,KF,no Wikidata item for taletrectinib; no company item found
+taletrectinib,DS6051,legacy,moiety,,,Daiichi Sankyo,Q669441,,hold,D11,KF,no Wikidata item for taletrectinib
+taletrectinib,DS6051A,legacy,moiety,,,Daiichi Sankyo,Q669441,,hold,D11,KF,no Wikidata item for taletrectinib
+vimseltinib,DCC3014,current,moiety,Q106440798,vimseltinib,Deciphera Pharmaceuticals,Q104480282,,include,,KF,"item label 'Deciphera Pharmaceuticals (United States)' does not equal sponsor 'Deciphera Pharmaceuticals, LLC' (D6); NCIt fallback decides"
+ziftomenib,KO539,current,moiety,Q133521494,ziftomenib,Kura Oncology,Q30269121,"Kura Oncology, Inc.",include,,KF,
+zoliflodacin,ETX0914,current,moiety,Q27278240,zoliflodacin,Entasis Therapeutics,Q100956344,,hold,D0,KF,web evidence only
+zoliflodacin,AZD0914,legacy,moiety,Q27278240,zoliflodacin,AstraZeneca,Q731938,,include,,KF,no AstraZeneca trial names the code in interventions; no NCIt
+zongertinib,BI1810631,current,moiety,Q135706605,zongertinib,Boehringer Ingelheim,Q699532,Boehringer Ingelheim,include,,KF,
