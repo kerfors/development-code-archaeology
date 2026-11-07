@@ -5,11 +5,14 @@ INN, and often after. A ClinicalTrials.gov search on the INN alone misses the tr
 This repository harvests and reviews development codes, counts the trials they recover, and publishes the
 reviewed codes to Wikidata.
 
-It follows up a holiday project from December 2025, published as two LinkedIn articles: "Data Archaeology:
-Tracing Drug Development Codes Through Name Changes, Mergers, and Licensing Deals" and "Searching AACT for
-Development Codes: A Practical Guide". That work found a third of the trials of the 2025 FDA novel
-small-molecule approvals reachable only by a code, and ended with open questions. Two of them are worked on
-here: can codes be harvested programmatically from named sources, and can an open data community hold them?
+It follows up a holiday project from December 2025, published as two LinkedIn articles (30 December 2025):
+
+- [Data Archaeology: Tracing Drug Development Codes Through Name Changes, Mergers, and Licensing Deals](https://www.linkedin.com/pulse/data-archaeology-tracing-drug-development-codes-through-forsberg-89t1e/)
+- [Searching AACT for Development Codes: A Practical Guide](https://www.linkedin.com/pulse/searching-aact-development-codes-practical-guide-kerstin-forsberg-2rhze/)
+
+That work found a third of the trials of the 2025 FDA novel small-molecule approvals reachable only by a code,
+and ended with open questions. Two of them are worked on here: can codes be harvested programmatically from
+named sources, and can an open data community hold them?
 See `docs/background.md`.
 
 ## Results
