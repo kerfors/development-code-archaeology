@@ -19,7 +19,7 @@ FDA novel drug approvals 2025. Copied by script from `development_code_trial_arc
 Codes verified against DrugBank, AdisInsight, Wikipedia, company press releases and SEC filings, patent assignee
 history and PubChem synonym lists. NSC (NCI) codes excluded except Grafapex (only code).
 
-Kygevvi (doxecitine and doxribtimine) is a combination; the February 2026 PubChem checks excluded it (29 single-entity drugs; `site/posts/2026-11-08-before-the-repository.md`).
+Kygevvi (doxecitine and doxribtimine) is a combination; the February 2026 PubChem checks excluded it (29 single-entity drugs; `site/notes/00-where-it-started.md`).
 
 `ncit_code` and `moiety_unii`, 2026-11-07: NCIt exact-name search per INN (NCI EVS API, NCIt 26.10d), concept property
 `FDA_UNII_Code`; each UNII cross-checked in GSRS (preferred name, substance class, active-moiety relationship).

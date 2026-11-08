@@ -1,6 +1,6 @@
 ---
 title: Development code archaeology
-description: "Trials registered under drug development codes: harvest, review, trial search and Wikidata publication. Posts and reference pages."
+description: "Trials registered under drug development codes: harvest, review, trial search and Wikidata publication. Field notes and reference pages."
 ---
 
 # Development code archaeology
@@ -10,11 +10,11 @@ registered under the code, and a search on the INN alone does not find them. Thi
 harvesting such codes from named sources, reviewing them, counting the trials they recover, and publishing
 them to Wikidata with references.
 
-Posts are dated and keep their figures. The reference pages are updated as the work goes on.
+The field notes are numbered and keep their figures once written. The reference pages are updated as the work goes on.
 
-## Posts
+## Field notes
 
-{{posts}}
+{{notes}}
 
 ## Reference pages
 

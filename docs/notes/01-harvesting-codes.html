@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harvesting development codes from named sources — Development code archaeology</title>
+<meta name="description" content="Instead of asking an AI to remember codes: collect them where they are written down, with an evidence rule I can check and a review where a person decides.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../index.html">Development code archaeology</a>
+<nav><a href="../index.html">Field notes</a> <a href="../method.html">Method</a> <a href="../decisions.html">Publication decisions</a> <a href="../identity.html">Identity findings</a> <a href="../collections.html">Collections</a></nav>
+</div></header>
+<main class="wrap">
+<p class="post-meta">Field note 1 · covers October – November 2026</p>
+<h1>Harvesting development codes from named sources</h1>
+<p>The <a href="00-where-it-started.html">first field note</a> ended with two questions. This note is about the first:
+can development codes be harvested programmatically, from named sources?</p>
+<p>In December I asked an AI to find the codes, and then checked them by hand. That worked, but it does not
+scale, and the AI produced codes that no source had. So in October I turned it around: collect candidate
+codes from sources that can be named and queried, and let the AI help write the code and look for web
+sources, not remember the answer.</p>
+<svg class="diagram" viewBox="0 0 760 210" role="img">
+<title>Pipeline: named sources, harvest, evidence rule and review, trial search, Wikidata</title>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<g class="src"><rect x="4" y="10" width="150" height="30" rx="4"/><text x="79" y="30">NCI Thesaurus</text>
+<rect x="4" y="50" width="150" height="30" rx="4"/><text x="79" y="70">PubChem synonyms</text>
+<rect x="4" y="90" width="150" height="30" rx="4"/><text x="79" y="110">AACT other names</text>
+<rect x="4" y="130" width="150" height="30" rx="4"/><text x="79" y="150">AACT intervention names</text>
+<rect x="4" y="170" width="150" height="30" rx="4"/><text x="79" y="190">Web, URL-cited</text></g>
+<g class="step"><rect x="190" y="75" width="130" height="60" rx="6"/><text x="255" y="100">Harvest</text><text class="sub" x="255" y="118">candidates + evidence</text>
+<rect x="335" y="75" width="140" height="60" rx="6"/><text x="405" y="100">Rule + review</text><text class="sub" x="405" y="118">a person decides</text>
+<rect x="495" y="20" width="135" height="60" rx="6"/><text x="562" y="45">Trial search</text><text class="sub" x="562" y="63">INN + accepted codes</text>
+<rect x="495" y="130" width="135" height="60" rx="6"/><text x="562" y="155">Wikidata</text><text class="sub" x="562" y="173">P15001, referenced</text></g>
+<g class="note"><text class="start" x="642" y="54">hidden trials</text><text class="start" x="642" y="164">or hold, with reason</text></g>
+<g class="lines"><path d="M154,25 C175,25 175,100 190,103" marker-end="url(#ar)"/><path d="M154,65 C175,65 175,103 190,104" marker-end="url(#ar)"/>
+<path d="M154,105 L190,105" marker-end="url(#ar)"/><path d="M154,145 C175,145 175,107 190,106" marker-end="url(#ar)"/>
+<path d="M154,185 C175,185 175,110 190,107" marker-end="url(#ar)"/><path d="M320,105 L335,105" marker-end="url(#ar)"/>
+<path d="M475,95 C485,95 485,50 495,50" marker-end="url(#ar)"/><path d="M475,115 C485,115 485,160 495,160" marker-end="url(#ar)"/></g></svg>
+<h2>Sources</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Gives</th>
+<th>Known weakness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NCI Thesaurus</td>
+<td>Curated synonyms, tagged as drug study codes</td>
+<td>Merges biosimilar codes into the originator; typos (PR070769 for PRO70769)</td>
+</tr>
+<tr>
+<td>PubChem synonyms</td>
+<td>Depositor synonyms</td>
+<td>Vendor numbers, depositor typos (GSK685968 next to GSK685698)</td>
+</tr>
+<tr>
+<td>ClinicalTrials.gov (AACT) other names</td>
+<td>What sponsors registered</td>
+<td>Codes of combination partners and other products in the same record</td>
+</tr>
+<tr>
+<td>ClinicalTrials.gov intervention names</td>
+<td>Codes with a suffix (ONO-4538HSC)</td>
+<td>Other formulations</td>
+</tr>
+<tr>
+<td>Web, AI-assisted</td>
+<td>Originator, partner and combination codes</td>
+<td>Every code must cite the URL where it was seen</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A rule I can check, and a person who decides</h2>
+<p>I am not a domain expert for judging individual development codes. So the first filter is a rule anyone can
+check: a code is accepted when two independent lines of evidence agree, a source, a distinct web publisher, or
+trials in the registry. Codes found only in PubChem, with no trials, are set aside.</p>
+<p>Then each candidate gets a class in review: current code, legacy code, partner code, or one of the classes
+that are not searched: another product, another drug, a biosimilar, a typo, not a code. The AI proposes a
+class; it is marked as proposed until I confirm it. Where the rule and the review disagree, the row goes to an
+exception list. Where a question stays open, the code is held, and the reason is written down.</p>
+<h2>What the harvest gave</h2>
+<p>Two collections: the top-selling medicines of 12 large companies (FY2025), and the 2025 FDA novel approvals
+from December, now put through the same harvest.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th style="text-align: right;">Top sellers FY2025</th>
+<th style="text-align: right;">FDA novel approvals 2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>current</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr>
+<td>legacy</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>partner</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>other product</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>other drug</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>biosimilar</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>typo</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>not a code</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>set aside (PubChem only)</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td><strong>candidates</strong></td>
+<td style="text-align: right;"><strong>184</strong></td>
+<td style="text-align: right;"><strong>81</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p class="caption">Review files of 2026-11-07, <a href="https://github.com/kerfors/development-code-archaeology/blob/main/collections/README.md"><code>collections/</code></a>.
+In the FDA collection, the December codes that no source of the harvest had were added as web candidates with a cited URL.</p>
+
+<p>About half of the candidates are not codes of the drug at all. That is the main reason for the review.</p>
+<h2>What I learned</h2>
+<ul>
+<li><strong>AI can find codes; only sources can prove them.</strong> Now every code has a named source, and a code found on
+  the web cites the URL.</li>
+<li><strong>No source is complete.</strong> Some current codes exist only in the registry (tirzepatide LY3298176). Some only
+  on the web and in trial records (elinzanetant GSK1144814).</li>
+<li><strong>Sources copy each other.</strong> Some trial records, NCI-sponsored and academic, appear to carry NCI Thesaurus
+  synonym lists as other names. For those codes the registry is not an independent witness.</li>
+<li><strong>Sources have typos.</strong> NCI Thesaurus lists PR070769 next to PRO70769, the letter O read as a zero. The same
+  typo is on Wikidata as an alias.</li>
+<li><strong>A trial record lists more than the drug.</strong> Combination partners, co-formulations and other products sit
+  in the same "other names" field. Without review they would inflate the count of hidden trials.</li>
+</ul>
+<p>Details: <a href="../method.html">Method</a>.</p>
+<p>Next: <a href="02-trials-under-codes.html">What the codes find in the trial registry</a>.</p>
+<p class="written">Written 2026-11-08.</p>
+</main>
+<footer class="site"><div class="wrap">
+<p>Kerstin Forsberg. Text and data CC BY 4.0; code MIT. Developed with Claude (Anthropic); review decisions and
+published codes are confirmed by a person. Source: <a href="https://github.com/kerfors/development-code-archaeology">kerfors/development-code-archaeology</a>.</p>
+</div></footer>
+</body>
+</html>

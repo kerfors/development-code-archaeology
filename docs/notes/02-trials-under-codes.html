@@ -3,28 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Two 2025 collections: harvest, review, Wikidata — Development code archaeology</title>
-<meta name="description" content="Development codes for the 2025 FDA novel approvals and for big sellers: how many trials only the codes find, what was learned, and the first referenced codes on Wikidata.">
+<title>What the codes find in the trial registry — Development code archaeology</title>
+<meta name="description" content="How many trials of the 2025 FDA novel approvals and of big sellers can only be found by a development code, and where in a drug&#x27;s history they are.">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header class="site"><div class="wrap">
 <a class="brand" href="../index.html">Development code archaeology</a>
-<nav><a href="../index.html">Posts</a> <a href="../method.html">Method</a> <a href="../decisions.html">Publication decisions</a> <a href="../identity.html">Identity findings</a> <a href="../collections.html">Collections</a></nav>
+<nav><a href="../index.html">Field notes</a> <a href="../method.html">Method</a> <a href="../decisions.html">Publication decisions</a> <a href="../identity.html">Identity findings</a> <a href="../collections.html">Collections</a></nav>
 </div></header>
 <main class="wrap">
-<p class="post-meta">2026-11-08 · covers October – November 2026</p>
-<h1>Trials registered under a development code</h1>
-<p>Before a drug has an INN, it has a development code: AZD0914, BI 1015550, MK-3475. Many trials are
-registered under the code, and some stay so. A ClinicalTrials.gov search on the INN alone does not find them.</p>
-<p>This post covers October–November 2026, a follow-up of the <a href="2026-11-08-before-the-repository.html">December 2025 holiday project</a>:
-harvest development codes from named sources, review them, count the trials they recover, and publish the
-reviewed codes to Wikidata with references.</p>
-<div class="stats"><div class="stat"><span class="num">29%</span><span class="txt">of drug–trial pairs for the 2025 FDA novel approvals are found only via a code (197 of 679)</span></div><div class="stat"><span class="num">48%</span><span class="txt">of their Phase 1 pairs are found only via a code (100 of 210)</span></div><div class="stat"><span class="num">5.7%</span><span class="txt">for the top-selling medicines of 12 large companies (631 of 11,035)</span></div><div class="stat"><span class="num">41</span><span class="txt">referenced development codes published to Wikidata with the new property P15001</span></div></div>
+<p class="post-meta">Field note 2 · covers October 2026</p>
+<h1>What the codes find in the trial registry</h1>
+<p>With the codes harvested and reviewed (<a href="01-harvesting-codes.html">previous note</a>), I searched
+ClinicalTrials.gov, through AACT, with the INN and with the accepted codes, using one matching rule for both.
+A trial counts as found only via a code when the INN is not in its registered intervention name.</p>
+<div class="stats"><div class="stat"><span class="num">29%</span><span class="txt">of drug–trial pairs for the 2025 FDA novel approvals are found only via a code (197 of 679)</span></div><div class="stat"><span class="num">48%</span><span class="txt">of their Phase 1 pairs are found only via a code (100 of 210)</span></div><div class="stat"><span class="num">5.7%</span><span class="txt">for the top-selling medicines of 12 large companies (631 of 11,035)</span></div></div>
 <h2>One substance, three names</h2>
 <p>Zoliflodacin (Nuzolvence, approved 2025) was AZD0914 at AstraZeneca and ETX0914 at Entasis Therapeutics.
-NIAID's 2018 news release says it in one line: "formerly known as ETX0914 and AZD0914".
-The trials do not say it in the fields a search uses.</p>
+NIAID's 2018 news release says it in one line: "formerly known as ETX0914 and AZD0914". The trials do not say
+it in the fields a search uses.</p>
 <svg class="diagram" viewBox="0 0 760 130" role="img">
 <title>One substance, three names: AZD0914, ETX0914, zoliflodacin</title>
 <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker></defs>
@@ -35,62 +33,9 @@ The trials do not say it in the fields a search uses.</p>
 <g class="note"><text x="110" y="90">4 trials name it in</text><text x="110" y="106">the intervention</text>
 <text x="380" y="90">in trial descriptions only,</text><text x="380" y="106">not in searched fields</text>
 <text x="650" y="90">a search on the INN</text><text x="650" y="106">misses 5 of 9 trials</text></g></svg>
-<p class="caption">AACT snapshot 2026-10-16. On Wikidata, neither code could be published under the rules:
-AZD0914 has no trial with AstraZeneca as lead sponsor naming the code, and ETX0914 has web evidence only.
-Both stay held, with the reason recorded.</p>
-
-<h2>What was done</h2>
-<div class="tablewrap"><table>
-<thead>
-<tr>
-<th>When</th>
-<th>What</th>
-<th>Outcome</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>October 2026</td>
-<td>Code harvest from named sources with a checkable evidence rule; a second collection (top sellers); one shared matching rule</td>
-<td>184 candidates for 30 moieties; human review; 631 drug–trial pairs found only via a code</td>
-</tr>
-<tr>
-<td>October 2026</td>
-<td>Wikidata property proposal; <a href="https://www.wikidata.org/wiki/Property:P15001">P15001 "development code"</a> created 25 October</td>
-<td>Codes become statements with company and reference, not only aliases</td>
-</tr>
-<tr>
-<td>November 2026</td>
-<td>The December collection through the same harvest and review; both collections published under one set of documented decisions (D0–D13)</td>
-<td>41 statements published; 31 held with a reason; 23 without an acceptable reference</td>
-</tr>
-</tbody>
-</table></div>
-<h2>How</h2>
-<svg class="diagram" viewBox="0 0 760 210" role="img">
-<title>Pipeline: named sources, harvest, evidence rule and review, trial search, Wikidata</title>
-<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker></defs>
-<g class="src"><rect x="4" y="10" width="150" height="30" rx="4"/><text x="79" y="30">NCI Thesaurus</text>
-<rect x="4" y="50" width="150" height="30" rx="4"/><text x="79" y="70">PubChem synonyms</text>
-<rect x="4" y="90" width="150" height="30" rx="4"/><text x="79" y="110">AACT other names</text>
-<rect x="4" y="130" width="150" height="30" rx="4"/><text x="79" y="150">AACT intervention names</text>
-<rect x="4" y="170" width="150" height="30" rx="4"/><text x="79" y="190">Web, URL-cited</text></g>
-<g class="step"><rect x="190" y="75" width="130" height="60" rx="6"/><text x="255" y="100">Harvest</text><text class="sub" x="255" y="118">candidates + evidence</text>
-<rect x="335" y="75" width="140" height="60" rx="6"/><text x="405" y="100">Rule + review</text><text class="sub" x="405" y="118">a person decides</text>
-<rect x="495" y="20" width="135" height="60" rx="6"/><text x="562" y="45">Trial search</text><text class="sub" x="562" y="63">INN + accepted codes</text>
-<rect x="495" y="130" width="135" height="60" rx="6"/><text x="562" y="155">Wikidata</text><text class="sub" x="562" y="173">P15001, referenced</text></g>
-<g class="note"><text class="start" x="642" y="54">hidden trials</text><text class="start" x="642" y="164">or hold, with reason</text></g>
-<g class="lines"><path d="M154,25 C175,25 175,100 190,103" marker-end="url(#ar)"/><path d="M154,65 C175,65 175,103 190,104" marker-end="url(#ar)"/>
-<path d="M154,105 L190,105" marker-end="url(#ar)"/><path d="M154,145 C175,145 175,107 190,106" marker-end="url(#ar)"/>
-<path d="M154,185 C175,185 175,110 190,107" marker-end="url(#ar)"/><path d="M320,105 L335,105" marker-end="url(#ar)"/>
-<path d="M475,95 C485,95 485,50 495,50" marker-end="url(#ar)"/><path d="M475,115 C485,115 485,160 495,160" marker-end="url(#ar)"/></g></svg>
-<p>No code enters without a source. A code is accepted when two independent lines of evidence agree
-(sources, web publishers, registry trials). A person reviews each candidate's class. Trials are searched
-with one matching rule for the INN and the accepted codes. Details: <a href="../method.html">Method</a>.</p>
-<h2>Results</h2>
-<p>Drug–trial pairs found only via a code: the INN is not in the registered intervention name. For
-165 of the 197 such pairs in the FDA collection, the INN is in neither trial title either.
-26 of the 30 products have such trials.</p>
+<h2>Per drug</h2>
+<p>For 165 of the 197 drug–trial pairs found only via a code in the FDA collection, the INN is in neither trial
+title either. 26 of the 30 products have such trials.</p>
 <figure>
 <figcaption>FDA novel approvals 2025, drug–trial pairs per product, sorted by share found only via a code.</figcaption>
 <svg class="chart" viewBox="0 0 700 610" role="img">
@@ -219,6 +164,7 @@ with one matching rule for the INN and the accepted codes. Details: <a href="../
 <text class="val" x="311.9" y="586">0 of 16</text>
 </svg>
 </figure>
+<h2>Where in a drug's history</h2>
 <figure>
 <figcaption>FDA novel approvals 2025: share found only via a code, by phase.</figcaption>
 <svg class="chart small" viewBox="0 0 580 128" role="img">
@@ -267,67 +213,20 @@ with one matching rule for the INN and the accepted codes. Details: <a href="../
 <text class="val" x="438" y="89">3% (149 of 5770)</text>
 </svg>
 </figure>
-<p>The pattern: the early and the old history of a drug is under its codes. For recent approvals that is
-almost half of Phase 1. For big sellers with large INN-registered programmes the share is small overall, but it
-is a fifth to a quarter of their trials started before 2015.</p>
-<h2>What was learned</h2>
-<ol>
-<li><strong>AI can find codes; only sources can prove them.</strong> In December, AI discovery produced plausible codes
-   that no source had. Since October, every code has a named source, and a code found on the web cites the URL.</li>
-<li><strong>No source is complete, and sources copy each other.</strong> Some current codes exist only in the registry
-   (tirzepatide LY3298176). Some trial records, NCI-sponsored and academic, appear to carry NCI Thesaurus
-   synonym lists as other names, so for those codes the registry is not an independent witness.</li>
-<li><strong>A code names a level.</strong> Active moiety (AZD7986), salt (DS-6051b, of which DS-6051a is the free base),
-   combination (LNZ101: aceclidine + brimonidine), or a development programme (Novo Nordisk's NN9535).
-   Wikidata has items for the first three. ISO IDMP has no structural place for development codes, and no
-   programme level.</li>
-<li><strong>A company is another case of what to identify.</strong> "Conferred by" needs the company that assigned the
-   code as one thing, across subsidiaries, joint ventures, mergers and renames, and company items do not
-   always carry the names the registry uses. The same question as for the drug: what exactly is it we
-   identify? Details: <a href="../identity.html">Identity findings</a>.</li>
-<li><strong>Linked Data shows these details early.</strong> Each of them had to be decided before a statement could be
-   made. Other approaches leave them to be handled in software later, or never.</li>
-</ol>
+<p>The early and the old history of a drug is under its codes. For recent approvals that is almost half of
+Phase 1. For big sellers with large INN-registered programmes the share is small overall, but it is a fifth to
+a quarter of their trials started before 2015.</p>
 <h2>Why it matters</h2>
-<div class="tablewrap"><table>
-<thead>
-<tr>
-<th>For</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Trial search and evidence synthesis</td>
-<td>Early-phase and older trials of a drug are found only with its codes. INN-only searches undercount them, most for recently approved drugs.</td>
-</tr>
-<tr>
-<td>Master data and ISO IDMP</td>
-<td>Development codes behave as identifiers with an assigner, a time span and a level. That is evidence for giving them a place in the model, and for a level above Product Family (the "Product Clan") that covers the whole R&amp;D lifecycle.</td>
-</tr>
-<tr>
-<td>Open data</td>
-<td>P15001 makes a code verifiable (reference), attributable (conferred by) and correctable. An alias is none of these.</td>
-</tr>
-<tr>
-<td>Method</td>
-<td>An LLM writes the code and helps find sources; the pipeline itself is deterministic, every decision is in a file, and a person confirms what is published.</td>
-</tr>
-</tbody>
-</table></div>
-<h2>Open questions</h2>
-<ul>
-<li>Who is "the company" across subsidiaries, joint ventures and acquisitions, and where should that be
-  resolved: in Wikidata, in the registry, or in each sponsor's master data?</li>
-<li>Should registries record the development code as a typed identifier of the intervention, with its assigner?</li>
-<li>How should a development programme (one moiety, one formulation, one indication) be represented, when
-  neither Wikidata nor IDMP has the level?</li>
-</ul>
-<h2>Data for this post</h2>
-<p>Trial search: AACT snapshot 2026-10-16, runs 20261016_1010 (FDA novel approvals 2025) and 20261016_1046
-(top sellers FY2025), reduced to <a href="https://github.com/kerfors/development-code-archaeology/blob/main/site/data/ta_20261016"><code>site/data/ta_20261016/</code></a>. Wikidata: batches
-sent 2026-11-07 (<a href="https://github.com/kerfors/development-code-archaeology/blob/main/wikidata/batches"><code>wikidata/batches/</code></a>). The figures in this post do not change
+<p>Anyone who searches trials by drug name, for a systematic review, a safety question, real-world evidence, or
+a competitor overview, misses the early and the older trials unless the codes are in the search. Most for
+recently approved drugs, where the INN came late.</p>
+<h2>Data for this note</h2>
+<p>AACT snapshot 2026-10-16, runs 20261016_1010 (FDA novel approvals 2025) and 20261016_1046 (top sellers
+FY2025), reduced to <a href="https://github.com/kerfors/development-code-archaeology/blob/main/site/data/ta_20261016"><code>site/data/ta_20261016/</code></a>. The FDA collection was searched with
+the December codes; the reviewed harvest codes differ in a few places. The figures in this note do not change
 when later runs come.</p>
+<p>Next: <a href="03-codes-on-wikidata.html">Development codes on Wikidata</a>.</p>
+<p class="written">Written 2026-11-08.</p>
 </main>
 <footer class="site"><div class="wrap">
 <p>Kerstin Forsberg. Text and data CC BY 4.0; code MIT. Developed with Claude (Anthropic); review decisions and

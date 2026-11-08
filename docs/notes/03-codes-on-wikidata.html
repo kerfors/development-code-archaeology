@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Development codes on Wikidata: why, what was done, what I learned — Development code archaeology</title>
+<meta name="description" content="A new Wikidata property for development codes, the first 41 referenced statements, and why most of the hard questions were about identity.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../index.html">Development code archaeology</a>
+<nav><a href="../index.html">Field notes</a> <a href="../method.html">Method</a> <a href="../decisions.html">Publication decisions</a> <a href="../identity.html">Identity findings</a> <a href="../collections.html">Collections</a></nav>
+</div></header>
+<main class="wrap">
+<p class="post-meta">Field note 3 · covers October – November 2026</p>
+<h1>Development codes on Wikidata</h1>
+<p>The second question from the <a href="00-where-it-started.html">first field note</a>: can an open data community
+hold development codes?</p>
+<h2>Why</h2>
+<p>On Wikidata, development codes were aliases. An alias has no reference, no company, and no way to say it is
+wrong without deleting it. Some aliases repeated errors of the sources they came from. On abatacept, the aliases
+RG-2077 and CTLA4-IgG4m name a different construct, an IgG4 fusion protein in two NIAID trials. On ocrelizumab,
+the alias PR-070769 is a typo of the Genentech code PRO70769; NCI Thesaurus has the same typo.</p>
+<p>None of the existing properties fitted. So I proposed a new one, and in October 2026 the community created
+<a href="https://www.wikidata.org/wiki/Property:P15001">P15001 "development code"</a>
+(<a href="https://www.wikidata.org/wiki/Wikidata:Property_proposal/development_code">proposal</a>). A code is now a
+statement, with the company that assigned it ("conferred by") and a reference.</p>
+<h2>What was done</h2>
+<p>The rules are conservative: nothing is published that depends on an assumption.</p>
+<ul>
+<li><strong>Which codes.</strong> Only codes I confirmed in review, accepted by the evidence rule and used in search.</li>
+<li><strong>Which item.</strong> The item of the level the code names: active moiety, salt (only where the evidence names the
+  salt) or fixed combination. Items are found by UNII.</li>
+<li><strong>Which reference.</strong> A ClinicalTrials.gov record with the assigning company as lead sponsor; otherwise NCI
+  Thesaurus if it is a source; otherwise not published. PubChem and Wikipedia are not used as references.</li>
+</ul>
+<p>On 7 November 2026 I sent two batches:</p>
+<div class="tablewrap"><table class="num"><thead><tr><th>Collection</th><th>Codes mapped</th><th>Published</th><th>Held</th><th>No acceptable reference</th></tr></thead><tbody><tr><td>Top sellers FY2025</td><td>53</td><td>25 (21 registry, 4 NCIt)</td><td>15</td><td>13</td></tr><tr><td>FDA novel approvals 2025</td><td>42</td><td>16 (15 registry, 1 NCIt)</td><td>16</td><td>10</td></tr><tr><td>All</td><td>95</td><td>41</td><td>31</td><td>23</td></tr></tbody></table></div>
+<p>Every held code has a recorded reason, decisions D0 to D13 on the <a href="../decisions.html">Publication decisions</a>
+page. A held code stays an alias and is still used for search.
+<a href="https://query.wikidata.org/#SELECT%20%3Fitem%20%3FitemLabel%20%3Fcode%20%3FcompanyLabel%20WHERE%20%7B%0A%20%20%3Fitem%20p%3AP15001%20%3Fs%20.%20%3Fs%20ps%3AP15001%20%3Fcode%20.%0A%20%20OPTIONAL%20%7B%20%3Fs%20pq%3AP1027%20%3Fcompany%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cmul%22%20%7D%0A%7D%20ORDER%20BY%20%3FitemLabel">Query the published statements live</a>.</p>
+<h2>What I learned</h2>
+<ol>
+<li><strong>A code names a level.</strong> Active moiety (AZD7986), salt (DS-6051b, of which DS-6051a is the free base),
+   combination (LNZ101: aceclidine + brimonidine), or a development programme (Novo Nordisk's NN9535).
+   Wikidata has items for the first three. ISO IDMP has no structural place for development codes, and no
+   programme level.</li>
+<li><strong>A company is another case of what to identify.</strong> "Conferred by" needs the company that assigned the code
+   as one thing, across subsidiaries, joint ventures, mergers and renames, and company items do not always carry
+   the names the registry uses. The same question as for the drug: what exactly is it we identify?
+   Details: <a href="../identity.html">Identity findings</a>.</li>
+<li><strong>Most holds are about identity, not about the code.</strong> In 27 of the 31 holds the code is confirmed; what is
+   open is which item, which company, which level, or which spelling.</li>
+<li><strong>Linked Data shows these details early.</strong> Each of them had to be decided before a statement could be made.
+   Other approaches leave them to be handled in software later, or never.</li>
+</ol>
+<h2>Why it matters</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>For</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open data</td>
+<td>P15001 makes a code verifiable (reference), attributable (conferred by) and correctable. An alias is none of these.</td>
+</tr>
+<tr>
+<td>Master data and ISO IDMP</td>
+<td>Development codes behave as identifiers with an assigner, a time span and a level. That is evidence for giving them a place in the model, and for a level above Product Family (the "Product Clan") that covers the whole R&amp;D lifecycle.</td>
+</tr>
+<tr>
+<td>Method</td>
+<td>An LLM writes the code and helps find sources; the pipeline itself is deterministic, every decision is in a file, and a person confirms what is published.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Open questions</h2>
+<ul>
+<li>Who is "the company" across subsidiaries, joint ventures and acquisitions, and where should that be
+  resolved: in Wikidata, in the registry, or in each sponsor's master data?</li>
+<li>Should registries record the development code as a typed identifier of the intervention, with its assigner?</li>
+<li>How should a development programme (one moiety, one formulation, one indication) be represented, when
+  neither Wikidata nor IDMP has the level?</li>
+</ul>
+<p class="written">Written 2026-11-08.</p>
+</main>
+<footer class="site"><div class="wrap">
+<p>Kerstin Forsberg. Text and data CC BY 4.0; code MIT. Developed with Claude (Anthropic); review decisions and
+published codes are confirmed by a person. Source: <a href="https://github.com/kerfors/development-code-archaeology">kerfors/development-code-archaeology</a>.</p>
+</div></footer>
+</body>
+</html>

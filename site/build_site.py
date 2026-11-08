@@ -1,10 +1,10 @@
 """Build the GitHub Pages site into docs/ from the Markdown sources in site/.
 
-  site/posts/*.md   dated posts; fixed once published (figures come from site/data/<run_id>/)
+  site/notes/*.md   numbered field notes; fixed once written (figures come from site/data/<run_id>/)
   site/pages/*.md   living reference pages (method, decisions, identity, collections)
   site/style.css    copied to docs/
 
-Each source file starts with a YAML front matter block (title, description; posts also date, order, data).
+Each source file starts with a YAML front matter block (title, description; field notes also number, covers, written, data, batches).
 A line that is only a placeholder, e.g. {{chart:by_phase fda_novel_2025}}, is replaced by computed HTML.
 Decisions are read from wikidata/README.md and publication outcomes from wikidata/batches/, so neither is
 typed twice. docs/ is generated: edit site/, then run  python site/build_site.py  from the repository root.
@@ -88,16 +88,14 @@ def svg_shares(run_id, name, collection, label_col):
     return "\n".join(out + ["</svg>"])
 
 
-def stats_2025(run_id, batches):
+def stats_trials_2025(run_id):
     t = data(run_id, "totals").set_index("collection")
     ph = data(run_id, "by_phase")
     p1 = ph[(ph["collection"] == "fda_novel_2025") & (ph["phase"] == "Phase 1")].iloc[0]
     fda, top = t.loc["fda_novel_2025"], t.loc["top_sellers_fy2025"]
-    published = outcome_rows(batches)[-1][2]
     cells = [(f"{100 * fda.hidden / fda.pairs:.0f}%", f"of drug–trial pairs for the 2025 FDA novel approvals are found only via a code ({fda.hidden} of {fda.pairs})"),
              (f"{100 * p1.hidden / p1.pairs:.0f}%", f"of their Phase 1 pairs are found only via a code ({p1.hidden} of {p1.pairs})"),
-             (f"{100 * top.hidden / top.pairs:.1f}%", f"for the top-selling medicines of 12 large companies ({top.hidden} of {top.pairs:,})"),
-             (str(published), "referenced development codes published to Wikidata with the new property P15001")]
+             (f"{100 * top.hidden / top.pairs:.1f}%", f"for the top-selling medicines of 12 large companies ({top.hidden} of {top.pairs:,})")]
     return '<div class="stats">' + "".join(
         f'<div class="stat"><span class="num">{n}</span><span class="txt">{esc(t)}</span></div>' for n, t in cells) + "</div>"
 
@@ -145,9 +143,9 @@ def outcome_rows(files=None):
     return rows
 
 
-def table_outcome():
+def table_outcome(files=None):
     head = ["Collection", "Codes mapped", "Published", "Held", "No acceptable reference"]
-    body = "".join("<tr>" + "".join(f"<td>{esc(c)}</td>" for c in r) + "</tr>" for r in outcome_rows())
+    body = "".join("<tr>" + "".join(f"<td>{esc(c)}</td>" for c in r) + "</tr>" for r in outcome_rows(files))
     return ('<div class="tablewrap"><table class="num"><thead><tr>' + "".join(f"<th>{h}</th>" for h in head)
             + f"</tr></thead><tbody>{body}</tbody></table></div>")
 
@@ -197,12 +195,15 @@ def render_placeholder(spec, meta):
             return svg_per_drug(run_id, collection)
         return svg_shares(run_id, name, collection, {"by_phase": "phase", "by_start": "period"}[name])
     if kind == "stats":
-        assert meta.get("batches"), f"{meta['slug']}: stats needs 'batches' in front matter"
-        return {"2025": stats_2025}[args[0]](run_id, meta["batches"])
+        assert run_id, f"{meta['slug']}: stats needs 'data' in front matter"
+        return {"trials_2025": stats_trials_2025}[args[0]](run_id)
     if kind == "table":
-        return {"decisions": table_decisions, "outcome": table_outcome}[args[0]]()
-    if kind == "posts":
-        return post_list()
+        if args[0] == "outcome":
+            # A post pins its batch files in front matter; a living page shows all batches
+            return table_outcome(meta.get("batches"))
+        return {"decisions": table_decisions}[args[0]]()
+    if kind == "notes":
+        return note_list()
     raise ValueError(f"unknown placeholder {{{{{spec}}}}} in {meta['slug']}")
 
 
@@ -213,24 +214,24 @@ def to_html(body, meta, depth):
     out = out.replace('href="repo:', f'href="{REPO_URL}/')
     # Relative links are written as they resolve from the page: posts link to pages with ../, to posts directly
     for target in re.findall(r'href="([^":#]+\.html)"', out):
-        resolved = os.path.normpath(os.path.join(DOCS, "posts" if depth else "", target))
+        resolved = os.path.normpath(os.path.join(DOCS, "notes" if depth else "", target))
         LINKS.append((meta["slug"], target, resolved))
     assert "{{" not in out, f"{meta['slug']}: placeholder not on its own line"
     return out
 
 
 # ------------------------------------------------------------------ pages
-NAV = [("index.html", "Posts"), ("method.html", "Method"), ("decisions.html", "Publication decisions"),
+NAV = [("index.html", "Field notes"), ("method.html", "Method"), ("decisions.html", "Publication decisions"),
        ("identity.html", "Identity findings"), ("collections.html", "Collections")]
-POSTS = []
+NOTES = []
 LINKS = []
 
 
-def post_list():
+def note_list():
     items = []
-    for meta, _ in POSTS:
-        items.append(f'<li><a class="post-title" href="posts/{meta["slug"]}.html">{esc(meta["title"])}</a>'
-                     f'<span class="post-meta">{esc(meta["date"])} · {esc(meta.get("covers", ""))}</span>'
+    for meta, _ in NOTES:
+        items.append(f'<li><span class="post-meta">Field note {meta["number"]} · covers {esc(meta["covers"])}</span>'
+                     f'<a class="post-title" href="notes/{meta["slug"]}.html">{esc(meta["title"])}</a>'
                      f'<span class="post-summary">{esc(meta["description"])}</span></li>')
     return '<ul class="posts">' + "".join(items) + "</ul>"
 
@@ -238,10 +239,10 @@ def post_list():
 def write_page(path, meta, content, current, depth=0):
     pre = "../" * depth
     nav = " ".join(f'<a href="{pre}{f}"{" aria-current=page" if f == current else ""}>{esc(t)}</a>' for f, t in NAV)
-    header = ""
-    if meta.get("date"):
-        header = (f'<p class="post-meta">{esc(meta["date"])}' + (f' · covers {esc(meta["covers"])}' if meta.get("covers") else "")
-                  + "</p>")
+    header = written = ""
+    if "number" in meta:
+        header = f'<p class="post-meta">Field note {meta["number"]} · covers {esc(meta["covers"])}</p>'
+        written = f'<p class="written">Written {esc(meta["written"])}.</p>'
     title = meta["title"] if meta["title"] == SITE_TITLE else f'{meta["title"]} — {SITE_TITLE}'
     doc = f"""<!doctype html>
 <html lang="en">
@@ -260,6 +261,7 @@ def write_page(path, meta, content, current, depth=0):
 <main class="wrap">
 {header}
 {content}
+{written}
 </main>
 <footer class="site"><div class="wrap">
 <p>Kerstin Forsberg. Text and data CC BY 4.0; code MIT. Developed with Claude (Anthropic); review decisions and
@@ -276,20 +278,21 @@ published codes are confirmed by a person. Source: <a href="https://github.com/k
 def main():
     os.makedirs(DOCS, exist_ok=True)
     # docs/ holds generated pages only: remove earlier HTML so a renamed source leaves no stale page
-    for old in glob.glob(os.path.join(DOCS, "*.html")) + glob.glob(os.path.join(DOCS, "posts", "*.html")):
+    for old in glob.glob(os.path.join(DOCS, "*.html")) + glob.glob(os.path.join(DOCS, "notes", "*.html")):
         os.remove(old)
     shutil.copy(os.path.join(SITE, "style.css"), os.path.join(DOCS, "style.css"))
     open(os.path.join(DOCS, ".nojekyll"), "w").close()
 
-    for path in glob.glob(os.path.join(SITE, "posts", "*.md")):
+    for path in glob.glob(os.path.join(SITE, "notes", "*.md")):
         meta, body = read_source(path)
-        for key in ["date", "order"]:
-            assert key in meta, f"{path}: post front matter lacks '{key}'"
-        meta["date"] = str(meta["date"])
-        POSTS.append((meta, body))
-    POSTS.sort(key=lambda p: p[0]["order"], reverse=True)
-    for meta, body in POSTS:
-        write_page(os.path.join(DOCS, "posts", f"{meta['slug']}.html"), meta, to_html(body, meta, 1), "", depth=1)
+        for key in ["number", "covers", "written"]:
+            assert key in meta, f"{path}: field note front matter lacks '{key}'"
+        meta["written"] = str(meta["written"])
+        NOTES.append((meta, body))
+    NOTES.sort(key=lambda n: n[0]["number"])
+    assert [m["number"] for m, _ in NOTES] == list(range(len(NOTES))), "field notes must be numbered 0, 1, 2, ..."
+    for meta, body in NOTES:
+        write_page(os.path.join(DOCS, "notes", f"{meta['slug']}.html"), meta, to_html(body, meta, 1), "", depth=1)
 
     for path in glob.glob(os.path.join(SITE, "pages", "*.md")):
         meta, body = read_source(path)
@@ -298,7 +301,7 @@ def main():
     broken = [(src, t) for src, t, resolved in LINKS if not os.path.isfile(resolved)]
     assert not broken, f"links to pages that were not built: {broken}"
     written = sorted(os.path.relpath(p, DOCS) for p in glob.glob(os.path.join(DOCS, "**", "*.html"), recursive=True))
-    print(f"{len(POSTS)} posts; pages written to docs/: {written}")
+    print(f"{len(NOTES)} field notes; pages written to docs/: {written}")
 
 
 if __name__ == "__main__":

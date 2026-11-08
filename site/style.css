@@ -97,3 +97,5 @@ ul.posts .post-summary { display: block; margin-top: 4px; }
 main a code { overflow-wrap: anywhere; }
 details { margin: 2em 0; border-top: 1px solid var(--rule); padding-top: 0.8em; }
 summary { cursor: pointer; font: 600 0.95rem var(--sans); color: var(--muted); }
+p.written { font: 0.8rem var(--sans); color: var(--muted); margin-top: 2.5em; }
+ul.posts .post-meta { margin: 0 0 2px; }

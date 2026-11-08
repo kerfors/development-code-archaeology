@@ -1,9 +1,9 @@
 ---
 title: "Where it started: a holiday project and a detour into chemistry"
 description: "December 2025: how many trials of last year's new drugs can only be found by their development codes? February 2026: can the codes be found in PubChem? What I learned, and the two questions I took further."
-date: 2026-11-08
+written: 2026-11-08
 covers: December 2025 – February 2026
-order: 0
+number: 0
 ---
 
 # Where it started
@@ -60,16 +60,18 @@ Both meet the same issue: the names of a substance are spread over many sources 
   Medicines Discovery Catapult, 2023 ([slides](https://cisrg.shef.ac.uk/shef2023/wp-content/uploads/2023/10/Resolving_Code_Names_Rujan.pdf)).
   Code mining from J. Med. Chem. abstracts, false positives, and recommendations for code formats.
 
-## What I took further
+## Two questions to take further
 
-The articles ended with open questions. Two of them became the repository, from October 2026:
+The December articles ended with open questions. Two of them stayed with me:
 
-- **Can development codes be harvested programmatically, from named sources?** Not by asking an AI to
-  remember them, but by collecting them where they are written down, with a rule I can check.
-- **Can an open data community hold them?** On Wikidata, codes were only aliases, with no source and no
-  company. That led to a property proposal, and to the next post.
+1. **Can development codes be harvested programmatically, from named sources?** Not by asking an AI to
+   remember them, but by collecting them where they are written down, with a rule I can check.
+2. **Can an open data community hold them?** On Wikidata, codes were only aliases, with no source and no
+   company.
 
-Next: [Two 2025 collections: harvest, review, Wikidata](2026-11-08-two-2025-collections.html).
+In October 2026 I started a repository to work on both. The next three field notes follow them:
+[harvesting the codes](01-harvesting-codes.html), [what they find in the trial registry](02-trials-under-codes.html),
+and [the codes on Wikidata](03-codes-on-wikidata.html).
 
 <details markdown="1">
 <summary>Appendix: the discovery prompt I used in December 2025</summary>

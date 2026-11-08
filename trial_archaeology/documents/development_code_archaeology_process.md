@@ -7,7 +7,7 @@ codes from named sources, review them against registry evidence, then search AAC
 accepted codes under one matching rule.
 
 Earlier rounds (December 2025: AI-assisted discovery; February 2026: PubChem structure checks) are
-described in `site/posts/2026-11-08-before-the-repository.md`.
+described in `site/notes/00-where-it-started.md`.
 
 ---
 
