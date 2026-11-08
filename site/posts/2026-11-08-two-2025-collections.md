@@ -89,9 +89,10 @@ is a fifth to a quarter of their trials started before 2015.
    combination (LNZ101: aceclidine + brimonidine), or a development programme (Novo Nordisk's NN9535).
    Wikidata has items for the first three. ISO IDMP has no structural place for development codes, and no
    programme level.
-4. **The hard part is not the drug, it is the company.** "Who assigned this code" meets subsidiaries,
-   mergers, renames and company items that do not carry the names the registry uses.
-   Details: [Identity findings](../identity.html).
+4. **A company is another case of what to identify.** "Conferred by" needs the company that assigned the
+   code as one thing, across subsidiaries, joint ventures, mergers and renames, and company items do not
+   always carry the names the registry uses. The same question as for the drug: what exactly is it we
+   identify? Details: [Identity findings](../identity.html).
 5. **Linked Data shows these details early.** Each of them had to be decided before a statement could be
    made. Other approaches leave them to be handled in software later, or never.
 
@@ -111,19 +112,6 @@ is a fifth to a quarter of their trials started before 2015.
 - Should registries record the development code as a typed identifier of the intervention, with its assigner?
 - How should a development programme (one moiety, one formulation, one indication) be represented, when
   neither Wikidata nor IDMP has the level?
-
-## Related work
-
-Chris Southan, a friend and former colleague, and I have addressed this from two different perspectives:
-his from chemistry and public compound databases, mine from clinical trials, data standards and identity.
-Both meet the same issue: the names of a substance are spread over many sources and not linked.
-
-- Southan C, Pawson AJ, Sharman JL, Benson HE, Faccenda E. [Resolving cryptic needles to molecular structures: the GtoPdb experience](https://www.slideshare.net/slideshow/southan-needles-acs/51539822).
-  ACS CINF, 2015. Code chains across mergers (MK-8931, SCH 900931, verubecestat), format variants, and a
-  proposal for a standard identifier format.
-- Rujan R-M, Amaral M, Southan C, Dunlop I. [Resolving code names to structures from the medicinal chemistry literature: not as FAIR as it should be](https://cisrg.shef.ac.uk/shef2023/?p=771).
-  Medicines Discovery Catapult, 2023 ([slides](https://cisrg.shef.ac.uk/shef2023/wp-content/uploads/2023/10/Resolving_Code_Names_Rujan.pdf)).
-  Code mining from J. Med. Chem. abstracts, false positives, and recommendations for code formats.
 
 ## Data for this post
 
