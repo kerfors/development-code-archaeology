@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two 2025 collections: harvest, review, Wikidata — Development code archaeology</title>
+<meta name="description" content="Development codes for the 2025 FDA novel approvals and for big sellers: how many trials only the codes find, what was learned, and the first referenced codes on Wikidata.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../index.html">Development code archaeology</a>
+<nav><a href="../index.html">Posts</a> <a href="../method.html">Method</a> <a href="../decisions.html">Publication decisions</a> <a href="../identity.html">Identity findings</a> <a href="../collections.html">Collections</a></nav>
+</div></header>
+<main class="wrap">
+<p class="post-meta">2026-11-08 · covers October – November 2026</p>
+<h1>Trials registered under a development code</h1>
+<p>Before a drug has an INN, it has a development code: AZD0914, BI 1015550, MK-3475. Many trials are
+registered under the code, and some stay so. A ClinicalTrials.gov search on the INN alone does not find them.</p>
+<p>This post covers October–November 2026, a follow-up of the <a href="2026-11-08-before-the-repository.html">December 2025 holiday project</a>:
+harvest development codes from named sources, review them, count the trials they recover, and publish the
+reviewed codes to Wikidata with references.</p>
+<div class="stats"><div class="stat"><span class="num">29%</span><span class="txt">of drug–trial pairs for the 2025 FDA novel approvals are found only via a code (197 of 679)</span></div><div class="stat"><span class="num">48%</span><span class="txt">of their Phase 1 pairs are found only via a code (100 of 210)</span></div><div class="stat"><span class="num">5.7%</span><span class="txt">for the top-selling medicines of 12 large companies (631 of 11,035)</span></div><div class="stat"><span class="num">41</span><span class="txt">referenced development codes published to Wikidata with the new property P15001</span></div></div>
+<h2>One substance, three names</h2>
+<p>Zoliflodacin (Nuzolvence, approved 2025) was AZD0914 at AstraZeneca and ETX0914 at Entasis Therapeutics.
+NIAID's 2018 news release says it in one line: "formerly known as ETX0914 and AZD0914".
+The trials do not say it in the fields a search uses.</p>
+<svg class="diagram" viewBox="0 0 760 130" role="img">
+<title>One substance, three names: AZD0914, ETX0914, zoliflodacin</title>
+<defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<g class="step"><rect x="10" y="10" width="200" height="56" rx="6"/><text x="110" y="34">AZD0914</text><text class="sub" x="110" y="52">AstraZeneca</text>
+<rect x="280" y="10" width="200" height="56" rx="6"/><text x="380" y="34">ETX0914</text><text class="sub" x="380" y="52">Entasis Therapeutics</text>
+<rect x="550" y="10" width="200" height="56" rx="6"/><text x="650" y="34">zoliflodacin</text><text class="sub" x="650" y="52">INN; Nuzolvence</text></g>
+<g class="lines"><path d="M210,38 L280,38" marker-end="url(#ar2)"/><path d="M480,38 L550,38" marker-end="url(#ar2)"/></g>
+<g class="note"><text x="110" y="90">4 trials name it in</text><text x="110" y="106">the intervention</text>
+<text x="380" y="90">in trial descriptions only,</text><text x="380" y="106">not in searched fields</text>
+<text x="650" y="90">a search on the INN</text><text x="650" y="106">misses 5 of 9 trials</text></g></svg>
+<p class="caption">AACT snapshot 2026-10-16. On Wikidata, neither code could be published under the rules:
+AZD0914 has no trial with AstraZeneca as lead sponsor naming the code, and ETX0914 has web evidence only.
+Both stay held, with the reason recorded.</p>
+
+<h2>What was done</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>When</th>
+<th>What</th>
+<th>Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>October 2026</td>
+<td>Code harvest from named sources with a checkable evidence rule; a second collection (top sellers); one shared matching rule</td>
+<td>184 candidates for 30 moieties; human review; 631 drug–trial pairs found only via a code</td>
+</tr>
+<tr>
+<td>October 2026</td>
+<td>Wikidata property proposal; <a href="https://www.wikidata.org/wiki/Property:P15001">P15001 "development code"</a> created 25 October</td>
+<td>Codes become statements with company and reference, not only aliases</td>
+</tr>
+<tr>
+<td>November 2026</td>
+<td>The December collection through the same harvest and review; both collections published under one set of documented decisions (D0–D13)</td>
+<td>41 statements published; 31 held with a reason; 23 without an acceptable reference</td>
+</tr>
+</tbody>
+</table></div>
+<h2>How</h2>
+<svg class="diagram" viewBox="0 0 760 210" role="img">
+<title>Pipeline: named sources, harvest, evidence rule and review, trial search, Wikidata</title>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<g class="src"><rect x="4" y="10" width="150" height="30" rx="4"/><text x="79" y="30">NCI Thesaurus</text>
+<rect x="4" y="50" width="150" height="30" rx="4"/><text x="79" y="70">PubChem synonyms</text>
+<rect x="4" y="90" width="150" height="30" rx="4"/><text x="79" y="110">AACT other names</text>
+<rect x="4" y="130" width="150" height="30" rx="4"/><text x="79" y="150">AACT intervention names</text>
+<rect x="4" y="170" width="150" height="30" rx="4"/><text x="79" y="190">Web, URL-cited</text></g>
+<g class="step"><rect x="190" y="75" width="130" height="60" rx="6"/><text x="255" y="100">Harvest</text><text class="sub" x="255" y="118">candidates + evidence</text>
+<rect x="335" y="75" width="140" height="60" rx="6"/><text x="405" y="100">Rule + review</text><text class="sub" x="405" y="118">a person decides</text>
+<rect x="495" y="20" width="135" height="60" rx="6"/><text x="562" y="45">Trial search</text><text class="sub" x="562" y="63">INN + accepted codes</text>
+<rect x="495" y="130" width="135" height="60" rx="6"/><text x="562" y="155">Wikidata</text><text class="sub" x="562" y="173">P15001, referenced</text></g>
+<g class="note"><text class="start" x="642" y="54">hidden trials</text><text class="start" x="642" y="164">or hold, with reason</text></g>
+<g class="lines"><path d="M154,25 C175,25 175,100 190,103" marker-end="url(#ar)"/><path d="M154,65 C175,65 175,103 190,104" marker-end="url(#ar)"/>
+<path d="M154,105 L190,105" marker-end="url(#ar)"/><path d="M154,145 C175,145 175,107 190,106" marker-end="url(#ar)"/>
+<path d="M154,185 C175,185 175,110 190,107" marker-end="url(#ar)"/><path d="M320,105 L335,105" marker-end="url(#ar)"/>
+<path d="M475,95 C485,95 485,50 495,50" marker-end="url(#ar)"/><path d="M475,115 C485,115 485,160 495,160" marker-end="url(#ar)"/></g></svg>
+<p>No code enters without a source. A code is accepted when two independent lines of evidence agree
+(sources, web publishers, registry trials). A person reviews each candidate's class. Trials are searched
+with one matching rule for the INN and the accepted codes. Details: <a href="../method.html">Method</a>.</p>
+<h2>Results</h2>
+<p>Drug–trial pairs found only via a code: the INN is not in the registered intervention name. For
+165 of the 197 such pairs in the FDA collection, the INN is in neither trial title either.
+26 of the 30 products have such trials.</p>
+<figure>
+<figcaption>FDA novel approvals 2025, drug–trial pairs per product, sorted by share found only via a code.</figcaption>
+<svg class="chart" viewBox="0 0 700 610" role="img">
+<title>FDA novel approvals 2025: drug–trial pairs per drug, via the INN and only via a code</title>
+<rect class="bar-hid" x="190" y="4" width="10" height="10"/><text class="lbl" x="205" y="13">only via a code</text>
+<rect class="bar-inn" x="315" y="4" width="10" height="10"/><text class="lbl" x="330" y="13">via the INN</text>
+<text class="lbl" x="182" y="35" text-anchor="end">sebetralstat</text>
+<rect class="bar-hid" x="190" y="24" width="50.7" height="13"/>
+<rect class="bar-inn" x="240.7" y="24" width="14.5" height="13"/>
+<text class="val" x="261.2" y="35">7 of 9</text>
+<text class="lbl" x="182" y="54" text-anchor="end">dordaviprone</text>
+<rect class="bar-hid" x="190" y="43" width="166.6" height="13"/>
+<rect class="bar-inn" x="356.6" y="43" width="50.7" height="13"/>
+<text class="val" x="413.2" y="54">23 of 30</text>
+<text class="lbl" x="182" y="73" text-anchor="end">sepiapterin</text>
+<rect class="bar-hid" x="190" y="62" width="29.0" height="13"/>
+<rect class="bar-inn" x="219.0" y="62" width="14.5" height="13"/>
+<text class="val" x="239.4" y="73">4 of 6</text>
+<text class="lbl" x="182" y="92" text-anchor="end">sevabertinib</text>
+<rect class="bar-hid" x="190" y="81" width="50.7" height="13"/>
+<rect class="bar-inn" x="240.7" y="81" width="29.0" height="13"/>
+<text class="val" x="275.7" y="92">7 of 11</text>
+<text class="lbl" x="182" y="111" text-anchor="end">nerandomilast</text>
+<rect class="bar-hid" x="190" y="100" width="159.3" height="13"/>
+<rect class="bar-inn" x="349.3" y="100" width="108.6" height="13"/>
+<text class="val" x="463.9" y="111">22 of 37</text>
+<text class="lbl" x="182" y="130" text-anchor="end">zoliflodacin</text>
+<rect class="bar-hid" x="190" y="119" width="36.2" height="13"/>
+<rect class="bar-inn" x="226.2" y="119" width="29.0" height="13"/>
+<text class="val" x="261.2" y="130">5 of 9</text>
+<text class="lbl" x="182" y="149" text-anchor="end">doxecitine and doxribtimine</text>
+<rect class="bar-hid" x="190" y="138" width="21.7" height="13"/>
+<rect class="bar-inn" x="211.7" y="138" width="21.7" height="13"/>
+<text class="val" x="239.4" y="149">3 of 6</text>
+<text class="lbl" x="182" y="168" text-anchor="end">taletrectinib</text>
+<rect class="bar-hid" x="190" y="157" width="50.7" height="13"/>
+<rect class="bar-inn" x="240.7" y="157" width="57.9" height="13"/>
+<text class="val" x="304.6" y="168">7 of 15</text>
+<text class="lbl" x="182" y="187" text-anchor="end">remibrutinib</text>
+<rect class="bar-hid" x="190" y="176" width="137.6" height="13"/>
+<rect class="bar-inn" x="327.6" y="176" width="166.6" height="13"/>
+<text class="val" x="500.1" y="187">19 of 42</text>
+<text class="lbl" x="182" y="206" text-anchor="end">acoltremon</text>
+<rect class="bar-hid" x="190" y="195" width="65.2" height="13"/>
+<rect class="bar-inn" x="255.2" y="195" width="79.7" height="13"/>
+<text class="val" x="340.8" y="206">9 of 20</text>
+<text class="lbl" x="182" y="225" text-anchor="end">gepotidacin</text>
+<rect class="bar-hid" x="190" y="214" width="65.2" height="13"/>
+<rect class="bar-inn" x="255.2" y="214" width="108.6" height="13"/>
+<text class="val" x="369.8" y="225">9 of 24</text>
+<text class="lbl" x="182" y="244" text-anchor="end">sunvozertinib</text>
+<rect class="bar-hid" x="190" y="233" width="65.2" height="13"/>
+<rect class="bar-inn" x="255.2" y="233" width="108.6" height="13"/>
+<text class="val" x="369.8" y="244">9 of 24</text>
+<text class="lbl" x="182" y="263" text-anchor="end">elamipretide</text>
+<rect class="bar-hid" x="190" y="252" width="72.4" height="13"/>
+<rect class="bar-inn" x="262.4" y="252" width="137.6" height="13"/>
+<text class="val" x="406.0" y="263">10 of 29</text>
+<text class="lbl" x="182" y="282" text-anchor="end">elinzanetant</text>
+<rect class="bar-hid" x="190" y="271" width="65.2" height="13"/>
+<rect class="bar-inn" x="255.2" y="271" width="137.6" height="13"/>
+<text class="val" x="398.8" y="282">9 of 28</text>
+<text class="lbl" x="182" y="301" text-anchor="end">imlunestrant</text>
+<rect class="bar-hid" x="190" y="290" width="36.2" height="13"/>
+<rect class="bar-inn" x="226.2" y="290" width="79.7" height="13"/>
+<text class="val" x="311.9" y="301">5 of 16</text>
+<text class="lbl" x="182" y="320" text-anchor="end">vimseltinib</text>
+<rect class="bar-hid" x="190" y="309" width="21.7" height="13"/>
+<rect class="bar-inn" x="211.7" y="309" width="50.7" height="13"/>
+<text class="val" x="268.4" y="320">3 of 10</text>
+<text class="lbl" x="182" y="339" text-anchor="end">mirdametinib</text>
+<rect class="bar-hid" x="190" y="328" width="57.9" height="13"/>
+<rect class="bar-inn" x="247.9" y="328" width="159.3" height="13"/>
+<text class="val" x="413.2" y="339">8 of 30</text>
+<text class="lbl" x="182" y="358" text-anchor="end">suzetrigine</text>
+<rect class="bar-hid" x="190" y="347" width="94.1" height="13"/>
+<rect class="bar-inn" x="284.1" y="347" width="325.9" height="13"/>
+<text class="val" x="616.0" y="358">13 of 58</text>
+<text class="lbl" x="182" y="377" text-anchor="end">paltusotine</text>
+<rect class="bar-hid" x="190" y="366" width="14.5" height="13"/>
+<rect class="bar-inn" x="204.5" y="366" width="50.7" height="13"/>
+<text class="val" x="261.2" y="377">2 of 9</text>
+<text class="lbl" x="182" y="396" text-anchor="end">avutometinib</text>
+<rect class="bar-hid" x="190" y="385" width="50.7" height="13"/>
+<rect class="bar-inn" x="240.7" y="385" width="181.0" height="13"/>
+<text class="val" x="427.7" y="396">7 of 32</text>
+<text class="lbl" x="182" y="415" text-anchor="end">brensocatib</text>
+<rect class="bar-hid" x="190" y="404" width="21.7" height="13"/>
+<rect class="bar-inn" x="211.7" y="404" width="115.9" height="13"/>
+<text class="val" x="333.6" y="415">3 of 19</text>
+<text class="lbl" x="182" y="434" text-anchor="end">delgocitinib</text>
+<rect class="bar-hid" x="190" y="423" width="29.0" height="13"/>
+<rect class="bar-inn" x="219.0" y="423" width="159.3" height="13"/>
+<text class="val" x="384.3" y="434">4 of 26</text>
+<text class="lbl" x="182" y="453" text-anchor="end">defactinib</text>
+<rect class="bar-hid" x="190" y="442" width="43.4" height="13"/>
+<rect class="bar-inn" x="233.4" y="442" width="267.9" height="13"/>
+<text class="val" x="507.4" y="453">6 of 43</text>
+<text class="lbl" x="182" y="472" text-anchor="end">etripamil</text>
+<rect class="bar-hid" x="190" y="461" width="7.2" height="13"/>
+<rect class="bar-inn" x="197.2" y="461" width="72.4" height="13"/>
+<text class="val" x="275.7" y="472">1 of 11</text>
+<text class="lbl" x="182" y="491" text-anchor="end">zongertinib</text>
+<rect class="bar-hid" x="190" y="480" width="7.2" height="13"/>
+<rect class="bar-inn" x="197.2" y="480" width="123.1" height="13"/>
+<text class="val" x="326.3" y="491">1 of 18</text>
+<text class="lbl" x="182" y="510" text-anchor="end">rilzabrutinib</text>
+<rect class="bar-hid" x="190" y="499" width="7.2" height="13"/>
+<rect class="bar-inn" x="197.2" y="499" width="152.1" height="13"/>
+<text class="val" x="355.3" y="510">1 of 22</text>
+<text class="lbl" x="182" y="529" text-anchor="end">aceclidine</text>
+<rect class="bar-hid" x="190" y="518" width="0.0" height="13"/>
+<rect class="bar-inn" x="190.0" y="518" width="65.2" height="13"/>
+<text class="val" x="261.2" y="529">0 of 9</text>
+<text class="lbl" x="182" y="548" text-anchor="end">atrasentan</text>
+<rect class="bar-hid" x="190" y="537" width="0.0" height="13"/>
+<rect class="bar-inn" x="190.0" y="537" width="181.0" height="13"/>
+<text class="val" x="377.0" y="548">0 of 25</text>
+<text class="lbl" x="182" y="567" text-anchor="end">treosulfan</text>
+<rect class="bar-hid" x="190" y="556" width="0.0" height="13"/>
+<rect class="bar-inn" x="190.0" y="556" width="325.9" height="13"/>
+<text class="val" x="521.9" y="567">0 of 45</text>
+<text class="lbl" x="182" y="586" text-anchor="end">ziftomenib</text>
+<rect class="bar-hid" x="190" y="575" width="0.0" height="13"/>
+<rect class="bar-inn" x="190.0" y="575" width="115.9" height="13"/>
+<text class="val" x="311.9" y="586">0 of 16</text>
+</svg>
+</figure>
+<figure>
+<figcaption>FDA novel approvals 2025: share found only via a code, by phase.</figcaption>
+<svg class="chart small" viewBox="0 0 580 128" role="img">
+<title>FDA novel approvals 2025: share of drug–trial pairs found only via a code</title>
+<text class="lbl" x="122" y="17" text-anchor="end">Phase 1</text>
+<rect class="bar-track" x="130" y="4" width="300" height="16"/>
+<rect class="bar-hid" x="130" y="4" width="142.9" height="16"/>
+<text class="val" x="438" y="17">48% (100 of 210)</text>
+<text class="lbl" x="122" y="41" text-anchor="end">Phase 1/2</text>
+<rect class="bar-track" x="130" y="28" width="300" height="16"/>
+<rect class="bar-hid" x="130" y="28" width="98.2" height="16"/>
+<text class="val" x="438" y="41">33% (18 of 55)</text>
+<text class="lbl" x="122" y="65" text-anchor="end">Phase 2</text>
+<rect class="bar-track" x="130" y="52" width="300" height="16"/>
+<rect class="bar-hid" x="130" y="52" width="64.0" height="16"/>
+<text class="val" x="438" y="65">21% (42 of 197)</text>
+<text class="lbl" x="122" y="89" text-anchor="end">Phase 3</text>
+<rect class="bar-track" x="130" y="76" width="300" height="16"/>
+<rect class="bar-hid" x="130" y="76" width="52.7" height="16"/>
+<text class="val" x="438" y="89">18% (23 of 131)</text>
+<text class="lbl" x="122" y="113" text-anchor="end">Phase 4</text>
+<rect class="bar-track" x="130" y="100" width="300" height="16"/>
+<rect class="bar-hid" x="130" y="100" width="8.1" height="16"/>
+<text class="val" x="438" y="113">3% (1 of 37)</text>
+</svg>
+</figure>
+<figure>
+<figcaption>Top sellers FY2025: share found only via a code, by trial start year.</figcaption>
+<svg class="chart small" viewBox="0 0 580 104" role="img">
+<title>Top sellers FY2025: share of drug–trial pairs found only via a code</title>
+<text class="lbl" x="122" y="17" text-anchor="end">before 2010</text>
+<rect class="bar-track" x="130" y="4" width="300" height="16"/>
+<rect class="bar-hid" x="130" y="4" width="57.3" height="16"/>
+<text class="val" x="438" y="17">19% (119 of 623)</text>
+<text class="lbl" x="122" y="41" text-anchor="end">2010–2014</text>
+<rect class="bar-track" x="130" y="28" width="300" height="16"/>
+<rect class="bar-hid" x="130" y="28" width="72.8" height="16"/>
+<text class="val" x="438" y="41">24% (208 of 857)</text>
+<text class="lbl" x="122" y="65" text-anchor="end">2015–2019</text>
+<rect class="bar-track" x="130" y="52" width="300" height="16"/>
+<rect class="bar-hid" x="130" y="52" width="12.5" height="16"/>
+<text class="val" x="438" y="65">4% (152 of 3645)</text>
+<text class="lbl" x="122" y="89" text-anchor="end">2020 and later</text>
+<rect class="bar-track" x="130" y="76" width="300" height="16"/>
+<rect class="bar-hid" x="130" y="76" width="7.7" height="16"/>
+<text class="val" x="438" y="89">3% (149 of 5770)</text>
+</svg>
+</figure>
+<p>The pattern: the early and the old history of a drug is under its codes. For recent approvals that is
+almost half of Phase 1. For big sellers with large INN-registered programmes the share is small overall, but it
+is a fifth to a quarter of their trials started before 2015.</p>
+<h2>What was learned</h2>
+<ol>
+<li><strong>AI can find codes; only sources can prove them.</strong> In December, AI discovery produced plausible codes
+   that no source had. Since October, every code has a named source, and a code found on the web cites the URL.</li>
+<li><strong>No source is complete, and sources copy each other.</strong> Some current codes exist only in the registry
+   (tirzepatide LY3298176). Some trial records, NCI-sponsored and academic, appear to carry NCI Thesaurus
+   synonym lists as other names, so for those codes the registry is not an independent witness.</li>
+<li><strong>A code names a level.</strong> Active moiety (AZD7986), salt (DS-6051b, of which DS-6051a is the free base),
+   combination (LNZ101: aceclidine + brimonidine), or a development programme (Novo Nordisk's NN9535).
+   Wikidata has items for the first three. ISO IDMP has no structural place for development codes, and no
+   programme level.</li>
+<li><strong>The hard part is not the drug, it is the company.</strong> "Who assigned this code" meets subsidiaries,
+   mergers, renames and company items that do not carry the names the registry uses.
+   Details: <a href="../identity.html">Identity findings</a>.</li>
+<li><strong>Linked Data shows these details early.</strong> Each of them had to be decided before a statement could be
+   made. Other approaches leave them to be handled in software later, or never.</li>
+</ol>
+<h2>Why it matters</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>For</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trial search and evidence synthesis</td>
+<td>Early-phase and older trials of a drug are found only with its codes. INN-only searches undercount them, most for recently approved drugs.</td>
+</tr>
+<tr>
+<td>Master data and ISO IDMP</td>
+<td>Development codes behave as identifiers with an assigner, a time span and a level. That is evidence for giving them a place in the model, and for a level above Product Family (the "Product Clan") that covers the whole R&amp;D lifecycle.</td>
+</tr>
+<tr>
+<td>Open data</td>
+<td>P15001 makes a code verifiable (reference), attributable (conferred by) and correctable. An alias is none of these.</td>
+</tr>
+<tr>
+<td>Method</td>
+<td>An LLM writes the code and helps find sources; the pipeline itself is deterministic, every decision is in a file, and a person confirms what is published.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Open questions</h2>
+<ul>
+<li>Who is "the company" across subsidiaries, joint ventures and acquisitions, and where should that be
+  resolved: in Wikidata, in the registry, or in each sponsor's master data?</li>
+<li>Should registries record the development code as a typed identifier of the intervention, with its assigner?</li>
+<li>How should a development programme (one moiety, one formulation, one indication) be represented, when
+  neither Wikidata nor IDMP has the level?</li>
+</ul>
+<h2>Related work</h2>
+<p>Chris Southan, a friend and former colleague, and I have addressed this from two different perspectives:
+his from chemistry and public compound databases, mine from clinical trials, data standards and identity.
+Both meet the same issue: the names of a substance are spread over many sources and not linked.</p>
+<ul>
+<li>Southan C, Pawson AJ, Sharman JL, Benson HE, Faccenda E. <a href="https://www.slideshare.net/slideshow/southan-needles-acs/51539822">Resolving cryptic needles to molecular structures: the GtoPdb experience</a>.
+  ACS CINF, 2015. Code chains across mergers (MK-8931, SCH 900931, verubecestat), format variants, and a
+  proposal for a standard identifier format.</li>
+<li>Rujan R-M, Amaral M, Southan C, Dunlop I. <a href="https://cisrg.shef.ac.uk/shef2023/?p=771">Resolving code names to structures from the medicinal chemistry literature: not as FAIR as it should be</a>.
+  Medicines Discovery Catapult, 2023 (<a href="https://cisrg.shef.ac.uk/shef2023/wp-content/uploads/2023/10/Resolving_Code_Names_Rujan.pdf">slides</a>).
+  Code mining from J. Med. Chem. abstracts, false positives, and recommendations for code formats.</li>
+</ul>
+<h2>Data for this post</h2>
+<p>Trial search: AACT snapshot 2026-10-16, runs 20261016_1010 (FDA novel approvals 2025) and 20261016_1046
+(top sellers FY2025), reduced to <a href="https://github.com/kerfors/development-code-archaeology/blob/main/site/data/ta_20261016"><code>site/data/ta_20261016/</code></a>. Wikidata: batches
+sent 2026-11-07 (<a href="https://github.com/kerfors/development-code-archaeology/blob/main/wikidata/batches"><code>wikidata/batches/</code></a>). The figures in this post do not change
+when later runs come.</p>
+</main>
+<footer class="site"><div class="wrap">
+<p>Kerstin Forsberg. Text and data CC BY 4.0; code MIT. Developed with Claude (Anthropic); review decisions and
+published codes are confirmed by a person. Source: <a href="https://github.com/kerfors/development-code-archaeology">kerfors/development-code-archaeology</a>.</p>
+</div></footer>
+</body>
+</html>

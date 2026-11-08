@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publication decisions — Development code archaeology</title>
+<meta name="description" content="Rules and decisions for publishing development codes to Wikidata with property P15001, and the outcome per batch.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html">Development code archaeology</a>
+<nav><a href="index.html">Posts</a> <a href="method.html">Method</a> <a href="decisions.html" aria-current=page>Publication decisions</a> <a href="identity.html">Identity findings</a> <a href="collections.html">Collections</a></nav>
+</div></header>
+<main class="wrap">
+
+<h1>Publication decisions</h1>
+<p>The approach is conservative: nothing is published that depends on an assumption. Each open question ends in
+hold, with the reason recorded. A held code stays an alias and remains usable for search.</p>
+<h2>Rules</h2>
+<ul>
+<li><strong>Which codes.</strong> Only codes confirmed by a person in review, accepted by the evidence rule and used in search.</li>
+<li><strong>Which item.</strong> The item of the level the code names: active moiety, salt (only where the evidence names
+  the salt) or fixed combination. Items are found by UNII.</li>
+<li><strong>Which reference.</strong> A ClinicalTrials.gov record (NCT ID) with the assigning company as lead sponsor;
+  otherwise NCI Thesaurus if it is a source; otherwise not published. PubChem and Wikipedia are not used as
+  references.</li>
+<li><strong>Which company.</strong> Qualifier P1027 "conferred by", the company that assigned the code.</li>
+</ul>
+<h2>Outcome per batch</h2>
+<div class="tablewrap"><table class="num"><thead><tr><th>Collection</th><th>Codes mapped</th><th>Published</th><th>Held</th><th>No acceptable reference</th></tr></thead><tbody><tr><td>FDA novel approvals 2025</td><td>42</td><td>16 (15 registry, 1 NCIt)</td><td>16</td><td>10</td></tr><tr><td>Top sellers FY2025</td><td>53</td><td>25 (21 registry, 4 NCIt)</td><td>15</td><td>13</td></tr><tr><td>All</td><td>95</td><td>41</td><td>31</td><td>23</td></tr></tbody></table></div>
+<p>Query the published statements live:
+<a href="https://query.wikidata.org/#SELECT%20%3Fitem%20%3FitemLabel%20%3Fcode%20%3FcompanyLabel%20WHERE%20%7B%0A%20%20%3Fitem%20p%3AP15001%20%3Fs%20.%20%3Fs%20ps%3AP15001%20%3Fcode%20.%0A%20%20OPTIONAL%20%7B%20%3Fs%20pq%3AP1027%20%3Fcompany%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cmul%22%20%7D%0A%7D%20ORDER%20BY%20%3FitemLabel">all P15001 statements in the Wikidata Query Service</a>.</p>
+<h2>Decisions</h2>
+<p>Read from <a href="https://github.com/kerfors/development-code-archaeology/blob/main/wikidata/README.md"><code>wikidata/README.md</code></a>, where each decision is recorded first.</p>
+<div class="tablewrap"><table><thead><tr><th>ID</th><th>Decision</th><th>Codes</th></tr></thead><tbody><tr><td>D0</td><td>Trial-pick rule as in Rules above. Codes with web evidence only are held (aliases only)</td><td class="codes">MP214, S/GSK1349572, GSK1349572A, S349572, BCH790, NGPB21, RG1594, H409A11, MERCK3475, GSK642444</td></tr><tr><td>D1</td><td>No successor fallback: a trial of an acquirer or renamed company does not count as the assigning company's</td><td class="codes">outcome per code from the run: MEDI4736, CNTO1959, CNTO1275, GR109714X, MDX1106, PRO70769, SCH900475, CGP48933</td></tr><tr><td>D2</td><td>Hold where the code prefix and the assigning company may differ</td><td class="codes">GW685698, GW685698X, GW642444, GW642444M (Glaxo Wellcome numbering, GSK trials); ABT494 (Abbott prefix, AbbVie trials)</td></tr><tr><td>D3</td><td>Hold where the lead sponsor is a subsidiary, not the company itself</td><td class="codes">JNJ54767414 (Johnson &amp; Johnson code, Janssen R&amp;D trials)</td></tr><tr><td>D4</td><td>Hold where the assigning company has no Wikidata item</td><td class="codes">FX1006, FX1006A (FoldRx); BCH189 (BioChem Pharma)</td></tr><tr><td>D5</td><td>A joint venture is not the parent company</td><td class="codes">GSK1349572: ViiV Healthcare trials not counted; GSK's own trials are</td></tr><tr><td>D6</td><td>A lead sponsor name counts for a company only if it equals, without legal suffix, the label or an alias of the company's Wikidata item. No equivalences of our own; company identity is not resolved here (<code>company_identity_findings.md</code>)</td><td class="codes">Novartis codes (LEE011, AHU377, AIN457, AIN457A, VAL489): "Novartis Pharmaceuticals" not counted; RG6013, RG7716: Genentech not counted for Roche; BMS512148</td></tr><tr><td>D7</td><td>A second spelling of a code already published is an alias, not a second statement</td><td class="codes">PF6291826 (PF06291826 published)</td></tr><tr><td>D8</td><td>Hold programme codes: codes that follow one formulation × indication programme (seen as prefixes of the sponsor's study IDs) rather than the substance. Wikidata has no item for that level</td><td class="codes">NN9535, NN9924, NN9536, NN9932, NN9931 (NNC0113-0217, the compound code, is not held)</td></tr><tr><td>D9</td><td>Withdrawn trials count for the trial pick: the record still shows the company using the code for the compound</td><td class="codes">AIN457 (NCT01103024, withdrawn; the only trial with "Novartis" as lead sponsor, D6)</td></tr><tr><td>D10</td><td>Where NCIt writes a code in several spellings, no spelling is chosen: NCIt tags all of them with term type CN (drug study code, NCIt C45773), so its own model gives no preferred one. The notebook keeps NCIT_MULTIPLE = "hold"</td><td class="codes">ACE910, MDX1106, PRO70769, SCH900475, LEE011, AHU377 (aliases only)</td></tr><tr><td>D11</td><td>Hold where the moiety has no Wikidata item found by UNII (P652). An item without UNII is not matched by label</td><td class="codes">fda_novel_2025: BI1015550 (nerandomilast Q136594966 has no UNII or InChIKey); PRN1008 (rilzabrutinib), AB106, DS6051, DS6051A (taletrectinib): no item</td></tr><tr><td>D12</td><td>Research names given by academic discoverers are not company codes: kept for search, not published</td><td class="codes">fda_novel_2025: SS31 (Szeto-Schiller peptide), TIC10 (TRAIL-inducing compound 10)</td></tr><tr><td>D13</td><td>Hold where the company item found is not clearly the company that assigned the code (a specific legal entity, or a register-style item)</td><td class="codes">fda_novel_2025: DZD9008 (only item 'Dizal (Jiangsu) Pharmaceutical Co., Ltd. (China)'); KVD900 (Q132101891, all-caps label, type 'organization')</td></tr></tbody></table></div>
+</main>
+<footer class="site"><div class="wrap">
+<p>Kerstin Forsberg. Text and data CC BY 4.0; code MIT. Developed with Claude (Anthropic); review decisions and
+published codes are confirmed by a person. Source: <a href="https://github.com/kerfors/development-code-archaeology">kerfors/development-code-archaeology</a>.</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Identity findings — Development code archaeology</title>
+<meta name="description" content="Company and level identity questions met when publishing development codes to Wikidata.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html">Development code archaeology</a>
+<nav><a href="index.html">Posts</a> <a href="method.html">Method</a> <a href="decisions.html">Publication decisions</a> <a href="identity.html" aria-current=page>Identity findings</a> <a href="collections.html">Collections</a></nav>
+</div></header>
+<main class="wrap">
+
+<h1>Identity findings</h1>
+<p>Publishing a code with "conferred by" requires knowing which company assigned it, and finding that company
+in the trial registry and on Wikidata. These findings are recorded, not resolved: who "the company" is across
+subsidiaries, joint ventures, mergers and renames is a general question. Source file:
+<a href="https://github.com/kerfors/development-code-archaeology/blob/main/wikidata/company_identity_findings.md"><code>wikidata/company_identity_findings.md</code></a>.</p>
+<h2>Registry names that are not the company item</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Company item</th>
+<th>Lead sponsor in the registry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LEE011, AIN457, LOU064</td>
+<td>Novartis</td>
+<td>Novartis Pharmaceuticals (2,717 trials as lead) rather than Novartis (714)</td>
+</tr>
+<tr>
+<td>RG6013, RG7716</td>
+<td>Hoffmann-La Roche</td>
+<td>Genentech, Inc., a Roche company with its own item</td>
+</tr>
+<tr>
+<td>JNJ54767414</td>
+<td>Johnson &amp; Johnson</td>
+<td>Janssen Research &amp; Development, LLC</td>
+</tr>
+<tr>
+<td>GSK1349572</td>
+<td>GSK</td>
+<td>ViiV Healthcare, a joint venture, for most trials</td>
+</tr>
+<tr>
+<td>INS1007, VX548</td>
+<td>Insmed; Vertex Pharmaceuticals</td>
+<td>… Incorporated</td>
+</tr>
+<tr>
+<td>MTP131, DCC3014</td>
+<td>Stealth BioTherapeutics (United States); Deciphera Pharmaceuticals (United States)</td>
+<td>… Inc.; … LLC</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Prefixes that outlive their company</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Codes</th>
+<th>Prefix</th>
+<th>Trials today</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GW685698, GW642444</td>
+<td>GW (Glaxo Wellcome)</td>
+<td>GlaxoSmithKline</td>
+</tr>
+<tr>
+<td>ABT494, ABT-627</td>
+<td>ABT (Abbott)</td>
+<td>AbbVie; Novartis</td>
+</tr>
+<tr>
+<td>PD-0325901</td>
+<td>PD (Parke-Davis)</td>
+<td>Pfizer; SpringWorks</td>
+</tr>
+<tr>
+<td>CGP48933</td>
+<td>CGP (Ciba-Geigy)</td>
+<td>Novartis</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Successor sponsors</h2>
+<p>The registry holds the record as it is today. ONC201 (Oncoceutics) is in Jazz Pharmaceuticals' trials,
+NT-814 (NeRRe) in Bayer's, CNSA-001 (Censa) in PTC Therapeutics'. Dapagliflozin's BMS-512148 trials from 2005
+have AstraZeneca as lead sponsor; whether the records were transferred is not visible.</p>
+<h2>Company items on Wikidata</h2>
+<p>Several smaller companies exist only as items labelled "&lt;name&gt; (&lt;country&gt;)", described as
+"company in &lt;city&gt;", apparently imported from an organisation register. Some companies have no item
+(Milestone Pharmaceuticals, Censa Pharmaceuticals, AnHeart Therapeutics). One item carries another company's
+current label: MedImmune is now labelled "AstraZeneca (United States)", so a "conferred by" pointing to it
+displays the later name.</p>
+<h2>Codes for programmes, not substances</h2>
+<p>Novo Nordisk's NN codes for semaglutide each follow one formulation × indication programme: NN9535
+subcutaneous for type 2 diabetes, NN9924 tablets, NN9536 obesity. The compound code is NNC0113-0217. The level
+sits between active moiety and product. Neither Wikidata nor ISO IDMP has it.</p>
+<h2>Change log</h2>
+<ul>
+<li>2026-11-08: page created, from findings recorded 2026-11-07.</li>
+</ul>
+</main>
+<footer class="site"><div class="wrap">
+<p>Kerstin Forsberg. Text and data CC BY 4.0; code MIT. Developed with Claude (Anthropic); review decisions and
+published codes are confirmed by a person. Source: <a href="https://github.com/kerfors/development-code-archaeology">kerfors/development-code-archaeology</a>.</p>
+</div></footer>
+</body>
+</html>
