@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Before the repository: December 2025 and February 2026 — Development code archaeology</title>
-<meta name="description" content="The holiday project that started it, and a short test of code to structure in PubChem: method, results and what carried over.">
+<title>Where it started: a holiday project and a detour into chemistry — Development code archaeology</title>
+<meta name="description" content="December 2025: how many trials of last year&#x27;s new drugs can only be found by their development codes? February 2026: can the codes be found in PubChem? What I learned, and the two questions I took further.">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -14,35 +14,48 @@
 </div></header>
 <main class="wrap">
 <p class="post-meta">2026-11-08 · covers December 2025 – February 2026</p>
-<h1>Before the repository: December 2025 and February 2026</h1>
-<p>The repository starts in October 2026. Two earlier rounds of work led to it. Their notebooks are not
-part of the repository; this post records what was done and what was learned.</p>
-<h2>December 2025: development codes and hidden trials</h2>
-<p>A holiday project ("mellandagsprojekt"). The question: how much of the ClinicalTrials.gov history of the
-2025 FDA novel small-molecule approvals can be found by INN alone, and how much only by development code?</p>
-<p>Method, in three steps:</p>
-<ol>
-<li>AI-assisted discovery of candidate codes (Claude, Gemini) from press releases, patent filings and
-   early trial registrations. Prompt below.</li>
-<li>Verification by web search against company, regulator and reference sources. This step caught
-   fabricated codes: for elamipretide, "SBT-31" and "SPI-31" appeared in no source at all.</li>
-<li>AACT queries, INN against codes, with word-boundary matching for short codes ("SS-31" matched
-   "COMPASS31"; "WS-12" matched "AEWS1221").</li>
-</ol>
-<p>Published 30 December 2025:</p>
+<h1>Where it started</h1>
+<h2>December 2025: a holiday project</h2>
+<p>Between Christmas and New Year, my "mellandagsprojekt", I took the drugs FDA approved as novel small
+molecules in 2025 and asked a simple question. How much of their history in ClinicalTrials.gov can I find by
+the INN, and how much only by their development codes?</p>
+<p>I asked Claude and Gemini to find the codes: the sponsor's code at approval, and older codes from originators,
+licensors and companies that had been acquired. Then I checked each code by web search against company,
+regulator and reference sources. That check mattered. For elamipretide the AI gave me "SBT-31" and "SPI-31".
+They look right, and no source has them.</p>
+<p>Then I searched AACT, the database copy of ClinicalTrials.gov, with the INN and with the codes. Short codes
+need care: "SS-31" matched "COMPASS31", and "WS-12" matched "AEWS1221".</p>
+<p>The result surprised me. Of 572 trials, 191 (33%) could only be found by a development code. 24 of the 29
+drugs had such trials. I wrote it up in two articles on 30 December:
+<a href="https://www.linkedin.com/pulse/data-archaeology-tracing-drug-development-codes-through-forsberg-89t1e/">Data Archaeology: Tracing Drug Development Codes Through Name Changes, Mergers, and Licensing Deals</a>
+and <a href="https://www.linkedin.com/pulse/searching-aact-development-codes-practical-guide-kerstin-forsberg-2rhze/">Searching AACT for Development Codes: A Practical Guide</a>.</p>
+<p>When I reran the same collection in October 2026, with a stricter matching rule and a newer AACT snapshot,
+the share was 29% (197 of 679 drug–trial pairs). Lower, but the same picture.</p>
+<h2>February 2026: a detour into chemistry</h2>
+<p>After talks with my friend Chris Southan, who has looked at code names from the chemistry side for years, I
+tried the next step: from code to structure, in PubChem. All 29 INNs resolved. Most codes did too, but three
+things went wrong in instructive ways:</p>
 <ul>
-<li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7411710435722280960/">LinkedIn post</a></li>
-<li><a href="https://www.linkedin.com/pulse/data-archaeology-tracing-drug-development-codes-through-forsberg-89t1e/">Data Archaeology: Tracing Drug Development Codes Through Name Changes, Mergers, and Licensing Deals</a></li>
-<li><a href="https://www.linkedin.com/pulse/searching-aact-development-codes-practical-guide-kerstin-forsberg-2rhze/">Searching AACT for Development Codes: A Practical Guide</a></li>
+<li><strong>The code names a salt.</strong> DS-6051b resolves to a salt, the INN to the free base. Same active moiety,
+  different record.</li>
+<li><strong>The code is there, but not connected.</strong> GSK1144814 sits on a substance record that is not linked to the
+  elinzanetant compound, so a name search does not find it.</li>
+<li><strong>The code was never deposited.</strong> SAR444671, Sanofi's code for rilzabrutinib after it bought Principia,
+  is not in PubChem at all. The older code PRN1008 is.</li>
 </ul>
-<p>Result as published: of 572 trials, 191 (33%) reachable only by a development code; 147 via the
-current sponsor code, 44 via legacy codes. 24 of 29 drugs had hidden trials.</p>
-<p>The same collection rerun in October 2026 with the shared matching rule of the repository, AACT snapshot
-2026-10-16: 197 of 679 drug–trial pairs reachable only by a code (29.0%); 655 distinct trials, the 197
-hidden ones all distinct; 26 of 30 drugs with hidden trials. The matching rule and the snapshot both changed;
-their effects are not separated. Whether the December total counted drug–trial pairs or distinct trials is
-not recorded.</p>
-<h3>Discovery prompt (December 2025)</h3>
+<p>Structure coverage is Chris's question, and I left it with him. But two things stayed with me: the active
+moiety is the unit to count by, and PubChem is a source of codes, not proof of them.</p>
+<h2>What I took further</h2>
+<p>The articles ended with open questions. Two of them became the repository, from October 2026:</p>
+<ul>
+<li><strong>Can development codes be harvested programmatically, from named sources?</strong> Not by asking an AI to
+  remember them, but by collecting them where they are written down, with a rule I can check.</li>
+<li><strong>Can an open data community hold them?</strong> On Wikidata, codes were only aliases, with no source and no
+  company. That led to a property proposal, and to the next post.</li>
+</ul>
+<p>Next: <a href="2026-11-08-two-2025-collections.html">Two 2025 collections: harvest, review, Wikidata</a>.</p>
+<details>
+<summary>Appendix: the discovery prompt I used in December 2025</summary>
 <pre><code class="language-markdown"># Drug Development Code Discovery
 
 ## Your Role
@@ -75,80 +88,7 @@ For each drug, find:
 - Distinguish code TYPES: development code (compound) vs protocol code (study)
 - Note format variations you encountered (AZD-0914 vs AZD0914)
 </code></pre>
-<h3>Lessons (December 2025)</h3>
-<ul>
-<li>AI discovery needs verification: it produces plausible codes that exist nowhere.</li>
-<li>Format tolerance: AZD-0914, AZD0914 and AZD 0914 are the same code.</li>
-<li>Short codes need word-boundary matching.</li>
-<li>Sponsor study codes can embed the development code (CLOU064A2402 contains LOU064).</li>
-</ul>
-<h2>February 2026: development code to structure (PubChem)</h2>
-<p>Exploratory, after discussions with Chris Southan (TW2Informatics) on structure coverage. The December
-work tested code → trials; this tested code → structure via the PubChem PUG REST API.</p>
-<p><strong>Launched drugs</strong>: the 29 single-entity small molecules of the December set (Kygevvi, a combination,
-excluded).</p>
-<div class="tablewrap"><table>
-<thead>
-<tr>
-<th>Test</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>INN → CID with InChIKey</td>
-<td>29/29</td>
-</tr>
-<tr>
-<td>Current code → same CID as INN</td>
-<td>26/28</td>
-</tr>
-<tr>
-<td>Legacy code → same CID as INN</td>
-<td>10/13</td>
-</tr>
-<tr>
-<td>Legacy code → same parent CID (active moiety)</td>
-<td>11/13</td>
-</tr>
-</tbody>
-</table></div>
-<p>Three failure modes:</p>
-<ol>
-<li><strong>Salt form.</strong> DS-6051b resolves to the adipate salt CID, the INN to the free base. The parent
-   CID lookup shows the same active moiety. Not an error, but a direct CID comparison flags it.</li>
-<li><strong>Substance/compound disconnect.</strong> GSK1144814 exists as a synonym on a substance record (SID)
-   that is not linked to the elinzanetant compound record. Present in PubChem, not findable by
-   compound name search.</li>
-<li><strong>Never deposited.</strong> SAR444671, Sanofi's code for rilzabrutinib after the Principia acquisition,
-   is absent from PubChem. The originator code PRN1008 resolves.</li>
-</ol>
-<p><strong>Early-stage compounds</strong>: 15 codes of AI-designed candidates in Phase I/II: 6 resolved at compound
-level, 9 not deposited at all (type 3), none of type 2.</p>
-<p><strong>Cross-references</strong>: INN → CID, UNII, CAS, ChEMBL, DrugBank, parent CID. Of the 29: UNII 25,
-ChEMBL 28, DrugBank 11. PubChem's additional codes (NSC numbers, suffix variants such as GSK1144814A)
-did not appear in ClinicalTrials.gov.</p>
-<h2>What carried over into October 2026</h2>
-<ul>
-<li><strong>Active moiety as the unit.</strong> The parent lookup became <code>moiety_unii</code> in the collections; UNII is
-  also how Wikidata items are found.</li>
-<li><strong>No code without a source.</strong> From the fabricated codes in December: every harvested code cites
-  where it was seen, and the evidence rule needs two independent lines.</li>
-<li><strong>PubChem as a source, not as evidence on its own.</strong> Synonyms are depositor aggregations. Codes
-  found only in PubChem are set aside, and PubChem is not used as a Wikidata reference.</li>
-<li><strong>Token matching and residue review.</strong> Word-boundary matching became the shared rule
-  (<a href="https://github.com/kerfors/development-code-archaeology/blob/main/patterns/aact_matching.py"><code>patterns/aact_matching.py</code></a>); the residue report shows what the rule leaves out.</li>
-</ul>
-<p>The December articles ended with open questions. Two of them are what the repository works on:</p>
-<ul>
-<li><em>Are there databases that can be queried programmatically for development codes?</em> The code
-  harvest (NCI Thesaurus, PubChem, AACT, cited web sources) with a checkable evidence rule.</li>
-<li><em>Can open data communities help?</em> The Wikidata property P15001 "development code", created
-  October 2026, with referenced statements.</li>
-</ul>
-<p>Not carried over: patent counts per compound, and structure coverage by development phase. That is
-Chris Southan's question, not this repository's.</p>
-<p>Next: <a href="2026-11-08-two-2025-collections.html">Two 2025 collections: harvest, review, Wikidata</a>.</p>
+</details>
 </main>
 <footer class="site"><div class="wrap">
 <p>Kerstin Forsberg. Text and data CC BY 4.0; code MIT. Developed with Claude (Anthropic); review decisions and
