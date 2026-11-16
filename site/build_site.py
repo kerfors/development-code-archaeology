@@ -229,7 +229,7 @@ LINKS = []
 
 def note_list():
     items = []
-    for meta, _ in NOTES:
+    for meta, _ in reversed(NOTES):  # latest note first
         items.append(f'<li><span class="post-meta">Field note {meta["number"]} · covers {esc(meta["covers"])}</span>'
                      f'<a class="post-title" href="notes/{meta["slug"]}.html">{esc(meta["title"])}</a>'
                      f'<span class="post-summary">{esc(meta["description"])}</span></li>')

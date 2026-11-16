@@ -12,6 +12,13 @@ batches: [top_sellers_fy2025_batch_20261107_1520.csv, fda_novel_2025_batch_20261
 The second question from the [first field note](00-where-it-started.html): can an open data community
 hold development codes?
 
+## Wikidata
+
+Wikidata is the open knowledge graph of the Wikimedia projects. Anyone can read it, query it and edit it, and
+every statement can carry a reference. It is Linked Data in practice: each thing has an identifier, and
+statements link things to other things. As a Linked Data and open data advocate I have followed Wikidata for
+years, used it, and made some minor updates myself.
+
 ## Why
 
 On Wikidata, development codes were aliases. An alias has no reference, no company, and no way to say it is
@@ -40,7 +47,15 @@ On 7 November 2026 I sent two batches:
 
 Every held code has a recorded reason, decisions D0 to D13 on the [Publication decisions](../decisions.html)
 page. A held code stays an alias and is still used for search.
-[Query the published statements live](https://query.wikidata.org/#SELECT%20%3Fitem%20%3FitemLabel%20%3Fcode%20%3FcompanyLabel%20WHERE%20%7B%0A%20%20%3Fitem%20p%3AP15001%20%3Fs%20.%20%3Fs%20ps%3AP15001%20%3Fcode%20.%0A%20%20OPTIONAL%20%7B%20%3Fs%20pq%3AP1027%20%3Fcompany%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cmul%22%20%7D%0A%7D%20ORDER%20BY%20%3FitemLabel).
+
+
+
+## See it live
+
+[This query](https://query.wikidata.org/#%23%20Development%20codes%20on%20Wikidata%20%28P15001%29%2C%20with%20company%20and%20reference%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fcode%20%3FcompanyLabel%20%3Fnct_id%20%3Fncit_id%20WHERE%20%7B%0A%20%20%3Fitem%20p%3AP15001%20%3Fs%20.%20%3Fs%20ps%3AP15001%20%3Fcode%20.%0A%20%20OPTIONAL%20%7B%20%3Fs%20pq%3AP1027%20%3Fcompany%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fs%20prov%3AwasDerivedFrom%20%3Fr%20.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20OPTIONAL%20%7B%20%3Fr%20pr%3AP3098%20%3Fnct_id%20%7D%20OPTIONAL%20%7B%20%3Fr%20pr%3AP1748%20%3Fncit_id%20%7D%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cmul%22%20%7D%0A%7D%0AORDER%20BY%20%3FitemLabel%20%3Fcode) lists every development code on Wikidata, with the company that assigned it and the
+reference: a ClinicalTrials.gov NCT ID or an NCI Thesaurus code. On 8 November 2026 it returned 49 statements
+on 39 items: the 41 from the two batches, my four test statements from October, and four examples added by
+the property creator. As others add codes, the list will grow beyond this work.
 
 ## What I learned
 
