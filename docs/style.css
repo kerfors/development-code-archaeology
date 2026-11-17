@@ -59,7 +59,7 @@ table.num td:not(:first-child), table.num th:not(:first-child) { text-align: rig
 figure { margin: 1.6em 0; }
 figcaption, .caption { font: 0.84rem/1.45 var(--sans); color: var(--muted); }
 figcaption { margin-bottom: 8px; }
-figure img { display: block; width: 100%; height: auto; margin-bottom: 8px; }
+figure img { display: block; width: 100%; max-width: 600px; height: auto; margin: 0 auto 8px; }
 .two { display: grid; grid-template-columns: 1fr; gap: 0 28px; }
 @media (min-width: 760px) { .two { grid-template-columns: 1fr 1fr; } }
 
