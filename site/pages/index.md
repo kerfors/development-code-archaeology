@@ -5,6 +5,11 @@ description: "Trials registered under drug development codes: harvest, review, t
 
 # Development code archaeology
 
+<figure markdown="1">
+![From originator code, through name changes, mergers and licensing, to the INN](images/from-code-to-inn.png)
+<figcaption>From the first article, <a href="https://www.linkedin.com/pulse/data-archaeology-tracing-drug-development-codes-through-forsberg-89t1e/">Data Archaeology</a>, December 2025.</figcaption>
+</figure>
+
 Before a drug has an INN, it has a development code: AZD0914, BI 1015550, MK-3475. Many clinical trials are
 registered under the code, and a search on the INN alone does not find them. This site follows work on
 harvesting such codes from named sources, reviewing them, counting the trials they recover, and publishing

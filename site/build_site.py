@@ -281,6 +281,7 @@ def main():
     for old in glob.glob(os.path.join(DOCS, "*.html")) + glob.glob(os.path.join(DOCS, "notes", "*.html")):
         os.remove(old)
     shutil.copy(os.path.join(SITE, "style.css"), os.path.join(DOCS, "style.css"))
+    shutil.copytree(os.path.join(SITE, "images"), os.path.join(DOCS, "images"), dirs_exist_ok=True)
     open(os.path.join(DOCS, ".nojekyll"), "w").close()
 
     for path in glob.glob(os.path.join(SITE, "notes", "*.md")):
