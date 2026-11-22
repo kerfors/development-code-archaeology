@@ -24,6 +24,14 @@ EXCLUSIONS = {
 }
 
 
+# A separator inside the number ("H 234/09", "H 234-09", "BMS-562247-01", "NNC 0113-0217") is part of the code:
+# removing it gives spellings that collide with other identifiers ("H-23409" is a Baylor IRB number, NCT00831480,
+# not almokalant). Generalised from H codes after AACT check 2026-11-21: all trials of BMS-562247-01, BMS-936558-01
+# and NNC 0113-0217 keep the separator in the record (KF 2026-11-21). Hyphen or slash only: a space inside the number
+# can be digit grouping ("GSK 685 698" in a database for GSK685698)
+INNER_SEPARATOR = re.compile(r"^\(?[a-z]{1,6}[-\s]?\d+[-/]\d+\)?$")
+
+
 def match_key(code):
     """Case, spaces, hyphens, slashes and brackets removed: MK-3475, MK 3475, MK3475 -> MK3475."""
     return re.sub(r"[\s\-/()+.]", "", code).upper()
@@ -33,13 +41,15 @@ def code_variants(code):
     """Spellings searched for one code: as given, no separator, space<->hyphen, prefix/number split."""
     c = code.lower().strip()
     no_sep = re.sub(r"[-\s]", "", c)
-    variants = {c, no_sep}
+    # Separator inside the number (INNER_SEPARATOR): no variant removes it
+    keep_inner = bool(INNER_SEPARATOR.match(c))
+    variants = {c} if keep_inner else {c, no_sep}
     if " " in c:
         variants.add(c.replace(" ", "-"))
     if "-" in c:
         variants.add(c.replace("-", " "))
     m = re.match(r"^([a-z]+)(\d.*)$", no_sep)
-    if m:
+    if m and not keep_inner:
         variants.add(f"{m.group(1)}-{m.group(2)}")
         variants.add(f"{m.group(1)} {m.group(2)}")
     # Separator after the prefix dropped or swapped, number kept as given: "NNC 0113-0217" -> "nnc0113-0217"
@@ -56,8 +66,11 @@ def _escape(s):
 
 def token_regex(*codes):
     """Code(s) as a token: no letter or digit directly before or after. Same syntax in Python re and PostgreSQL ~*.
-    Several spellings of one code (harvest candidates) give one regex with all their variants."""
-    variants = sorted({v for c in codes for v in code_variants(c)})
+    Several spellings of one code (harvest candidates) give one regex with all their variants. When one of the
+    spellings has a separator inside the number, only such spellings are searched: a source's own spelling without
+    it ("H 37695" next to "H 376/95") is dropped (INNER_SEPARATOR)."""
+    inner = [c for c in codes if INNER_SEPARATOR.match(c.lower().strip())]
+    variants = sorted({v for c in (inner or codes) for v in code_variants(c)})
     return r"(^|[^a-z0-9])(" + "|".join(_escape(v) for v in variants) + r")($|[^a-z0-9])"
 
 
@@ -147,6 +160,15 @@ def _pat(code, value):
 assert _tok("BI 1015550", "BI1015550") and _tok("BI 1015550", "BI 1015550 (Nerandomilast)")
 assert _tok("BMS 562247-01", "BMS-562247-01") and _tok("LY3298176", "LY-3298176")
 assert _tok("NNC 0113-0217", "NNC0113-0217") and _tok("NNC 0113-0217", "NNC 0113-0217")   # titles NCT02016911, NCT02070510
+# Separator inside the number is kept (Baylor IRB number H-23409, NCT00831480)
+assert not _tok("H 234-09", "H-23409") and not _tok("H 234-09", "H23409") and not _tok("H 234/09", "H 23409")
+assert _tok("H 234-09", "H234-09") and _tok("H 234-09", "H-234-09") and _tok("H 234/09", "H234/09")
+assert not _tok("BMS-562247-01", "BMS56224701") and _tok("BMS 562247-01", "BMS-562247-01")
+# ... also when a source gives the spelling without it next to one with it
+assert not re.search(token_regex("H 376/95", "H 37695"), "H-37695", re.I)
+assert re.search(token_regex("H 376/95", "H 37695"), "H376/95", re.I)
+assert re.search(token_regex("H 37695"), "H-37695", re.I)   # no spelling with the separator: unchanged
+assert re.search(token_regex("GSK 685 698", "GSK 685698"), "GSK685698", re.I)   # a space is not an inner separator
 # Short codes inside other tokens
 assert not _tok("SS-31", "COMPASS-31") and not _tok("SS-31", "COMPASS31") and not _tok("SS-31", "CAPSS-314")
 assert not _tok("WS-12", "AEWS1221") and _tok("SS-31", "SS-31")

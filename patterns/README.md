@@ -48,3 +48,10 @@ A pattern row is added only when all of these hold:
   (NCT04781881, "Entresto") or not at all (NCT04459507, "No intervention"). They count as trials of
   the moiety: the sponsor's own studies of the compound (KF 2026-10-15). The archaeology output marks
   them in column `Found_only_via_pattern`, so reports can show them separately.
+- A code with a hyphen or slash inside the number (`H 234/09`, `H 234-09`, `BMS-562247-01`, `NNC 0113-0217`)
+  is searched only in spellings that keep that separator. When a source also gives a spelling without it
+  (`H 37695` next to `H 376/95`), that spelling is not searched. Without the separator such codes collide
+  with other identifiers: `H-23409` is a Baylor IRB number (NCT00831480), not almokalant. First ruled for
+  H codes, then generalised: in AACT (2026-11-21) every trial of BMS-562247-01, BMS-936558-01 and
+  NNC 0113-0217 keeps the separator in the record, so no trial is lost. A space inside the number is not
+  such a separator: it can be digit grouping (`GSK 685 698` for GSK685698) (KF 2026-11-21).
