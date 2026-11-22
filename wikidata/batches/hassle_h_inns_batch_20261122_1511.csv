@@ -1,0 +1,18 @@
+code,inn,hassle_status,target_qid,target_label,other_items_same_unii,conferred_by_qid,value,ref1,ref1_code_as_printed,ref1_affiliation,ref2,ref2_code_as_printed,pubmed_not_used
+H 56/28,alprenolol,not_established,Q201370,alprenolol,,,H 56/28,PubMed 4164926,H 56/28,,,,
+H 80/62,prenalterol,not_established,Q7240518,prenalterol,,,H 80/62,PubMed 21260,H 80/62,,,,
+H 83/69,timoprazole,established,Q27271790,timoprazole,,,H 83/69,PubMed 6293317,H 83/69,,,,12563304: code not in title/abstract
+H 93/26,metoprolol,not_established,Q409468,(RS)-metoprolol,,,H 93/26,PubMed 4148794,H 93-26,,,,
+H 102/09,zimeldine,not_established,Q203483,zimelidine,,,H 102/09,PubMed 19604909,H 102/09,"Research and Development Laboratories Astra Läkemedel AB, Södertälje Sweden.",,,
+H 104/08,pamatolol,not_established,Q15634002,pamatolol,,,H 104/08,PubMed 6204505,H104 /08,,,,
+H 113/75,nebidrazine,not_established,Q27289460,nebidrazine,,,H 113/75,NCIt C87630,,,,,
+H 133/22,prenalterol,not_established,Q7240518,prenalterol,,,H 133/22,PubMed 25100,H 133/22,,,,
+H 149/94,picoprazole,established,Q27289045,picoprazole,,,H 149/94,PubMed 6259537,H 149/94,,,,12563304: code not in title/abstract
+H 154/82,felodipine,not_established,Q420644,felodipine,Q72478142,,H 154/82,MeSH D015736,,,,,29999713: excluded — LactMed book chapter (NBK500654): code only in an aggregated synonym list (KF 2026-11-22)
+H 168/68,omeprazole,established,Q422210,omeprazole,,,H 168/68,PubMed 6307064,H 168/68,,,,12563304: code not in title/abstract
+H 199/18,esomeprazole,not_established,Q553223,esomeprazole,,,H 199/18,PubMed 11918517,H199/18,"Department of Pharmacy Practice, Wayne State University, Detroit, MI 48236-2148, USA. Pkale@wizard.pharm.wayne.edu",,,
+H 234/09,almokalant,established,Q1426422,almokalant,,Q105106991,H 234/09,PubMed 1725902,H 234/09,"Preclinical Research and Development, Astra Hässle, Mölndal, Sweden.",,,
+H 314/27,inogatran,not_established,Q6036513,inogatran,,,H 314/27,MeSH C099871,,,,,
+H 319/68,melagatran,established,Q27084209,melagatran,,Q105106991,H 319/68,PubMed 11820295,H 319/68,"DMPK and Bioanalytical Chemistry, AstraZeneca R&D Mölndal, Sweden. marita_larsson17@hotmail.com",,,
+H 324/38,clevidipine,not_established,Q5132338,clevidipine,,,H 324/38,PubMed 19584385,H324/38,"School of Pharmacy, University of Washington, Seattle, WA, USA. kenyonk@u.washington.edu",,,
+H 376/95,ximelagatran,established,Q3570984,ximelagatran,,Q105106991,H 376/95,PubMed 11228338,H 376/95,"Department of Cardiovascular Pharmacology, AstraZeneca R&D, S-431 83 Mölndal, Sweden. margareta.elg@astrazeneca.com",PubMed 11701546,H376/95,

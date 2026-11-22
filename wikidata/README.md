@@ -39,10 +39,13 @@ used and the other is reported on its talk page.
 |----------|-----------|
 | Trial registry | P248 ClinicalTrials.gov (Q5133746) + P3098 NCT ID + P813 retrieved |
 | NCI Thesaurus | P248 NCI Thesaurus (Q19404626) + P1748 NCIt ID + P813 |
+| PubMed | P248 PubMed (Q180686) + P698 PMID + P813; only a record whose title or abstract contains the code |
+| MeSH | P248 MeSH (Q199897) + P486 MeSH ID + P813; only where no PubMed record names the code |
 | Web | P854 URL + P813; regulator, company, registry documents and AdisInsight only |
 
 PubChem is not used (synonyms are depositor aggregations and do not assert; circular with Wikidata). Wikipedia is
-not used (circular). Codes left with only such references stay aliases.
+not used (circular). Synonym lists in other aggregations (e.g. LactMed book records in PubMed) are not used either.
+Codes left with only such references stay aliases.
 
 **Trial for a registry reference.** A trial whose intervention name or other name contains the code (shared
 matching rule, `patterns/aact_matching.py`), with the company that assigned the code as lead sponsor; the
@@ -62,6 +65,10 @@ NCIt is a source of the code, otherwise the code is not published.
    sent from the notebook.
 3. Read the review table; paste the commands into QuickStatements.
 4. Copy the review table and the commands of the batch actually sent to `batches/` and commit them.
+
+For the Hässle INN collection the batch comes from `hassle_codes/tools/make_hassle_wikidata_batch.py` (small list
+`collections/hassle_h_codes_wikidata.csv`, rows with `ready` = yes); it verifies every PubMed reference against the
+cached record text and writes the same two files to `output/`.
 
 ## Decisions
 
@@ -86,6 +93,8 @@ them, and only confirmed rows go into a batch.
 | D11 | 2026-11-07 | Hold where the moiety has no Wikidata item found by UNII (P652). An item without UNII is not matched by label | fda_novel_2025: BI1015550 (nerandomilast Q136594966 has no UNII or InChIKey); PRN1008 (rilzabrutinib), AB106, DS6051, DS6051A (taletrectinib): no item |
 | D12 | 2026-11-07 | Research names given by academic discoverers are not company codes: kept for search, not published | fda_novel_2025: SS31 (Szeto-Schiller peptide), TIC10 (TRAIL-inducing compound 10) |
 | D13 | 2026-11-07 | Hold where the company item found is not clearly the company that assigned the code (a specific legal entity, or a register-style item) | fda_novel_2025: DZD9008 (only item 'Dizal (Jiangsu) Pharmaceutical Co., Ltd. (China)'); KVD900 (Q132101891, all-caps label, type 'organization') |
+| D14 | 2026-11-22 | P1027 only where a reference record names the company line in its affiliation (Hässle, or Astra/AstraZeneca at Mölndal). The statement itself stands on a record that names the code; codes whose conferring company is not established are published without P1027 | hassle_h_inns: 14 of 17 without P1027, among them H 168/68 (omeprazole), H 83/69, H 149/94 — their company attribution is only in Olbe 2003 Fig. 1 (paywalled, not read; the PubMed abstract names no code) |
+| D15 | 2026-11-22 | An aggregated synonym list is not a reference, also when it is a PubMed record | hassle_h_inns: H 154/82 (felodipine) — PMID 29999713 (LactMed) not used; MeSH D015736 instead |
 
 Earlier decisions (2026-10-16): only confirmed codes are published; a code goes on the item of the level it
 names; reference rules as above; codes held for an expert question (AGN241780, CH5534262) or accepted on one
@@ -103,7 +112,7 @@ Posted 2026-10-16. Texts on the talk pages:
   [Talk:Q72498885](https://www.wikidata.org/wiki/Talk:Q72498885): label and identifiers do not match;
   possible duplicates of lamivudine and valsartan.
 
-## State, 2026-11-07
+## State, 2026-11-22
 
 | Step | State |
 |------|-------|
@@ -111,5 +120,6 @@ Posted 2026-10-16. Texts on the talk pages:
 | Statements before the first batch (manual and test batch, 2026-10-26) | AZD4522, BMS-562247, LY3298176, REGN668; plus 4 examples by the property creator |
 | Batch for `top_sellers_fy2025` | Sent 2026-11-07 (run 20261107_1520, `batches/`): 25 statements, verified on Wikidata. 53 codes mapped: 15 held (D2–D4, D7, D8); 13 without a reference under D1, D6, D10; 10 web-only held (D0) |
 | Batch for `fda_novel_2025` | Sent 2026-11-07 (run 20261107_1901, `batches/`): 16 statements (15 ClinicalTrials.gov reference, 1 NCIt), verified on Wikidata. 42 codes mapped: 16 held (D0, D2, D4, D11, D12, D13); 10 without a reference (5 under D10, 5 with no trial pick and NCIt not a source). P15001 total after the batch: 49 statements on 39 items. Of the 29 moieties, 25 of the 26 items found by UNII lack P2275 (suzetrigine has it in Arabic only) |
+| Batch for `hassle_h_inns` | Sent 2026-11-22 (run 20261122_1511, `batches/`): 17 statements (14 PubMed, 2 MeSH, 1 NCIt reference; H 376/95 with two), 3 with P1027 Hässle AB (Q105106991), verified on Wikidata. P15001 total after the batch: 66 statements on 55 items |
 | P2275 INN on 11 items that lack it, referenced to the WHO Recommended INN list | not started |
 | Abatacept alias removal | not done; no reply on the talk page |
