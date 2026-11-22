@@ -8,9 +8,12 @@ number: 4
 
 # The Hässle codes
 
-Omeprazole, the first proton pump inhibitor, was developed at Hässle in Mölndal, outside Göteborg. Before it
-had a name it was **H 168/68**. Metoprolol was H 93/26, felodipine H 154/82, ximelagatran H 376/95.
+At AstraZeneca I worked on a product list for clinical trials. Now semi-retired, I am still fascinated by the
+topic, and I came to think about the old H numbers from Hässle in Mölndal, outside Göteborg. Most of all about
+Losec. Before omeprazole had a name it was **H 168/68**. As I remember it, the number was taken from the page
+numbers in the lab notebook. That is a memory, not a finding, and this note is not about it.
 
+It is about the codes of older compounds. Metoprolol was H 93/26, felodipine H 154/82, ximelagatran H 376/95.
 The first collections in this work were recent drugs: FDA novel approvals 2025 and top sellers. Their codes are
 in ClinicalTrials.gov, with a sponsor. Most Hässle codes are older than the trial registries. So the question
 changed: what can the public record say about a code from 1968?
@@ -124,11 +127,11 @@ this substance, and here is a record that names it. The company can be added lat
 The code of Losec, the best-known Hässle product, cannot be tied to Hässle from open records without patents.
 I did not expect that. It is the next thing to dig into.
 
-## What is parked
+## The numbers themselves
 
-Why is omeprazole H 168/68? Two readings still stand: lab notebook and page, or compound register and line.
-The public record can narrow that question but not answer it, and most of the evidence for it comes from
-patents. I have asked Riksarkivet in Göteborg (Hässle AB:s, Mölndal, arkiv, GLA/C0126) and AstraZeneca. That will be a later note.
+How the H numbers were built is not settled here. My memory of the lab notebook is one reading. The public
+record cannot confirm it, and I set the question aside to follow the codes instead. I have asked Riksarkivet in
+Göteborg (Hässle AB:s, Mölndal, arkiv, GLA/C0126) and AstraZeneca.
 
 If you worked at Hässle, or know how the codes were given, I would very much like to hear from you.
 
