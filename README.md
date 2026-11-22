@@ -28,6 +28,7 @@ collections) are updated as the work goes on. Technical detail stays in the repo
 |--------|---------|
 | `collections/` | Drug collections as data files, plus review and evidence files for harvested codes |
 | `code_harvest/` | Harvests candidate codes from named sources and collects registry evidence |
+| `hassle_codes/` | Hässle H codes: inputs, harvest notebook, and builders for the historical list, the Wikidata list and its batch |
 | `patterns/` | Shared AACT matching rule and sponsor study-code patterns |
 | `trial_archaeology/` | Searches AACT with INN and codes; counts trials found only via codes |
 | `wikidata/` | Publication of reviewed codes with property P15001 "development code" |
@@ -39,12 +40,14 @@ Run outputs go to `<folder>/output/`, which is not tracked.
 
 ## Workflow
 
-1. **Harvest** candidate codes from named sources: NCI Thesaurus, PubChem synonyms, AACT intervention other
-   names and intervention names, plus LLM-assisted web discovery in which every code must cite the page where
-   it was seen (`collections/<collection>_web_candidates.csv`). No code enters without a source.
+1. **Harvest** candidate codes from named sources: NCI Thesaurus, PubChem synonyms, GSRS, ChEMBL, MeSH, AACT
+   intervention other names and intervention names, plus LLM-assisted web discovery in which every code must
+   cite the page where it was seen (`collections/<collection>_web_candidates.csv`). Each substance is reached
+   from its UNII and followed to its salt records. No code enters without a source.
 2. **Evidence**: per candidate, the trials in AACT where the code appears, and their lead sponsors.
 3. **Rule**: a code with two or more independent lines of evidence (sources, web publishers, registry trials)
-   is accepted; NCIt-labelled biosimilars are excluded. Checkable without domain expertise.
+   is accepted; GSRS, ChEMBL and PubChem together count as one line; NCIt-labelled biosimilars are excluded.
+   Checkable without domain expertise.
 4. **Review**: each candidate gets a class (current, legacy, partner, other product, biosimilar, other drug,
    typo, not a code). AI-proposed classes are marked `claude-proposed`. Where review and rule disagree, the row
    goes to an exception list for independent verification and, if still open, an expert question.
@@ -62,12 +65,16 @@ Run outputs go to `<folder>/output/`, which is not tracked.
 Exploratory. Results depend on the AACT snapshot and on the source versions at harvest time; each run records
 its dates. `top_sellers_fy2025`: 2 codes held for an expert question. `fda_novel_2025`: codes harvested and
 reviewed 2026-11-07 (54 confirmed, 7 held); its trial counts above still use the December codes.
-Wikidata: 41 P15001 statements published from both collections (25 + 16, 2026-11-07; `wikidata/README.md`).
+`hassle_h_inns`: 17 INNs with 18 Hässle H codes, harvested and reviewed 2026-11-22, not trial-counted; beside it
+a historical list of 138 H codes (`collections/hassle_h_codes_all.csv`).
+Wikidata: 58 P15001 statements published from three collections (25 + 16 on 2026-11-07, 17 on 2026-11-22;
+`wikidata/README.md`).
 
 ## Licence
 
 Code: MIT (`LICENSE`). Collection data and documents: CC BY 4.0 (`LICENSE-DATA`).
-Third-party data keeps its own terms: NCI Thesaurus, PubChem, ClinicalTrials.gov/AACT, openFDA, Wikipedia (CC BY-SA).
+Third-party data keeps its own terms: NCI Thesaurus, PubChem, GSRS, ChEMBL, MeSH, PubMed, ClinicalTrials.gov/AACT,
+openFDA, Wikipedia (CC BY-SA).
 
 ## AI assistance
 

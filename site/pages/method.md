@@ -20,6 +20,15 @@ every source, rule and decision is in a file. Full description:
 | AACT other names | What sponsors registered | Codes of combination partners; some records repeat NCIt synonym lists |
 | AACT intervention names | Codes extended with a suffix (ONO-4538HSC) | Other formulations and products |
 | Web, LLM-assisted | Originator, partner and combination codes from press releases, protocols, regulators | Every code must cite the URL where it was seen |
+| GSRS | All names of the substance's own record (by UNII) and of its salt records | Names compiled from many sources, ChEMBL and MeSH among them, so not independent of them |
+| ChEMBL | Synonyms of the linked molecules and of their parent and salt records | Synonyms partly copied from other databases |
+| MeSH | Entry terms of the linked descriptors and supplementary concepts | Codes often written with a hyphen (H 168-68); retired records can hold other substances' terms |
+
+GSRS, ChEMBL and MeSH were added on 2026-11-21, after the Hässle codes showed what was missing
+([field note 4](notes/04-hassle-what-we-learned.html)). Each is reached from the substance's UNII and followed
+to its salt records, because a code often sits only on the salt (H 168/68 SODIUM; GSK573719A on umeclidinium
+bromide). For the Hässle lists, PubMed records and AB Hässle's US patents are used as well; patents never
+decide a code's status.
 
 ## Evidence rule
 
@@ -27,10 +36,16 @@ A candidate (INN × code) is accepted when it has two or more independent lines 
 distinct web publisher, or registry trials. The rule can be checked without domain expertise. Candidates
 found only in PubChem, with no trials, are set aside as unconfirmed.
 
+GSRS, ChEMBL and PubChem draw on each other, so together they count as one line of evidence. By rule
+(2026-11-21): NSC numbers and ChEMBL trade names are `not_a_code`; CAS numbers and PubChem vendor IDs are set
+aside; only active MeSH records are used.
+
 ## Review
 
 Each candidate gets a class. AI-proposed classes are marked `claude-proposed` until a person confirms them;
 rows where the review and the rule disagree go to an exception list. Open questions end in hold.
+A reviewer can also exclude a single trial for one code, for example when the drug is only a probe in another
+sponsor's trial (`collections/<collection>_trial_exclusions.csv`).
 
 | Class | Meaning | Searched |
 |-------|---------|----------|
@@ -51,6 +66,13 @@ and hyphen swapped). MK-3475 finds MK-3475-001 but not MK-3475A. Sponsor study c
 development code (Novartis CLOU064A2402) are matched by ruled patterns. The INN is matched in the
 intervention name.
 
+A separator inside the number is part of the code and is never removed (H 234/09, BMS-562247-01,
+NNC 0113-0217). Without it, H 234/09 becomes H-23409, and in ClinicalTrials.gov that is a Baylor IRB number
+(NCT00831480), not almokalant.
+
 ## Change log
 
 - 2026-11-08: page created.
+- 2026-11-22: sources GSRS, ChEMBL and MeSH; one evidence line for GSRS, ChEMBL and PubChem; rules for NSC
+  numbers, trade names, CAS and vendor IDs, retired MeSH records; separator inside the number; exclusion per
+  trial.

@@ -87,6 +87,50 @@ nor the official title). 101 of the 631 (82 unique trials) are found only via a 
 Product Clan check (option 2, single-moiety codes of other products from the review file): +3 hidden trials,
 all dapagliflozin, Boryung trial labels (BR3006A, BR3003C; identity inferred from sibling trials).
 
+## hassle_h_inns.csv
+
+Hässle substances with an INN: 17 INNs, one row per INN (brand empty), 18 H codes (prenalterol has two).
+Made by `hassle_codes/tools/make_hassle_h_inns_collection.py` (2026-11-21): INN, UNII and H codes from the Hässle
+harvest, plus timoprazole (GSRS INN 3985). The UNII is the INN's own GSRS record, not the GSRS active moiety:
+for omeprazole and esomeprazole that would be the acid-activated sulfenamide, for ximelagatran melagatran. The
+NCIt concept is the one whose `FDA_UNII_Code` equals that UNII. Not trial-counted: a historical collection.
+
+| Column | Content |
+|--------|---------|
+| `brand` | Empty (one row per INN) |
+| `inn` | INN |
+| `ncit_code`, `ncit_name` | NCI Thesaurus concept with the same UNII |
+| `moiety_unii` | UNII of the INN's own GSRS record |
+| `sponsor` | Hässle |
+| `h_codes` | H codes, `; `-separated |
+| `inn_number`, `gsrs_inn_name` | WHO INN number and INN name, from GSRS |
+
+## hassle_h_codes_all.csv, hassle_h_codes_wikidata.csv
+
+Written by `hassle_codes/tools/make_hassle_h_codes_all.py` (no network) from `hassle_codes/inputs/` and the
+`hassle_h_inns` files.
+
+- **hassle_h_codes_all.csv**, the historical list: one row per H code (138). `hassle_status`: `established`
+  (a PubMed record naming the code has a Hässle or Astra/AstraZeneca Mölndal affiliation),
+  `established_not_rechecked` (only a published history, not re-checked), `not_established`, `patent_only`,
+  `not_hassle`. Earliest date with its source; patent and non-patent dates in separate columns. Patents never
+  decide the status.
+- **hassle_h_codes_wikidata.csv**, the Wikidata list: one row per INN code (18). Wikidata item by UNII;
+  `conferred_by` only when the status is `established`; `ref_*` columns hold only records that name the code;
+  `ready` = yes when a person has reviewed the row. The batch is made from it by
+  `hassle_codes/tools/make_hassle_wikidata_batch.py`.
+
+## <collection>_trial_exclusions.csv
+
+Optional. Trials a reviewer judged not to be evidence for one code, for example when the drug is only a probe in
+another sponsor's trial (rule 7). The trial is dropped from that code's counts only.
+
+| Column | Content |
+|--------|---------|
+| `inn`, `code_key` | The candidate the exclusion applies to |
+| `nct_id` | The trial |
+| `rationale`, `reviewer` | Why, and who decided |
+
 ## <collection>_code_review.csv
 
 Human review of harvested candidate codes (see `code_harvest/`).

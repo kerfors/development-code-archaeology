@@ -25,7 +25,9 @@ SITE = os.path.join(ROOT, "site")
 DOCS = os.path.join(ROOT, "docs")
 REPO_URL = "https://github.com/kerfors/development-code-archaeology/blob/main"
 SITE_TITLE = "Development code archaeology"
-COLLECTION_LABEL = {"fda_novel_2025": "FDA novel approvals 2025", "top_sellers_fy2025": "Top sellers FY2025"}
+COLLECTION_LABEL = {"fda_novel_2025": "FDA novel approvals 2025", "top_sellers_fy2025": "Top sellers FY2025",
+                    "hassle_h_inns": "Hässle INN codes"}
+REF_LABEL = {"ClinicalTrials.gov": "registry", "PubMed": "PubMed", "MeSH": "MeSH", "NCI Thesaurus": "NCIt"}
 
 
 def esc(s):
@@ -132,13 +134,19 @@ def outcome_rows(files=None):
     for path in paths:
         collection = re.match(r"(.+)_batch_\d{8}_\d{4}\.csv$", os.path.basename(path)).group(1)
         b = pd.read_csv(path, dtype=str, keep_default_na=False)
+        if "result" not in b.columns:
+            # Hässle batch layout (hassle_codes/tools/make_hassle_wikidata_batch.py): every row is a sent statement;
+            # the reference type is the first word of ref1 ("PubMed 4164926", "MeSH D015736", "NCIt C87630")
+            b = b.assign(result="publish",
+                         reference=b["ref1"].str.split().str[0].replace({"NCIt": "NCI Thesaurus"}))
         pub = b[b["result"] == "publish"]
         refs = pub["reference"].value_counts()
+        assert set(refs.index) <= set(REF_LABEL), f"{path}: unknown reference types {set(refs.index) - set(REF_LABEL)}"
         n = [len(b), len(pub), int((b["result"] == "hold").sum()), int((b["result"] == "not published").sum())]
         assert sum(n[1:]) == n[0], f"{path}: unknown result values"
         tot = [a + c for a, c in zip(tot, n)]
-        rows.append([COLLECTION_LABEL.get(collection, collection), n[0],
-                     f"{n[1]} ({refs.get('ClinicalTrials.gov', 0)} registry, {refs.get('NCI Thesaurus', 0)} NCIt)", n[2], n[3]])
+        kinds = ", ".join(f"{refs[k]} {v}" for k, v in REF_LABEL.items() if refs.get(k, 0))
+        rows.append([COLLECTION_LABEL.get(collection, collection), n[0], f"{n[1]} ({kinds})", n[2], n[3]])
     rows.append(["All", tot[0], tot[1], tot[2], tot[3]])
     return rows
 

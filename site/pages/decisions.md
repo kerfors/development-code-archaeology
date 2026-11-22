@@ -16,7 +16,12 @@ hold, with the reason recorded. A held code stays an alias and remains usable fo
 - **Which reference.** A ClinicalTrials.gov record (NCT ID) with the assigning company as lead sponsor;
   otherwise NCI Thesaurus if it is a source; otherwise not published. PubChem and Wikipedia are not used as
   references.
-- **Which company.** Qualifier P1027 "conferred by", the company that assigned the code.
+  For codes older than the trial registries (the Hässle codes): a PubMed record whose title or abstract
+  contains the code, checked against the record text; MeSH or NCI Thesaurus only where no PubMed record names
+  the code. An aggregated synonym list is not a reference, also when it is a PubMed record (LactMed).
+- **Which company.** Qualifier P1027 "conferred by", the company that assigned the code, only where a
+  reference shows it. For the Hässle codes that is a PubMed record with a Hässle or Astra/AstraZeneca Mölndal
+  affiliation; otherwise the statement goes without a company (D14).
 
 ## Outcome per batch
 
