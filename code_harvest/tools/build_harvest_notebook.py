@@ -68,6 +68,7 @@ provenance of each code lives in someone's head. This notebook reverses the orde
 - **Excluded brands:** `EXCLUDE_BRANDS` in section 1, per collection, with the reason (fda_novel_2025: Kygevvi)
 - **Input (optional):** `collections/<COLLECTION>_code_review.csv` — human review decisions
 - **Input (optional):** `collections/<COLLECTION>_web_candidates.csv` — URL-cited web candidates
+- **Input (optional):** `collections/<COLLECTION>_trial_exclusions.csv` — trials not counted for one code (rule 7)
 - **Output:** `collections/<COLLECTION>_code_evidence.csv` — one row per INN × candidate code, with sources, evidence and review class
 - **Output:** `collections/<COLLECTION>_review_exceptions.csv` — rows where review decision and acceptance rule disagree
 - **Output:** `collections/<COLLECTION>_codes.csv` — accepted codes per brand, in trial-archaeology format
@@ -633,6 +634,10 @@ For each candidate: trials where any of its spellings appears under the shared m
 `id_information.id_value`, plus ruled study-code patterns. Also: how many of those trials name the INN in
 `interventions.name`, and the most frequent lead sponsors.
 
+Trial-level exclusions (rule 7, KF 2026-11-22): `collections/<COLLECTION>_trial_exclusions.csv`, columns
+`inn, code_key, nct_id, rationale, reviewer` — a trial the reviewer judged not to be evidence for that code
+(e.g. the drug used as probe in another sponsor's trial). The trial is dropped from that code's counts only.
+
 Slow (one regex scan per field and candidate) — results cached in `code_harvest/output/`.
 '''))
 
@@ -648,13 +653,16 @@ def candidate_regex(variants):
     return token_regex(*sorted(s for s in spellings if s))
 
 
-def evidence_sql(pattern_rx, excluded):
+def evidence_sql(pattern_rx, excluded, excluded_trials):
     # code-scoped exclusions (aact_matching.EXCLUSIONS): matched values dropped, as in trials_for_code
     excl = " AND LOWER(TRIM({col})) NOT IN %(excl)s" if excluded else ""
     hits = " UNION ".join(f"SELECT s.nct_id FROM studies s {join} WHERE {col} ~* %(rx)s" + excl.format(col=col)
                           for _, join, col in CODE_FIELDS)
     if pattern_rx:
         hits += " UNION SELECT f.nct_id FROM id_information f WHERE f.id_value ~* %(prx)s" + excl.format(col="f.id_value")
+    # trial-level exclusions (rule 7): whole trials dropped for this code
+    if excluded_trials:
+        hits = f"SELECT nct_id FROM ({hits}) u WHERE nct_id NOT IN %(xnct)s"
     return f"""
 WITH hits AS ({hits}),
 with_inn AS (
@@ -673,8 +681,23 @@ SELECT (SELECT COUNT(*) FROM hits) AS registry_trials,
 """
 
 
+TRIAL_EXCL_FILE = f"{REPO_ROOT}/collections/{COLLECTION}_trial_exclusions.csv"
+trial_excl = pd.DataFrame(columns=["inn", "code_key", "nct_id", "rationale", "reviewer"])
+if os.path.exists(TRIAL_EXCL_FILE):
+    trial_excl = pd.read_csv(TRIAL_EXCL_FILE, dtype=str, keep_default_na=False)
+    unknown = set(zip(trial_excl["inn"], trial_excl["code_key"])) - set(zip(cand["inn"], cand["code_key"]))
+    assert not unknown, f"Trial exclusions for (inn, code_key) not among the candidates: {unknown}"
+excluded_trials = trial_excl.groupby(["inn", "code_key"])["nct_id"].apply(lambda x: " | ".join(sorted(set(x)))).to_dict()
+print(f"Trial exclusions: {len(trial_excl)} rows for {len(excluded_trials)} candidates")
+
 cache = pd.read_csv(EVIDENCE_CACHE, dtype={"code_key": str}) if os.path.exists(EVIDENCE_CACHE) else \
     pd.DataFrame(columns=["inn", "code_key", "registry_trials", "trials_with_inn", "top_lead_sponsors"])
+# a cached row counts as done only when it was queried with the current trial exclusions
+if "excluded_trials" not in cache.columns:
+    cache["excluded_trials"] = ""
+cache["excluded_trials"] = cache["excluded_trials"].fillna("")
+cache = cache[[excluded_trials.get((i, k), "") == x
+               for i, k, x in zip(cache["inn"], cache["code_key"], cache["excluded_trials"])]]
 done = set(zip(cache["inn"], cache["code_key"]))
 
 todo = cand[[(i, k) not in done for i, k in zip(cand["inn"], cand["code_key"])]]
@@ -684,16 +707,19 @@ for n, (_, r) in enumerate(todo.iterrows(), 1):
     first = r["variants"].split(" | ")[0].strip("()")
     prx = "|".join(rx for _, rx in pattern_regexes(first, PATTERNS))
     excluded = tuple(sorted(v for k, v in EXCLUSIONS if k == match_key(r["code_key"])))
-    ev = run_query(evidence_sql(prx, excluded), {"rx": candidate_regex(r["variants"]), "prx": prx,
-                                                 "inn": f"%{r['inn'].lower()}%", "excl": excluded})
-    new_rows.append({"inn": r["inn"], "code_key": r["code_key"], **ev.iloc[0].to_dict()})
+    xtrials = excluded_trials.get((r["inn"], r["code_key"]), "")
+    xnct = tuple(xtrials.split(" | ")) if xtrials else ()
+    ev = run_query(evidence_sql(prx, excluded, xnct), {"rx": candidate_regex(r["variants"]), "prx": prx,
+                                                       "inn": f"%{r['inn'].lower()}%", "excl": excluded,
+                                                       "xnct": xnct})
+    new_rows.append({"inn": r["inn"], "code_key": r["code_key"], **ev.iloc[0].to_dict(), "excluded_trials": xtrials})
     if n % 25 == 0:
         print(f"  {n}/{len(todo)}")
         pd.concat([cache, pd.DataFrame(new_rows)]).to_csv(EVIDENCE_CACHE, index=False)
 cache = pd.concat([cache, pd.DataFrame(new_rows)], ignore_index=True)
 cache.to_csv(EVIDENCE_CACHE, index=False)
 
-evidence = cand.merge(cache, on=["inn", "code_key"], how="left")
+evidence = cand.merge(cache.drop(columns="excluded_trials"), on=["inn", "code_key"], how="left")
 print(f"Candidates with registry evidence: {(evidence['registry_trials'] > 0).sum()} of {len(evidence)}")
 '''))
 

@@ -77,14 +77,15 @@ letter, another project: D961S appears in a study with esomeprazole and buffered
 before the US registration law that never reached ClinicalTrials.gov. SH-QBE-0020, started in 1998, names
 H 199/18 together with omeprazole. It links the old H code, the study code and, through QBE, the later D code.
 
-**9. A harvest misses what it does not spell.** D961H was missed, likely because the code sits in brackets in
-the intervention name: "Esomeprazole (D961H)". Melagatran's H 319/68 was missed too. The only candidate was
+**9. A harvest misses what it does not spell.** D961H was missed because no source offered it as a candidate.
+Six of its ten trials name only "D961H" as the intervention, without esomeprazole, so a search by the INN does
+not find them. Melagatran's H 319/68 was missed too. The only candidate was
 the Wikidata alias "H-319-68", and PubMed reads that as "319 68". Searched as "H 319/68", PubMed has two
 records from 2002, one with an AstraZeneca R&D Mölndal affiliation. That made H 319/68 established.
 
 **10. Some decisions are per trial, not per code.** Omeprazole is a probe drug in an NCI trial
 (NCT01218620). I skipped it in review, but the harvest still counts it, because the review can only exclude a
-code. The next version needs an exclusion per trial.
+code. The harvest now has an exclusion per trial.
 
 ## The references for Wikidata
 
