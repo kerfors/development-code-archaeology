@@ -32,7 +32,12 @@ Patents are recorded but never count (Kerstin, 2026-11-22: patents are a new dom
 Patent findings go to the patent_* columns and may give earliest_date (earliest_date_from says which); they never
 set hassle_status. nonpatent_date is the earliest date from the other sources.
 
-hassle_status: established | not_established | patent_only | not_hassle.
+hassle_status: established | established_not_rechecked | not_established | patent_only | not_hassle.
+- established: a PubMed record naming the code has a Hässle affiliation, or Astra/AstraZeneca at Mölndal.
+- established_not_rechecked: the only establishing basis is a published history (LITERATURE) whose passage
+  linking code and company has not been re-checked: Olbe 2003 Fig. 1 is paywalled, the PubMed abstract names no
+  code (Kerstin, 2026-11-22). Shown as "established (published history, not re-checked)". conferred_by stays
+  empty, in line with Wikidata decision D14.
 - patent_only: the code is known only from patents (no harvest record, no non-patent finding, no literature).
 hassle_basis (counting, all that apply, '; '):
 - hassle_affiliated_pmid      a PubMed record naming the code has a Hässle affiliation (harvest)
@@ -73,6 +78,7 @@ LITERATURE = {
                "doi:10.1007/978-3-0348-8795-3_1 (carbamate, in human volunteers 1971-72)",
 }
 ESTABLISHING = {"hassle_affiliated_pmid", "astra_molndal_pmid", "literature_hassle_programme"}
+RECHECKED = {"hassle_affiliated_pmid", "astra_molndal_pmid"}  # basis a reader can check in the record itself
 AFFILIATION = re.compile(r"Astra/Hässle affiliation: (.*)")
 PATENT = re.compile(r"US\s?\d{7}")
 DATE = re.compile(r"^(\d{4})(-\d{2}-\d{2})?")
@@ -222,7 +228,7 @@ for c, x in codes.items():
         assert not set(basis) & ESTABLISHING, f"{c}: settled not Hässle but has {basis}"
         status = "not_hassle"
     elif set(basis) & ESTABLISHING:
-        status = "established"
+        status = "established" if set(basis) & RECHECKED else "established_not_rechecked"
     elif not x.get("_nonpatent"):
         status = "patent_only"
     else:

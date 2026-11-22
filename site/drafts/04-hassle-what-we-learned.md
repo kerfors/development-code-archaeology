@@ -1,6 +1,6 @@
 ---
 title: "The Hässle codes: what an old company's codes taught me"
-description: "137 H codes from Hässle in Mölndal, two lists, and what changes when the codes are older than the trial registries."
+description: "138 H codes from Hässle in Mölndal, two lists, 17 statements on Wikidata, and what changes when the codes are older than the trial registries."
 written: 2026-12-XX
 covers: November 2026
 number: 4
@@ -23,17 +23,18 @@ omeprazole programme (Olbe, Carlsson and Lindberg 2003; Sjöstrand, Olbe and Fel
 
 The collection gives two outcomes, not one:
 
-- **A large historical list**: every H code found, 137 codes, each with its sources and its earliest date.
-- **A small Wikidata list**: only the codes of substances with an INN, 18 codes. These get a development code
-  statement ([field note 3](03-codes-on-wikidata.html)), with "conferred by AB Hässle" only where that is
-  established.
+- **A large historical list**: every H code found, 138 codes, each with its sources and its earliest date.
+- **A small Wikidata list**: only the codes of substances with an INN, 18 codes. 17 of them are now on Wikidata
+  as development code statements ([field note 3](03-codes-on-wikidata.html)). Only 3 say who conferred the
+  code. More on that below.
 
 I did not count trials. For a historical collection the archaeology is the product, not the trial count.
 
 | Hässle status | Codes |
 |---|---|
-| established | 22 |
-| not established | 32 |
+| established | 17 |
+| established (published history, not re-checked) | 5 |
+| not established | 33 |
 | known only from patents | 81 |
 | not Hässle | 2 |
 
@@ -57,9 +58,11 @@ the same site and the same numbering. The highest code found is H 510/45. So an 
 affiliation counts. But H codes also appear with Astra Läkemedel and Astra Alab in Södertälje (zimelidine
 H 102/09, H 75/12, H 77/77). "Astra" alone does not mean Hässle. The site matters.
 
-**5. Old codes have few affiliations.** Only 19 of the 137 codes have any PubMed record with an affiliation.
-Records from the 1960s and 70s mostly have none. For the oldest codes, attribution rests on the published
-history or on patents.
+**5. Old codes have few affiliations.** Only 19 of the 137 harvested codes have any PubMed record with an
+affiliation. Records from the 1960s and 70s mostly have none. For the oldest codes, attribution rests on the
+published history or on patents. Omeprazole is the clearest case. Four PubMed records name H 168/68, from
+1983, 1984, 1986 and 2015. The first three have no affiliation. The 2015 review, from Karolinska, says that
+H168/68 was synthesized in 1979 and given the name omeprazole, but it does not name Hässle.
 
 **6. Patents carry most of the early record, and I chose not to count them.** 81 codes are known only from
 patents: two Hässle patent tables of 1968 and 1969 (Brändström and Carlsson), and the zimelidine patents of
@@ -81,25 +84,45 @@ H 199/18 together with omeprazole. It links the old H code, the study code and, 
 Six of its ten trials name only "D961H" as the intervention, without esomeprazole, so a search by the INN does
 not find them. Melagatran's H 319/68 was missed too. The only candidate was
 the Wikidata alias "H-319-68", and PubMed reads that as "319 68". Searched as "H 319/68", PubMed has two
-records from 2002, one with an AstraZeneca R&D Mölndal affiliation. That made H 319/68 established.
+records from 2002, one with an AstraZeneca R&D Mölndal affiliation. That made H 319/68 established. And a
+code no source offers is never a candidate at all. The same 2015 review names H77/67, a step on the way from
+the first compound, CMN 131, to the benzimidazoles. It is the only PubMed record with that code. It has no INN,
+no patent in my set and no PubChem entry. I added it to the large list by hand.
 
 **10. Some decisions are per trial, not per code.** Omeprazole is a probe drug in an NCI trial
 (NCT01218620). I skipped it in review, but the harvest still counts it, because the review can only exclude a
 code. The harvest now has an exclusion per trial.
 
-## The references for Wikidata
+## What went to Wikidata
 
-For recent drugs the reference was a ClinicalTrials.gov record or NCI Thesaurus. For Hässle codes that does
-not work. So the rule for the small list is:
+On 22 November I sent 17 development code statements to Wikidata (property P15001), one per code. Tazolol,
+H 110/38, stays out: one MeSH line, and the originator code is not settled.
 
-- the Hässle source (the published history, or PubMed records with a Hässle or Mölndal affiliation) wherever
-  "conferred by" is set, because it is what supports the company;
-- the earliest PubMed record naming the code, on every row that has one;
+For recent drugs the reference was a ClinicalTrials.gov record, with the company as lead sponsor. For Hässle
+codes that does not work. So the references are:
+
+- a PubMed record, but only if its title or abstract contains the code. I checked every one against the
+  record text. A search hit is not enough;
 - MeSH or NCI Thesaurus only where no PubMed record names the code;
-- ChEMBL and GSRS as context only. There the code often sits on the salt record, not on the substance.
+- no aggregated synonym lists. Felodipine's earliest PubMed record is a LactMed book chapter, where H 154/82
+  sits in a list of synonyms. I used MeSH instead.
 
-17 of the 18 codes are ready. Tazolol, H 110/38, is open: one MeSH line, and the originator code is not
-settled.
+14 statements have a PubMed reference, 2 MeSH and 1 NCI Thesaurus.
+
+**Only 3 of the 17 say "conferred by Hässle AB".** These are almokalant H 234/09, melagatran H 319/68 and
+ximelagatran H 376/95. Their PubMed records have an Astra Hässle or AstraZeneca R&D Mölndal affiliation. For
+the other 14 I could not show the company from a record anyone can check. That includes omeprazole, H 168/68.
+For it, and for H 83/69 and H 149/94, the link between code and company is in the published history
+(Olbe 2003). But there it sits in a figure behind a paywall, and the abstract names no code. So in the
+large list these codes are now "established (published history, not re-checked)", together with two more
+codes from the same kind of source. The list and Wikidata say the same thing.
+
+This is a new bar. All earlier statements from this work have a company. Here I publish the code and leave
+the company out where it is not shown. The statement still says what is shown: this is a development code of
+this substance, and here is a record that names it. The company can be added later, if the evidence turns up.
+
+The code of Losec, the best-known Hässle product, cannot be tied to Hässle from open records without patents.
+I did not expect that. It is the next thing to dig into.
 
 ## What is parked
 
