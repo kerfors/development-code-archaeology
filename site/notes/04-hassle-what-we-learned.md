@@ -1,7 +1,7 @@
 ---
 title: "The Hässle codes: what an old company's codes taught me"
 description: "138 H codes from Hässle in Mölndal, two lists, 17 statements on Wikidata, and what changes when the codes are older than the trial registries."
-written: 2026-12-XX
+written: 2026-11-22
 covers: November 2026
 number: 4
 ---
