@@ -90,3 +90,19 @@ Successor sponsors (D1): ONC201 (Oncoceutics code; trials now under Jazz Pharmac
 trials under Bayer), CNSA001 (Censa code; trials under PTC Therapeutics), AZD0914 (AstraZeneca code; trials under
 NIAID and Entasis).
 
+## hassle_h_inns (2026-11-22): an older company line
+
+Hässle AB has an item (Q105106991): instance of business, country Sweden, one sitelink (sv.wikipedia
+"Hässle AB"), nothing more. Used as P1027 on 3 statements (D14). Q10531804 "Hässle" is a manor house in
+Enköping, not the company.
+
+One company line under three names: Hässle, Astra Hässle and AstraZeneca R&D Mölndal (same site, same
+numbering). A Mölndal affiliation counts for the line; Astra in Södertälje or Lund does not (zimelidine H 102/09
+has an Astra Läkemedel, Södertälje affiliation). The site decides, not the name.
+
+GSRS ACTIVE MOIETY is not the regulatory moiety for prodrugs and activated drugs: for ximelagatran it gives
+melagatran, for omeprazole and esomeprazole the acid-activated sulfenamide. The collection uses the INN's own
+GSRS record (`collections/README.md`, hassle_h_inns.csv).
+
+Two items carry felodipine's UNII OL961R6O2C: Q420644 (with P2275, 23 sitelinks) and Q72478142 (neither). The
+statement went on Q420644 by the lookup rule; Q72478142 is not reported on its talk page yet.

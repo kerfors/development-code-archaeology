@@ -1,6 +1,8 @@
 """Build the GitHub Pages site into docs/ from the Markdown sources in site/.
 
   site/notes/*.md   numbered field notes; fixed once written (figures come from site/data/<run_id>/)
+                    A diagram used by a field note is frozen: when a diagram changes, the note keeps the old
+                    version under a dated name (pipeline_2026_11_08 for note 01).
   site/pages/*.md   living reference pages (method, decisions, identity, collections)
   site/style.css    copied to docs/
 

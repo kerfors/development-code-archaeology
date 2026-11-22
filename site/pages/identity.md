@@ -50,6 +50,16 @@ Novo Nordisk's NN codes for semaglutide each follow one formulation × indicatio
 subcutaneous for type 2 diabetes, NN9924 tablets, NN9536 obesity. The compound code is NNC0113-0217. The level
 sits between active moiety and product. Neither Wikidata nor ISO IDMP has it.
 
+## An older company line
+
+The Hässle codes ([field note 4](notes/04-hassle-what-we-learned.html)) added three findings. Hässle,
+Astra Hässle and AstraZeneca R&D Mölndal are one line, the same site with the same numbering, so the site
+decides attribution, not the company name: an Astra affiliation in Södertälje does not count. The Hässle AB
+item on Wikidata (Q105106991) is a bare stub. And GSRS's "active moiety" is not the regulatory moiety for
+prodrugs: for ximelagatran it gives melagatran. Two Wikidata items also share felodipine's UNII (Q420644,
+Q72478142).
+
 ## Change log
 
 - 2026-11-08: page created, from findings recorded 2026-11-07.
+- 2026-11-22: an older company line (Hässle).
