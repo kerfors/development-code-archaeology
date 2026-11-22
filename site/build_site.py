@@ -160,7 +160,35 @@ def table_outcome(files=None):
 
 # ------------------------------------------------------------------ diagrams
 DIAGRAMS = {
-    "pipeline": """<svg class="diagram" viewBox="0 0 760 210" role="img">
+    "pipeline": """<svg class="diagram" viewBox="0 0 760 250" role="img">
+<title>Pipeline: named sources, harvest, evidence rule and review, trial search, Wikidata</title>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<g class="src"><rect x="4" y="10" width="150" height="24" rx="4"/><text x="79" y="26">NCI Thesaurus</text>
+<rect x="4" y="40" width="150" height="24" rx="4"/><text x="79" y="56">PubChem synonyms</text>
+<rect x="4" y="70" width="150" height="24" rx="4"/><text x="79" y="86">AACT other names</text>
+<rect x="4" y="100" width="150" height="24" rx="4"/><text x="79" y="116">AACT intervention names</text>
+<rect x="4" y="130" width="150" height="24" rx="4"/><text x="79" y="146">Web, URL-cited</text>
+<rect x="4" y="160" width="150" height="24" rx="4"/><text x="79" y="176">GSRS</text>
+<rect x="4" y="190" width="150" height="24" rx="4"/><text x="79" y="206">ChEMBL</text>
+<rect x="4" y="220" width="150" height="24" rx="4"/><text x="79" y="236">MeSH</text></g>
+<g class="step"><rect x="190" y="95" width="130" height="60" rx="6"/><text x="255" y="120">Harvest</text><text class="sub" x="255" y="138">candidates + evidence</text>
+<rect x="335" y="95" width="140" height="60" rx="6"/><text x="405" y="120">Rule + review</text><text class="sub" x="405" y="138">a person decides</text>
+<rect x="495" y="35" width="135" height="60" rx="6"/><text x="562" y="60">Trial search</text><text class="sub" x="562" y="78">INN + accepted codes</text>
+<rect x="495" y="155" width="135" height="60" rx="6"/><text x="562" y="180">Wikidata</text><text class="sub" x="562" y="198">P15001, referenced</text></g>
+<g class="note"><text class="start" x="642" y="69">hidden trials</text><text class="start" x="642" y="189">or hold, with reason</text></g>
+<g class="lines"><path d="M154,22 C175,22 175,121 190,121" marker-end="url(#ar)"/>
+<path d="M154,52 C175,52 175,122 190,122" marker-end="url(#ar)"/>
+<path d="M154,82 C175,82 175,123 190,123" marker-end="url(#ar)"/>
+<path d="M154,112 C175,112 175,124 190,124" marker-end="url(#ar)"/>
+<path d="M154,142 C175,142 175,125 190,125" marker-end="url(#ar)"/>
+<path d="M154,172 C175,172 175,126 190,126" marker-end="url(#ar)"/>
+<path d="M154,202 C175,202 175,127 190,127" marker-end="url(#ar)"/>
+<path d="M154,232 C175,232 175,128 190,128" marker-end="url(#ar)"/>
+<path d="M320,125 L335,125" marker-end="url(#ar)"/>
+<path d="M475,115 C485,115 485,65 495,65" marker-end="url(#ar)"/><path d="M475,135 C485,135 485,185 495,185" marker-end="url(#ar)"/></g></svg>""",
+    # As in field note 01 (written 2026-11-08): the five sources of the October harvest. Notes keep their
+    # figures once written; the current pipeline is "pipeline" above.
+    "pipeline_2026_11_08": """<svg class="diagram" viewBox="0 0 760 210" role="img">
 <title>Pipeline: named sources, harvest, evidence rule and review, trial search, Wikidata</title>
 <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker></defs>
 <g class="src"><rect x="4" y="10" width="150" height="30" rx="4"/><text x="79" y="30">NCI Thesaurus</text>

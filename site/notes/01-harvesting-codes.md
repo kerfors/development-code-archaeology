@@ -16,7 +16,7 @@ scale, and the AI produced codes that no source had. So in October I turned it a
 codes from sources that can be named and queried, and let the AI help write the code and look for web
 sources, not remember the answer.
 
-{{diagram:pipeline}}
+{{diagram:pipeline_2026_11_08}}
 
 ## Sources
 
