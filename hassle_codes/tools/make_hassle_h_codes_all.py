@@ -4,22 +4,28 @@ Run from the repo root:  python hassle_codes/tools/make_hassle_h_codes_all.py
 Writes two files. No network: it only joins files already in the repo.
 - collections/hassle_h_codes_all.csv       the large historical list: every code found, patents included (137 at first run)
 - collections/hassle_h_codes_wikidata.csv  the small list for Wikidata (P15001 statements, aliases); no trial counts.
-  Only codes of the INN collection (Kerstin, 2026-11-22). All non-patent references on hand are listed per code;
-  which reference types are accepted is not yet decided. conferred_by is filled only when hassle_status is
+  Only codes of the INN collection (Kerstin, 2026-11-22). All non-patent references on hand are listed per code.
+  Reference types for the Wikidata batch (Kerstin, 2026-11-22): ref_hassle_source wherever conferred_by is set (it
+  supports the qualifier); ref_earliest_pmid on every row that has one; ref_mesh_ids / ref_ncit_codes only where no
+  PubMed record names the code; ref_chembl_ids / ref_gsrs_uniis are context, not references (the code often sits on
+  a salt record, not on the moiety). conferred_by is filled only when hassle_status is
   established; otherwise the statement goes without the P1027 qualifier (Kerstin, 2026-11-22). ready = yes only
   when the review row has a reviewer other than 'claude-proposed'.
   ref_* columns hold only records that name the code (harvest evidence, status 'kept'); linked_* columns hold
   what the harvest linked through the UNII (parents, moieties, classes) and are context, not references
   (Kerstin, 2026-11-22). wikidata_qid_by_unii comes from a Wikidata lookup of the INN's UNII (P652).
 
-Inputs (every value in the output comes from one of these; the column names say which):
-- hassle_codes/output/hassle_h_codes.csv                         harvest 2026-11-21 (53 codes)
-- hassle_codes/output/hassle_h_codes_evidence.csv                harvest evidence, one row per record (PubMed affiliations)
-- hassle_codes/output/research/hassle_findings_2026-11-21.csv    patents/literature, session 2
-- hassle_codes/output/research/hassle_findings_2026-11-21b.csv   patent PDFs, session 3 (research note 3d)
+Inputs (every value in the output comes from one of these; the column names say which). The hassle_codes/inputs/
+files are frozen copies of files first written under hassle_codes/output/ (gitignored), copied 2026-11-22 so the
+lists can be rebuilt from the repo alone (Kerstin, 2026-11-22). A rerun of the harvest writes to output/, not here.
+- hassle_codes/inputs/hassle_h_codes.csv                         harvest 2026-11-21 (53 codes)
+- hassle_codes/inputs/hassle_h_codes_evidence.csv                harvest evidence, one row per record (PubMed affiliations)
+- hassle_codes/inputs/hassle_findings_2026-11-21.csv             patents/literature, session 2
+- hassle_codes/inputs/hassle_findings_2026-11-21b.csv            patent PDFs, session 3 (research note 3d)
+- hassle_codes/inputs/hassle_findings_2026-11-22.csv             PubMed records the harvest missed (H 319/68)
 - collections/hassle_h_inns.csv                                  INN collection (h_codes column)
 - collections/hassle_h_inns_code_review.csv                      review draft (code_class, rationale)
-- hassle_codes/output/research/wikidata_unii_lookup_2026-11-22.csv  Wikidata items by UNII (P652), query in file
+- hassle_codes/inputs/wikidata_unii_lookup_2026-11-22.csv        Wikidata items by UNII (P652), query in file
 - LITERATURE below: Hässle programme histories cited in claude/hassle-h-codes-research.md section 2
 
 Patents are recorded but never count (Kerstin, 2026-11-22: patents are a new domain; stick to the other sources).
@@ -32,7 +38,8 @@ hassle_basis (counting, all that apply, '; '):
 - hassle_affiliated_pmid      a PubMed record naming the code has a Hässle affiliation (harvest)
 - astra_molndal_pmid          a PubMed record naming the code has an Astra/AstraZeneca affiliation at Mölndal: the same
                               site and numbering after the name changes (Kerstin, 2026-11-22). Astra elsewhere
-                              (Södertälje, Lund) does not count.
+                              (Södertälje, Lund) does not count. From the harvest evidence, or from a non-patent
+                              findings row whose basis says 'affiliation at Mölndal'.
 - literature_hassle_programme code named in a published history of a Hässle programme (LITERATURE)
 patent_basis (not counting): code_in_hassle_patent | structure_in_hassle_patent.
 A patent counts as an AB Hässle patent when any findings row citing that patent number names Hässle as assignee.
@@ -45,22 +52,23 @@ import csv
 import re
 from pathlib import Path
 
-HARVEST = Path("hassle_codes/output/hassle_h_codes.csv")
-EVIDENCE = Path("hassle_codes/output/hassle_h_codes_evidence.csv")
-FINDINGS = [Path("hassle_codes/output/research/hassle_findings_2026-11-21.csv"),
-            Path("hassle_codes/output/research/hassle_findings_2026-11-21b.csv")]
+HARVEST = Path("hassle_codes/inputs/hassle_h_codes.csv")
+EVIDENCE = Path("hassle_codes/inputs/hassle_h_codes_evidence.csv")
+FINDINGS = [Path("hassle_codes/inputs/hassle_findings_2026-11-21.csv"),
+            Path("hassle_codes/inputs/hassle_findings_2026-11-21b.csv"),
+            Path("hassle_codes/inputs/hassle_findings_2026-11-22.csv")]
 INNS = Path("collections/hassle_h_inns.csv")
-WD_LOOKUP = Path("hassle_codes/output/research/wikidata_unii_lookup_2026-11-22.csv")
+WD_LOOKUP = Path("hassle_codes/inputs/wikidata_unii_lookup_2026-11-22.csv")
 REVIEW = Path("collections/hassle_h_inns_code_review.csv")
 OUT = Path("collections/hassle_h_codes_all.csv")
 OUT_WD = Path("collections/hassle_h_codes_wikidata.csv")
 
 # Published histories of the Hässle omeprazole programme, as cited in claude/hassle-h-codes-research.md section 2.
 LITERATURE = {
-    "H 124/26": "Olbe L, Carlsson E, Lindberg P (2003) Nat Rev Drug Discov 2:132-139, Fig. 1 (first benzimidazole lead, 1973)",
-    "H 83/69": "Olbe L, Carlsson E, Lindberg P (2003) Nat Rev Drug Discov 2:132-139, Fig. 1 (timoprazole, 1974)",
-    "H 149/94": "Olbe L, Carlsson E, Lindberg P (2003) Nat Rev Drug Discov 2:132-139, Fig. 1 (picoprazole, 1976)",
-    "H 168/68": "Olbe L, Carlsson E, Lindberg P (2003) Nat Rev Drug Discov 2:132-139, Fig. 1 (omeprazole, 1979)",
+    "H 124/26": "Olbe L, Carlsson E, Lindberg P (2003) Nat Rev Drug Discov 2:132-139, doi:10.1038/nrd1010, PMID 12563304, Fig. 1 (first benzimidazole lead, 1973)",
+    "H 83/69": "Olbe L, Carlsson E, Lindberg P (2003) Nat Rev Drug Discov 2:132-139, doi:10.1038/nrd1010, PMID 12563304, Fig. 1 (timoprazole, 1974)",
+    "H 149/94": "Olbe L, Carlsson E, Lindberg P (2003) Nat Rev Drug Discov 2:132-139, doi:10.1038/nrd1010, PMID 12563304, Fig. 1 (picoprazole, 1976)",
+    "H 168/68": "Olbe L, Carlsson E, Lindberg P (2003) Nat Rev Drug Discov 2:132-139, doi:10.1038/nrd1010, PMID 12563304, Fig. 1 (omeprazole, 1979)",
     "H 81/75": "Sjöstrand SE, Olbe L, Fellenius E (1999) in Olbe (ed.) Proton Pump Inhibitors, pp 3-22, "
                "doi:10.1007/978-3-0348-8795-3_1 (carbamate, in human volunteers 1971-72)",
 }
@@ -129,6 +137,9 @@ for r in findings:
             add(x, "patent_basis", "structure_in_hassle_patent"); add(x, "patent_source", src)
     if not is_patent:
         x["_nonpatent"] = True
+        if "affiliation at Mölndal" in basis:
+            add(x, "basis", "astra_molndal_pmid")
+            add(x, "hassle_source", f"{r['source']} (Astra/AstraZeneca, Mölndal) [{r['_file']}]")
     if not ft.startswith("candidate settled") and ft not in ("date", "observation"):
         add(x, "identity", r["value"]); add(x, "identity_source", src)
     d = parse_date(r["date"])
@@ -258,6 +269,13 @@ for r in out:
     c = r["code"]
     ref = lambda src: "; ".join(sorted(naming.get((c, src), set())))
     assert unii_of[c] in wd_by_unii, f"{c}: UNII {unii_of[c]} not in {WD_LOOKUP}"
+    # earliest PubMed record naming the code: PMID and year from the same record
+    pmid = h.get("earliest_pmid", "")
+    pmid_year = h.get("earliest_pubmed_year", "").split(".")[0] if pmid else ""
+    if not pmid:
+        m_ = re.match(r"PMID (\d+)", r["nonpatent_date_source"])
+        if m_:
+            pmid, pmid_year = m_.group(1), r["nonpatent_date"]
     wd.append({
         "inn": r["inn"], "code": r["code"], "level": h.get("level", ""),
         "wikidata_qid_by_unii": " | ".join(wd_by_unii[unii_of[c]]),
@@ -266,7 +284,7 @@ for r in out:
         "already_on_wikidata": h.get("wikidata_code_as_alias_or_label", ""), "wikidata_p15001": h.get("wikidata_p15001", ""),
         "hassle_status": r["hassle_status"], "conferred_by": "AB Hässle" if r["hassle_status"] == "established" else "",
         "ref_hassle_source": r["hassle_source"],
-        "ref_earliest_pmid": h.get("earliest_pmid", ""), "ref_earliest_year": r["nonpatent_date"],
+        "ref_earliest_pmid": pmid, "ref_earliest_year": pmid_year,
         "ref_earliest_title": h.get("earliest_title", ""), "ref_hassle_affiliated_pmids": h.get("hassle_affiliated_pmids", ""),
         "ref_mesh_ids": ref("MeSH"), "ref_ncit_codes": ref("NCIt"), "ref_chembl_ids": ref("ChEMBL"),
         "ref_gsrs_uniis": ref("GSRS"),

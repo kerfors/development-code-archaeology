@@ -1,0 +1,19 @@
+unii,qid,label_en,has_p2275,sitelinks,h_code_aliases,p15001,queried_utc,query
+19O2GP3B7Q,Q5132338,clevidipine,yes,14,,none,2026-11-22T13:40Z,"query.wikidata.org: ?item wdt:P652 ?unii for the 17 UNIIs of collections/hassle_h_inns.csv; P2275, sitelinks, altLabels matching ^H[ -]?[0-9]{1,3}[/-][0-9]{2}; then wdt:P15001 on the items (none; control Q415159 returns AZD4522)"
+20G2S6V53L,Q15634002,pamatolol,no,6,,none,2026-11-22T13:40Z,same query
+2A9QP32MD4,Q27084209,melagatran,no,0,H-319-68,none,2026-11-22T13:40Z,same query
+3J928617DW,Q203483,zimelidine,no,15,,none,2026-11-22T13:40Z,same query
+428409I84L,Q6036513,inogatran,no,6,,none,2026-11-22T13:40Z,same query
+49HFB70472,Q3570984,ximelagatran,yes,10,H 376-95 | H 376/95,none,2026-11-22T13:40Z,same query
+877K5MQ27W,Q201370,alprenolol,yes,18,,none,2026-11-22T13:40Z,same query
+95H6S1X9CC,Q27271790,timoprazole,no,4,,none,2026-11-22T13:40Z,same query
+B64Q38TX4G,Q7690466,tazolol,no,7,,none,2026-11-22T13:40Z,same query
+GEB06NHM23,Q409468,(RS)-metoprolol,no,40,H-93/26,none,2026-11-22T13:40Z,same query
+I9NG89L275,Q1426422,almokalant,no,6,H 234/09,none,2026-11-22T13:40Z,same query
+KG60484QX9,Q422210,omeprazole,yes,52,H 168/68,none,2026-11-22T13:40Z,same query
+M4G34404CX,Q7240518,prenalterol,no,5,,none,2026-11-22T13:40Z,same query
+N3PA6559FT,Q553223,esomeprazole,yes,34,,none,2026-11-22T13:40Z,same query
+OL961R6O2C,Q420644,felodipine,yes,23,,none,2026-11-22T13:40Z,same query
+OL961R6O2C,Q72478142,Felodipine,no,0,,none,2026-11-22T13:40Z,same query
+S882YC38OJ,Q27289045,picoprazole,no,0,,none,2026-11-22T13:40Z,same query
+SYD5G2AE8M,Q27289460,nebidrazine,no,0,,none,2026-11-22T13:40Z,same query
