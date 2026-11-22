@@ -8,6 +8,9 @@ Writes two files. No network: it only joins files already in the repo.
   which reference types are accepted is not yet decided. conferred_by is filled only when hassle_status is
   established; otherwise the statement goes without the P1027 qualifier (Kerstin, 2026-11-22). ready = yes only
   when the review row has a reviewer other than 'claude-proposed'.
+  ref_* columns hold only records that name the code (harvest evidence, status 'kept'); linked_* columns hold
+  what the harvest linked through the UNII (parents, moieties, classes) and are context, not references
+  (Kerstin, 2026-11-22). wikidata_qid_by_unii comes from a Wikidata lookup of the INN's UNII (P652).
 
 Inputs (every value in the output comes from one of these; the column names say which):
 - hassle_codes/output/hassle_h_codes.csv                         harvest 2026-11-21 (53 codes)
@@ -16,13 +19,14 @@ Inputs (every value in the output comes from one of these; the column names say 
 - hassle_codes/output/research/hassle_findings_2026-11-21b.csv   patent PDFs, session 3 (research note 3d)
 - collections/hassle_h_inns.csv                                  INN collection (h_codes column)
 - collections/hassle_h_inns_code_review.csv                      review draft (code_class, rationale)
+- hassle_codes/output/research/wikidata_unii_lookup_2026-11-22.csv  Wikidata items by UNII (P652), query in file
 - LITERATURE below: Hässle programme histories cited in claude/hassle-h-codes-research.md section 2
 
 Patents are recorded but never count (Kerstin, 2026-11-22: patents are a new domain; stick to the other sources).
 Patent findings go to the patent_* columns and may give earliest_date (earliest_date_from says which); they never
 set hassle_status. nonpatent_date is the earliest date from the other sources.
 
-hassle_status: established | indirect | not_established | patent_only | not_hassle.
+hassle_status: established | not_established | patent_only | not_hassle.
 - patent_only: the code is known only from patents (no harvest record, no non-patent finding, no literature).
 hassle_basis (counting, all that apply, '; '):
 - hassle_affiliated_pmid      a PubMed record naming the code has a Hässle affiliation (harvest)
@@ -30,10 +34,10 @@ hassle_basis (counting, all that apply, '; '):
                               site and numbering after the name changes (Kerstin, 2026-11-22). Astra elsewhere
                               (Södertälje, Lund) does not count.
 - literature_hassle_programme code named in a published history of a Hässle programme (LITERATURE)
-- astrazeneca_source_only     review draft cites only an AstraZeneca source; Hässle not named (status 'indirect')
 patent_basis (not counting): code_in_hassle_patent | structure_in_hassle_patent.
 A patent counts as an AB Hässle patent when any findings row citing that patent number names Hässle as assignee.
-The review draft is not a basis: it is built from this evidence, so it would be circular. Its class is shown.
+The review is not a basis: it is built from this evidence, so it would be circular. Its class is shown.
+(astrazeneca_source_only, read from the review rationale, removed 2026-11-22 for the same reason.)
 
 Dates are latest-possible dates (publication, or patent filing/priority), never synthesis dates.
 """
@@ -46,6 +50,7 @@ EVIDENCE = Path("hassle_codes/output/hassle_h_codes_evidence.csv")
 FINDINGS = [Path("hassle_codes/output/research/hassle_findings_2026-11-21.csv"),
             Path("hassle_codes/output/research/hassle_findings_2026-11-21b.csv")]
 INNS = Path("collections/hassle_h_inns.csv")
+WD_LOOKUP = Path("hassle_codes/output/research/wikidata_unii_lookup_2026-11-22.csv")
 REVIEW = Path("collections/hassle_h_inns_code_review.csv")
 OUT = Path("collections/hassle_h_codes_all.csv")
 OUT_WD = Path("collections/hassle_h_codes_wikidata.csv")
@@ -149,9 +154,13 @@ for r in csv.DictReader(open(HARVEST, encoding="utf-8")):
         x["_date"] = earlier((y, "latest-possible (publication)", f"PMID {r['earliest_pmid']} [hassle_h_codes.csv]"),
                              x["_date"])
 
-# Astra/AstraZeneca at Mölndal (harvest evidence, per PubMed record), where no Hässle affiliation is recorded
+# Astra/AstraZeneca at Mölndal (harvest evidence, per PubMed record), where no Hässle affiliation is recorded;
+# records that name the code, per source, for the ref_* columns of the Wikidata list
 molndal = {}
+naming = {}  # (code, source) -> set of record ids
 for r in csv.DictReader(open(EVIDENCE, encoding="utf-8")):
+    if r["status"] == "kept":
+        naming.setdefault((r["code_norm"], r["source"]), set()).add(r["record_id"])
     m = AFFILIATION.search(r["note"])
     if r["source"] == "PubMed" and m and "Mölndal" in m.group(1) and "Astra" in m.group(1):
         molndal.setdefault(r["code_norm"], set()).add(r["record_id"])
@@ -171,10 +180,15 @@ for c, ref in LITERATURE.items():
 
 # INN collection and review draft
 inn_of = {}
+unii_of = {}
 for r in csv.DictReader(open(INNS, encoding="utf-8")):
     for c in r["h_codes"].split("; "):
         inn_of[c] = r["inn"]
+        unii_of[c] = r["moiety_unii"]
         row(c)
+wd_by_unii = {}
+for r in csv.DictReader(open(WD_LOOKUP, encoding="utf-8")):
+    wd_by_unii.setdefault(r["unii"], []).append(f"{r['qid']} ({r['label_en']}; P2275 {r['has_p2275']}; {r['sitelinks']} sitelinks)")
 review = {(r["inn"], r["code_key"]): r for r in csv.DictReader(open(REVIEW, encoding="utf-8"))}
 for c, inn in inn_of.items():
     rv = review.get((inn, key(c)))
@@ -184,9 +198,6 @@ for c, inn in inn_of.items():
         continue
     x["review_class"] = rv["code_class"]
     x["review_reviewer"] = rv["reviewer"]
-    if "AstraZeneca" in rv["rationale"] and not rv["rationale"].startswith("Hässle:"):
-        add(x, "basis", "astrazeneca_source_only")
-        add(x, "hassle_source", f"{rv['rationale']} [hassle_h_inns_code_review.csv]")
     if rv["verification"]:
         add(x, "flags", f"{rv['verification']} [hassle_h_inns_code_review.csv]")
 
@@ -201,8 +212,6 @@ for c, x in codes.items():
         status = "not_hassle"
     elif set(basis) & ESTABLISHING:
         status = "established"
-    elif "astrazeneca_source_only" in basis:
-        status = "indirect"
     elif not x.get("_nonpatent"):
         status = "patent_only"
     else:
@@ -246,8 +255,12 @@ for r in out:
     if not r["inn"]:
         continue
     h = codes[r["code"]].get("_harvest") or {}
+    c = r["code"]
+    ref = lambda src: "; ".join(sorted(naming.get((c, src), set())))
+    assert unii_of[c] in wd_by_unii, f"{c}: UNII {unii_of[c]} not in {WD_LOOKUP}"
     wd.append({
         "inn": r["inn"], "code": r["code"], "level": h.get("level", ""),
+        "wikidata_qid_by_unii": " | ".join(wd_by_unii[unii_of[c]]),
         "wikidata_qid_carrier": h.get("wikidata_qid_carrier", ""), "wikidata_qid_moiety": h.get("wikidata_qid_moiety", ""),
         "gsrs_carrier_uniis": h.get("carrier_uniis", ""), "salt_forms": h.get("salt_forms", ""),
         "already_on_wikidata": h.get("wikidata_code_as_alias_or_label", ""), "wikidata_p15001": h.get("wikidata_p15001", ""),
@@ -255,8 +268,11 @@ for r in out:
         "ref_hassle_source": r["hassle_source"],
         "ref_earliest_pmid": h.get("earliest_pmid", ""), "ref_earliest_year": r["nonpatent_date"],
         "ref_earliest_title": h.get("earliest_title", ""), "ref_hassle_affiliated_pmids": h.get("hassle_affiliated_pmids", ""),
-        "ref_mesh_ids": h.get("mesh_ids", ""), "ref_ncit_codes": h.get("ncit_codes", ""), "ref_chembl_ids": h.get("chembl_ids", ""),
-        "ref_gsrs_uniis": h.get("uniis_linked", ""), "harvest_sources": h.get("sources", ""),
+        "ref_mesh_ids": ref("MeSH"), "ref_ncit_codes": ref("NCIt"), "ref_chembl_ids": ref("ChEMBL"),
+        "ref_gsrs_uniis": ref("GSRS"),
+        "linked_mesh_ids": h.get("mesh_ids", ""), "linked_ncit_codes": h.get("ncit_codes", ""),
+        "linked_chembl_ids": h.get("chembl_ids", ""), "linked_gsrs_uniis": h.get("uniis_linked", ""),
+        "harvest_sources": h.get("sources", ""),
         "review_class": r["review_class"], "review_reviewer": r["review_reviewer"],
         "ready": "yes" if r["review_reviewer"] not in ("", "claude-proposed") else "no",
         "flags": r["flags"],
