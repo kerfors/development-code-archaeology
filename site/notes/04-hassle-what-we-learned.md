@@ -43,14 +43,6 @@ The collection gives two outcomes, not one:
 
 I did not count trials. For a historical collection the archaeology is the product, not the trial count.
 
-| Hässle status | Codes |
-|---|---|
-| established | 17 |
-| established (published history, not re-checked) | 5 |
-| not established | 33 |
-| known only from patents | 81 |
-| not Hässle | 2 |
-
 ## What I learned
 
 **1. Looking across sources finds odd things, most of all for older compounds.** Each source froze a
