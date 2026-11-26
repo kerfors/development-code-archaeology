@@ -155,6 +155,7 @@ R_SMI = {
     "4-ethoxyphenyl": "c1ccc(OCC)cc1", "4-isopropoxyphenyl": "c1ccc(OC(C)C)cc1",
     "4-methylphenyl": "c1ccc(C)cc1", "2-chlorophenyl": "c1ccccc1Cl",
     "4-chlorophenyl": "c1ccc(Cl)cc1", "4-fluorophenyl": "c1ccc(F)cc1",
+    "3-methoxyphenyl": "c1cccc(OC)c1", "3-chlorophenyl": "c1cccc(Cl)c1",
     "3-trifluoromethylphenyl": "c1cccc(C(F)(F)F)c1",
     "4-tert-butylphenyl": "c1ccc(C(C)(C)C)cc1",
 }
