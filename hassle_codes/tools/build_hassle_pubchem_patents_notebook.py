@@ -4,6 +4,7 @@ Hässle patent-table codes against PubChem (Kerstin, 2026-11-26, after the talk 
 https://cdsouthan.blogspot.com/2026/09/acs-fall-2026-first-disclosures-in.html):
 1. structures from the transcribed patent tables, 2. PubChem lookup, 3. salt records, 4. PubChem patent
 mappings against the patents we already know, 5. submitter-level (SID) name search for every H code.
+Step 7-8 (added 2026-11-26): patent families and page images from EPO OPS (credentials in ~/.config/epo_ops.env).
 
 Change this builder, not the notebook. Run: python hassle_codes/tools/build_hassle_pubchem_patents_notebook.py
 """
@@ -366,7 +367,182 @@ print(f"patent-table codes with any SID: {table_codes_hit}")
 first_n2s
 '''))
 
-cells.append(markdown_cell("## 7. Write outputs"))
+cells.append(markdown_cell(r'''
+## 7. Patent families from EPO OPS
+
+Every patent named in our files plus the new ones PubChem mapped is sent to the OPS family service (INPADOC
+extended family), as publication number in epodoc form (country + number, no kind code). Each family member is
+listed with its publication date, application and priorities.
+
+- Credentials: `~/.config/epo_ops.env` with two lines, `EPO_OPS_KEY="..."` and `EPO_OPS_SECRET="..."` — outside
+  the repo, never printed. A missing file or line stops the run.
+- One access token, renewed after 15 minutes (OPS tokens last 20).
+- Every OPS answer is cached in `hassle_codes/output/cache_epo/`; the token is never cached.
+- A 404 means OPS does not know the number in that form: listed as `not_found`, not retried in another form.
+- OPS answers are JSON renderings of its XML (`$` = text, `@` = attribute). The parsing below asserts the
+  structure it expects, so a different answer stops the run with the element that did not fit.
+'''))
+
+cells.append(code_cell(r'''
+import base64
+
+EPO_ENV = Path.home() / ".config/epo_ops.env"
+OPS = "https://ops.epo.org/3.2"
+CACHE_EPO = REPO_ROOT / "hassle_codes/output/cache_epo"
+CACHE_EPO.mkdir(parents=True, exist_ok=True)
+OPS_PAUSE = 1.0  # seconds between OPS requests (fair use)
+
+
+def read_epo_credentials(path):
+    assert path.exists(), f"{path} not found: it needs EPO_OPS_KEY and EPO_OPS_SECRET (see the markdown above)"
+    vals = {}
+    for line in path.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#"):
+            k, v = line.split("=", 1)
+            vals[k.strip().removeprefix("export ").strip()] = v.strip().strip('"').strip("'")
+    missing = [k for k in ("EPO_OPS_KEY", "EPO_OPS_SECRET") if not vals.get(k)]
+    assert not missing, f"missing in {path}: {missing}"
+    return vals["EPO_OPS_KEY"], vals["EPO_OPS_SECRET"]
+
+
+_token = {"value": None, "fetched": 0.0}
+
+
+def ops_token():
+    if _token["value"] and time.time() - _token["fetched"] < 15 * 60:
+        return _token["value"]
+    key, secret = read_epo_credentials(EPO_ENV)
+    basic = base64.b64encode(f"{key}:{secret}".encode()).decode()
+    req = urllib.request.Request(f"{OPS}/auth/accesstoken", data=b"grant_type=client_credentials",
+                                 headers={"Authorization": f"Basic {basic}",
+                                          "Content-Type": "application/x-www-form-urlencoded",
+                                          "User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        _token["value"] = json.load(r)["access_token"]
+    _token["fetched"] = time.time()
+    return _token["value"]
+
+
+def ops_get(path, accept="application/json", binary=False):
+    """GET {OPS}/rest-services/{path}. Cached. Returns parsed JSON, or bytes when binary; None for not found."""
+    f = CACHE_EPO / (hashlib.sha1(f"{path}|{accept}".encode()).hexdigest() + (".bin" if binary else ".json"))
+    if f.exists():
+        return f.read_bytes() if binary else json.loads(f.read_text())["data"]
+    for attempt, wait in enumerate([OPS_PAUSE] + RETRY_PAUSES):
+        time.sleep(wait)
+        req = urllib.request.Request(f"{OPS}/rest-services/{path}",
+                                     headers={"Authorization": f"Bearer {ops_token()}", "Accept": accept,
+                                              "User-Agent": USER_AGENT})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                body = r.read()
+            break
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                body = None
+                break
+            if e.code in RETRY_CODES and attempt < len(RETRY_PAUSES):
+                print(f"OPS {e.code} on {path} — retry {attempt + 1} of {len(RETRY_PAUSES)} "
+                      f"in {RETRY_PAUSES[attempt]} s")
+                continue
+            raise
+    if binary:
+        if body is not None:
+            f.write_bytes(body)
+        return body
+    data = json.loads(body) if body is not None else None
+    f.write_text(json.dumps({"key": path, "retrieved": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                             "data": data}))
+    return data
+
+
+def as_list(x):
+    return x if isinstance(x, list) else ([] if x is None else [x])
+
+
+def docdb_id(ref):
+    """(country, number, kind, date) from the docdb document-id of a publication/application/priority element."""
+    for d in as_list(ref.get("document-id")):
+        if d.get("@document-id-type") == "docdb":
+            return tuple(d.get(k, {}).get("$", "") for k in ("country", "doc-number", "kind", "date"))
+    raise AssertionError(f"no docdb document-id in {ref}")
+
+
+def iso(d):
+    return f"{d[:4]}-{d[4:6]}-{d[6:]}" if len(d) == 8 else d
+
+
+ALL_KNOWN = KNOWN | set(new_patents.patent)
+fam_rows, not_found = [], []
+for p in sorted(ALL_KNOWN):
+    data = ops_get(f"family/publication/epodoc/{p}")
+    if data is None:
+        not_found.append(p)
+        continue
+    fam = data["ops:world-patent-data"]["ops:patent-family"]
+    for m in as_list(fam["ops:family-member"]):
+        for pub in as_list(m["publication-reference"]):
+            pc, pn, pk, pdate = docdb_id(pub)
+            ac, an, ak, adate = docdb_id(m["application-reference"])
+            prios = [docdb_id(pr) for pr in as_list(m.get("priority-claim"))]
+            fam_rows.append({"queried": p, "family_id": m.get("@family-id", ""),
+                             "member": f"{pc}{pn}{pk}", "country": pc, "number": pn, "kind": pk,
+                             "published": iso(pdate), "application": f"{ac}{an}", "filed": iso(adate),
+                             "priorities": "; ".join(f"{c}{n} {iso(d)}" for c, n, k, d in prios),
+                             "known": f"{pc}{pn}" in ALL_KNOWN})
+family_members = pd.DataFrame(fam_rows, columns=["queried", "family_id", "member", "country", "number", "kind",
+                                                 "published", "application", "filed", "priorities", "known"])
+print(f"patents queried: {len(ALL_KNOWN)}, not found in OPS: {not_found}")
+print(f"family members: {family_members.member.nunique()}, of which not in our files: "
+      f"{family_members.loc[~family_members.known, 'member'].nunique()}")
+
+# Dating candidates: members of the code-table families published before the table patent's US filing date
+# (our latest-possible date for those codes). Filing dates from hassle_findings_2026-11-21b.csv and -2026-11-26.csv.
+TABLE_PATENTS = {"US3485835": "1968-04-10", "US3558616": "1969-11-10", "US3594478": "1969-11-24"}
+cand = family_members[family_members.queried.isin(TABLE_PATENTS)].copy()
+cand["table_patent_filed"] = cand.queried.map(TABLE_PATENTS)
+dating_candidates = (cand[(cand.published != "") & (cand.published < cand.table_patent_filed)]
+                     .sort_values("published").drop_duplicates("member"))
+dating_candidates
+'''))
+
+cells.append(markdown_cell(r'''
+## 8. Page images of the dating candidates
+
+For each dating candidate, OPS lists the stored page images; the full document is fetched page by page as PDF
+into `hassle_codes/output/epo_images/<member>/`. These pages are for reading by eye: does the member print the
+code table? If it does, the codes get that member's publication date as their latest-possible date.
+'''))
+
+cells.append(code_cell(r'''
+IMG_DIR = REPO_ROOT / "hassle_codes/output/epo_images"
+img_rows = []
+for r in dating_candidates.itertuples():
+    inq = ops_get(f"published-data/publication/docdb/{r.country}.{r.number}.{r.kind}/images")
+    if inq is None:
+        img_rows.append({"member": r.member, "published": r.published, "pages": 0, "status": "no images in OPS"})
+        continue
+    results = as_list(inq["ops:world-patent-data"]["ops:document-inquiry"]["ops:inquiry-result"])
+    full = [i for res in results for i in as_list(res.get("ops:document-instance"))
+            if i.get("@desc") == "FullDocument"]
+    if not full:
+        img_rows.append({"member": r.member, "published": r.published, "pages": 0, "status": "no full document"})
+        continue
+    inst = full[0]
+    pages = int(inst["@number-of-pages"])
+    d = IMG_DIR / r.member
+    d.mkdir(parents=True, exist_ok=True)
+    for n in range(1, pages + 1):
+        pdf = ops_get(f"{inst['@link']}?Range={n}", accept="application/pdf", binary=True)
+        assert pdf is not None, f"{r.member} page {n} listed but not delivered"
+        (d / f"page_{n:03d}.pdf").write_bytes(pdf)
+    img_rows.append({"member": r.member, "published": r.published, "pages": pages, "status": f"saved to {d}"})
+epo_images = pd.DataFrame(img_rows, columns=["member", "published", "pages", "status"])
+epo_images
+'''))
+
+cells.append(markdown_cell("## 9. Write outputs"))
 
 cells.append(code_cell(r'''
 run = pd.DataFrame([
@@ -380,10 +556,16 @@ run = pd.DataFrame([
     {"item": "new_patents", "value": len(new_patents)},
     {"item": "codes_searched_by_name", "value": len(all_codes)},
     {"item": "codes_with_sid", "value": len(first_n2s)},
+    {"item": "patents_queried_in_ops", "value": len(ALL_KNOWN)},
+    {"item": "ops_not_found", "value": "; ".join(not_found)},
+    {"item": "family_members", "value": family_members.member.nunique()},
+    {"item": "family_members_not_in_our_files", "value": family_members.loc[~family_members.known, "member"].nunique()},
+    {"item": "dating_candidates", "value": len(dating_candidates)},
     {"item": "cache_dir", "value": str(CACHE_DIR)},
 ])
 sheets = {"structures": structures, "cids": cids, "patent_mappings": patent_mappings,
-          "new_patents": new_patents, "name_hits": name_hits, "run": run}
+          "new_patents": new_patents, "name_hits": name_hits, "family_members": family_members,
+          "dating_candidates": dating_candidates, "epo_images": epo_images, "run": run}
 with pd.ExcelWriter(OUT_DIR / "hassle_pubchem_patents.xlsx") as xw:
     for name, df in sheets.items():
         df.to_excel(xw, sheet_name=name, index=False)
