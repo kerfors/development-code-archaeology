@@ -95,13 +95,17 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 PUG = "https://pubchem.ncbi.nlm.nih.gov/rest/pug"
 USER_AGENT = "development-code-archaeology/hassle-pubchem-patents (https://github.com/kerfors/development-code-archaeology)"
 PAUSE = 0.25  # PubChem asks for at most 5 requests per second
+RETRY_CODES = {502, 503, 504}  # PubChem server-side errors, usually transient
+RETRY_PAUSES = [5, 15, 45]  # seconds before attempt 2, 3, 4; then the error is raised
 RUN_STARTED = datetime.now(timezone.utc).isoformat(timespec="seconds")
 '''))
 
 cells.append(markdown_cell(r'''
 ## 2. Cached PubChem requests
 
-One JSON file per request. A 404 ("not found") is a valid answer and is cached as `null`; any other HTTP error stops the run.
+One JSON file per request. A 404 ("not found") is a valid answer and is cached as `null`.
+PubChem server errors 502, 503 and 504 are retried up to 3 times (pauses 5, 15, 45 s); after that, and for
+any other HTTP error, the run stops. Retries are never cached, only the final answer.
 '''))
 
 cells.append(code_cell(r'''
@@ -115,16 +119,23 @@ def pug(path, post=None):
     f = _cache_file(key)
     if f.exists():
         return json.loads(f.read_text())["data"]
-    time.sleep(PAUSE)
     data = urllib.parse.urlencode(post).encode() if post else None
-    req = urllib.request.Request(f"{PUG}/{path}", data=data, headers={"User-Agent": USER_AGENT})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            result = json.load(r)
-    except urllib.error.HTTPError as e:
-        if e.code != 404:
+    for attempt, wait in enumerate([PAUSE] + RETRY_PAUSES):
+        time.sleep(wait)
+        req = urllib.request.Request(f"{PUG}/{path}", data=data, headers={"User-Agent": USER_AGENT})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                result = json.load(r)
+            break
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                result = None
+                break
+            if e.code in RETRY_CODES and attempt < len(RETRY_PAUSES):
+                print(f"PubChem {e.code} on {path} — retry {attempt + 1} of {len(RETRY_PAUSES)} "
+                      f"in {RETRY_PAUSES[attempt]} s")
+                continue
             raise
-        result = None
     f.write_text(json.dumps({"key": key, "retrieved": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                              "data": result}))
     return result
