@@ -23,6 +23,9 @@ lists can be rebuilt from the repo alone (Kerstin, 2026-11-22). A rerun of the h
 - hassle_codes/inputs/hassle_findings_2026-11-21.csv             patents/literature, session 2
 - hassle_codes/inputs/hassle_findings_2026-11-21b.csv            patent PDFs, session 3 (research note 3d)
 - hassle_codes/inputs/hassle_findings_2026-11-22.csv             PubMed records the harvest missed (H 319/68)
+- hassle_codes/inputs/hassle_findings_2026-11-26.csv             patent tables vs PDFs (corrections), US 3594478, EPO OPS
+                                                                 family checks; five new codes from BE 781105 (2026-11-26).
+                                                                 Rows without a code (about a document) are skipped here.
 - collections/hassle_h_inns.csv                                  INN collection (h_codes column)
 - collections/hassle_h_inns_code_review.csv                      review draft (code_class, rationale)
 - hassle_codes/inputs/wikidata_unii_lookup_2026-11-22.csv        Wikidata items by UNII (P652), query in file
@@ -47,6 +50,7 @@ hassle_basis (counting, all that apply, '; '):
                               findings row whose basis says 'affiliation at Mölndal'.
 - literature_hassle_programme code named in a published history of a Hässle programme (LITERATURE)
 patent_basis (not counting): code_in_hassle_patent | structure_in_hassle_patent.
+Patent numbers are recognised for US, BE, FR, NL, GB, DE, SE, EP and WO (2026-11-26; before: US only).
 A patent counts as an AB Hässle patent when any findings row citing that patent number names Hässle as assignee.
 The review is not a basis: it is built from this evidence, so it would be circular. Its class is shown.
 (astrazeneca_source_only, read from the review rationale, removed 2026-11-22 for the same reason.)
@@ -61,7 +65,8 @@ HARVEST = Path("hassle_codes/inputs/hassle_h_codes.csv")
 EVIDENCE = Path("hassle_codes/inputs/hassle_h_codes_evidence.csv")
 FINDINGS = [Path("hassle_codes/inputs/hassle_findings_2026-11-21.csv"),
             Path("hassle_codes/inputs/hassle_findings_2026-11-21b.csv"),
-            Path("hassle_codes/inputs/hassle_findings_2026-11-22.csv")]
+            Path("hassle_codes/inputs/hassle_findings_2026-11-22.csv"),
+            Path("hassle_codes/inputs/hassle_findings_2026-11-26.csv")]
 INNS = Path("collections/hassle_h_inns.csv")
 WD_LOOKUP = Path("hassle_codes/inputs/wikidata_unii_lookup_2026-11-22.csv")
 REVIEW = Path("collections/hassle_h_inns_code_review.csv")
@@ -80,7 +85,7 @@ LITERATURE = {
 ESTABLISHING = {"hassle_affiliated_pmid", "astra_molndal_pmid", "literature_hassle_programme"}
 RECHECKED = {"hassle_affiliated_pmid", "astra_molndal_pmid"}  # basis a reader can check in the record itself
 AFFILIATION = re.compile(r"Astra/Hässle affiliation: (.*)")
-PATENT = re.compile(r"US\s?\d{7}")
+PATENT = re.compile(r"\b(?:US|BE|FR|NL|GB|DE|SE|EP|WO)\s?\d{6,9}")
 DATE = re.compile(r"^(\d{4})(-\d{2}-\d{2})?")
 
 
@@ -102,6 +107,8 @@ def earlier(a, b):
         return b
     if a[0][:4] != b[0][:4]:
         return a if a[0][:4] < b[0][:4] else b
+    if len(a[0]) == len(b[0]) == 10 and a[0] != b[0]:
+        return a if a[0] < b[0] else b  # same year, both full dates: the earlier date wins (2026-11-26)
     return a if len(a[0]) >= len(b[0]) else b
 
 
@@ -128,6 +135,8 @@ hassle_patents = {p.replace(" ", "") for r in findings if "Hässle" in r["source
 
 for r in findings:
     c, ft, basis = r["code"], r["finding_type"], r["basis"]
+    if not c:
+        continue  # a row about a document or a pattern, not about one code (kept in the findings file only)
     x = row(c)
     src = f"{r['source']} [{r['_file']}]"
     add(x, "finding_types", ft)
