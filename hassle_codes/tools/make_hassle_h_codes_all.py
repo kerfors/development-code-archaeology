@@ -42,6 +42,8 @@ hassle_status: established | established_not_rechecked | not_established | paten
   linking code and company has not been re-checked: Olbe 2003 Fig. 1 is paywalled, the PubMed abstract names no
   code (Kerstin, 2026-11-22). Shown as "established (published history, not re-checked)". conferred_by stays
   empty, in line with Wikidata decision D14.
+  Exception: CONFERRED_BY_DECISION lists codes where Kerstin decided on P1027 from two records (Wikidata
+  decision D16): H 168/68, code named in PubMed 6307064, compound claimed by AB Hässle in EP0005129A1 (2026-11-27).
 - patent_only: the code is known only from patents (no harvest record, no non-patent finding, no literature).
 hassle_basis (counting, all that apply, '; '):
 - hassle_affiliated_pmid      a PubMed record naming the code has a Hässle affiliation (harvest)
@@ -86,6 +88,7 @@ LITERATURE = {
 }
 ESTABLISHING = {"hassle_affiliated_pmid", "astra_molndal_pmid", "literature_hassle_programme"}
 RECHECKED = {"hassle_affiliated_pmid", "astra_molndal_pmid"}  # basis a reader can check in the record itself
+CONFERRED_BY_DECISION = {"H 168/68": "Kerstin 2026-11-27, Wikidata decision D16; hassle_findings_2026-11-27.csv"}
 AFFILIATION = re.compile(r"Astra/Hässle affiliation: (.*)")
 PATENT = re.compile(r"\b(?:US|BE|FR|NL|GB|DE|SE|EP|WO)\s?\d{6,9}")
 DATE = re.compile(r"^(\d{4})(-\d{2}-\d{2})?")
@@ -299,7 +302,7 @@ for r in out:
         "wikidata_qid_carrier": h.get("wikidata_qid_carrier", ""), "wikidata_qid_moiety": h.get("wikidata_qid_moiety", ""),
         "gsrs_carrier_uniis": h.get("carrier_uniis", ""), "salt_forms": h.get("salt_forms", ""),
         "already_on_wikidata": h.get("wikidata_code_as_alias_or_label", ""), "wikidata_p15001": h.get("wikidata_p15001", ""),
-        "hassle_status": r["hassle_status"], "conferred_by": "AB Hässle" if r["hassle_status"] == "established" else "",
+        "hassle_status": r["hassle_status"], "conferred_by": "AB Hässle" if r["hassle_status"] == "established" or r["code"] in CONFERRED_BY_DECISION else "",
         "ref_hassle_source": r["hassle_source"],
         "ref_earliest_pmid": pmid, "ref_earliest_year": pmid_year,
         "ref_earliest_title": h.get("earliest_title", ""), "ref_hassle_affiliated_pmids": h.get("hassle_affiliated_pmids", ""),

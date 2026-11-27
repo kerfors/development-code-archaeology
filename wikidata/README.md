@@ -95,6 +95,7 @@ them, and only confirmed rows go into a batch.
 | D13 | 2026-11-07 | Hold where the company item found is not clearly the company that assigned the code (a specific legal entity, or a register-style item) | fda_novel_2025: DZD9008 (only item 'Dizal (Jiangsu) Pharmaceutical Co., Ltd. (China)'); KVD900 (Q132101891, all-caps label, type 'organization') |
 | D14 | 2026-11-22 | P1027 only where a reference record names the company line in its affiliation (Hässle, or Astra/AstraZeneca at Mölndal). The statement itself stands on a record that names the code; codes whose conferring company is not established are published without P1027 | hassle_h_inns: 14 of 17 without P1027, among them H 168/68 (omeprazole), H 83/69, H 149/94 — their company attribution is only in Olbe 2003 Fig. 1 (paywalled, not read; the PubMed abstract names no code) |
 | D15 | 2026-11-22 | An aggregated synonym list is not a reference, also when it is a PubMed record | hassle_h_inns: H 154/82 (felodipine) — PMID 29999713 (LactMed) not used; MeSH D015736 instead |
+| D16 | 2026-11-27 | Exception to D14 for H 168/68 (omeprazole): P1027 Hässle AB from two records, each checkable: the code is named in PubMed 6307064, the compound is claimed by Aktiebolaget Hässle in EP 0005129 A1 (Example 23, claim 7), which prints no code. The patent goes in as a second reference (P854 + P813), the PubMed reference stays | hassle_h_inns: H 168/68 only; H 83/69 and H 149/94 stay without P1027 (structures not matched to the patent examples) |
 
 Earlier decisions (2026-10-16): only confirmed codes are published; a code goes on the item of the level it
 names; reference rules as above; codes held for an expert question (AGN241780, CH5534262) or accepted on one
@@ -112,7 +113,7 @@ Posted 2026-10-16. Texts on the talk pages:
   [Talk:Q72498885](https://www.wikidata.org/wiki/Talk:Q72498885): label and identifiers do not match;
   possible duplicates of lamivudine and valsartan.
 
-## State, 2026-11-22
+## State, 2026-11-27
 
 | Step | State |
 |------|-------|
@@ -121,5 +122,6 @@ Posted 2026-10-16. Texts on the talk pages:
 | Batch for `top_sellers_fy2025` | Sent 2026-11-07 (run 20261107_1520, `batches/`): 25 statements, verified on Wikidata. 53 codes mapped: 15 held (D2–D4, D7, D8); 13 without a reference under D1, D6, D10; 10 web-only held (D0) |
 | Batch for `fda_novel_2025` | Sent 2026-11-07 (run 20261107_1901, `batches/`): 16 statements (15 ClinicalTrials.gov reference, 1 NCIt), verified on Wikidata. 42 codes mapped: 16 held (D0, D2, D4, D11, D12, D13); 10 without a reference (5 under D10, 5 with no trial pick and NCIt not a source). P15001 total after the batch: 49 statements on 39 items. Of the 29 moieties, 25 of the 26 items found by UNII lack P2275 (suzetrigine has it in Arabic only) |
 | Batch for `hassle_h_inns` | Sent 2026-11-22 (run 20261122_1511, `batches/`): 17 statements (14 PubMed, 2 MeSH, 1 NCIt reference; H 376/95 with two), 3 with P1027 Hässle AB (Q105106991), verified on Wikidata. P15001 total after the batch: 66 statements on 55 items |
+| P1027 on H 168/68 (D16) | Sent 2026-11-27 (QuickStatements, one command, `batches/hassle_h_16868_p1027_20261127.*`): qualifier P1027 Hässle AB (Q105106991) and a second reference (P854 EP0005129A1 on Google Patents, P813 2026-11-27) on the existing statement, verified on Wikidata. P1027 now on 4 of the 17 Hässle statements |
 | P2275 INN on 11 items that lack it, referenced to the WHO Recommended INN list | not started |
 | Abatacept alias removal | not done; no reply on the talk page |

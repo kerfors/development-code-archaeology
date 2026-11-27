@@ -1,0 +1,2 @@
+code,inn,target_qid,target_label,value,change,conferred_by_qid,ref_added,ref_kept,decision,basis
+H 168/68,omeprazole,Q422210,omeprazole,H 168/68,add qualifier P1027 and a second reference to the existing statement,Q105106991,P854 https://patents.google.com/patent/EP0005129A1/en; P813 2026-11-27,"PubMed 6307064 (P248 Q180686, P698, P813 2026-11-22)",D16,"hassle_findings_2026-11-27.csv: EP0005129A1 omeprazole Example 23, claim 7, applicant Aktiebolaget Hässle; no code printed"
