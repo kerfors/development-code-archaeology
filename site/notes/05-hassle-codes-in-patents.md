@@ -112,8 +112,15 @@ unless one record showed it. For Losec I think two records that each can be chec
 
 ## The numbers
 
-The large list now has 143 codes. 86 of them are known only from patents. The Wikidata list is unchanged, 18
-codes.
+The [historical list](repo:collections/hassle_h_codes_all.csv) now has 143 codes, each with its sources and
+its earliest date. 86 of them are known only from patents. The
+[Wikidata list](repo:collections/hassle_h_codes_wikidata.csv) still has 18 codes. 4 of them now say who
+conferred the code. The decision for H 168/68 is D16 on the [publication decisions](../decisions.html) page,
+and the edit is recorded in [`wikidata/batches/`](repo:wikidata/batches/hassle_h_16868_p1027_20261127.csv).
+The findings behind this note are in
+[`hassle_findings_2026-11-26.csv`](repo:hassle_codes/inputs/hassle_findings_2026-11-26.csv) and
+[`hassle_findings_2026-11-27.csv`](repo:hassle_codes/inputs/hassle_findings_2026-11-27.csv), with a source for
+every value.
 
 ## Open
 
