@@ -105,9 +105,10 @@ previously known compound. No H codes. Page image from EPO Open Patent Services.
 
 The company for H 168/68 now rests on two records, not one. The code names the compound in sources that
 anyone can check, the earliest a PubMed record from 1983. The compound is claimed by AB Hässle in the 1979
-filing. I have decided that this is enough, and Hässle AB will be added as the company on the H 168/68
-statement. It is a step from the bar in note 4, where the company was left out unless one record showed it.
-For Losec I think two records that each can be checked are better than a gap.
+filing. I have decided that this is enough. On 27 November Hässle AB was added as the company on the
+[H 168/68 statement](https://www.wikidata.org/wiki/Q422210#P15001), with the patent as a second
+reference next to the PubMed record. It is a step from the bar in note 4, where the company was left out
+unless one record showed it. For Losec I think two records that each can be checked are better than a gap.
 
 ## The numbers
 
