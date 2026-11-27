@@ -26,6 +26,7 @@ lists can be rebuilt from the repo alone (Kerstin, 2026-11-22). A rerun of the h
 - hassle_codes/inputs/hassle_findings_2026-11-26.csv             patent tables vs PDFs (corrections), US 3594478, EPO OPS
                                                                  family checks; five new codes from BE 781105 (2026-11-26).
                                                                  Rows without a code (about a document) are skipped here.
+- hassle_codes/inputs/hassle_findings_2026-11-27.csv             EP 0005129 A1 (omeprazole, 1979 filing): no codes
 - collections/hassle_h_inns.csv                                  INN collection (h_codes column)
 - collections/hassle_h_inns_code_review.csv                      review draft (code_class, rationale)
 - hassle_codes/inputs/wikidata_unii_lookup_2026-11-22.csv        Wikidata items by UNII (P652), query in file
@@ -66,7 +67,8 @@ EVIDENCE = Path("hassle_codes/inputs/hassle_h_codes_evidence.csv")
 FINDINGS = [Path("hassle_codes/inputs/hassle_findings_2026-11-21.csv"),
             Path("hassle_codes/inputs/hassle_findings_2026-11-21b.csv"),
             Path("hassle_codes/inputs/hassle_findings_2026-11-22.csv"),
-            Path("hassle_codes/inputs/hassle_findings_2026-11-26.csv")]
+            Path("hassle_codes/inputs/hassle_findings_2026-11-26.csv"),
+            Path("hassle_codes/inputs/hassle_findings_2026-11-27.csv")]
 INNS = Path("collections/hassle_h_inns.csv")
 WD_LOOKUP = Path("hassle_codes/inputs/wikidata_unii_lookup_2026-11-22.csv")
 REVIEW = Path("collections/hassle_h_inns_code_review.csv")
