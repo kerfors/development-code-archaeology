@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hässle codes in patents: what the scans show — Development code archaeology</title>
+<meta name="description" content="76 H codes in two patent tables, structures for 75, six of them in PubChem and none with its code, patent families read page by page, and the answer on Losec.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="../index.html">Development code archaeology</a>
+<nav><a href="../index.html">Field notes</a> <a href="../method.html">Method</a> <a href="../decisions.html">Publication decisions</a> <a href="../identity.html">Identity findings</a> <a href="../collections.html">Collections</a></nav>
+</div></header>
+<main class="wrap">
+<p class="post-meta">Field note 5 · covers November 2026</p>
+<h1>The Hässle codes in patents</h1>
+<p><a href="04-hassle-what-we-learned.html">Field note 4</a> followed the H codes of Hässle in Mölndal, the names a compound
+carried before it got an INN. Losec was H 168/68, metoprolol H 93/26, felodipine H 154/82. It started with a
+remark from <a href="https://www.linkedin.com/in/cdsouthan/">Chris Southan</a>, that MeSH could be useful for old codes.
+The collection became two lists: a historical list of 138 codes, each with its sources and earliest date, and a
+small list of 18 codes for substances with an INN. 17 of those went to Wikidata as development code statements.
+Only 3 said who conferred the code.</p>
+<p>Patents were already a large part of that record. 81 of the 138 codes were known only from patents: two
+Hässle code tables of 1968 and 1969, and the zimelidine patents of 1971. But patents are not my domain. I kept
+them visible, with dates and structures, and let no conclusion rest on a patent alone. That left Losec as the
+surprise. Its code could not be tied to Hässle from open records without patents. That was the next thing to
+dig into.</p>
+<p>Then Chris called. Patents are his field. Before the call I wrote him an overview of how the codes had been
+taken from patents so far. After it, he pointed me to his post <a href="https://cdsouthan.blogspot.com/2026/09/acs-fall-2026-first-disclosures-in.html">ACS Fall 2026 First disclosures: PubChem and
+patent mappings</a>. He starts from
+a code and a structure and goes to the patents through PubChem. My case is the opposite: old patents with codes,
+and few structures anyone has linked to them. So this note is about patents, as a source for codes. They are
+still not my domain. But with what I learned from Chris, it was interesting to do some archaeology in them:
+reading old filings page by page, and asking what they can and cannot say about a code.</p>
+<h2>What was done</h2>
+<ul>
+<li><strong>Two code tables transcribed.</strong> Two AB Hässle patents by Brändström and S.Å.I. Carlsson print the codes
+  without the "H", in a column headed "Code Number": <a href="https://patents.google.com/patent/US3485835A/en">US 3485835</a>
+  (52 benzofurans, filed 1968) and <a href="https://patents.google.com/patent/US3558616A/en">US 3558616</a>
+  (24 benzothiophenes, filed 1969). The OCR text is unusable for these tables, so every row was copied from the
+  page images and checked against them again.</li>
+<li><strong>Structures built</strong> for 75 of the 76 codes, from the generic formula plus the substituents of each row. One
+  row (H 43/49) is printed without the branch it needs.</li>
+<li><strong>PubChem</strong>, following Chris's method: exact structure, salt records with the same parent, PubChem's patent
+  mappings, and a name search per submitter record for all codes.</li>
+<li><strong>Patent families from the EPO.</strong> With <a href="https://ops.epo.org">EPO Open Patent Services</a> the families of the
+  known patents, and the page images of chosen members, read by eye.</li>
+<li><strong>The omeprazole filings</strong>: the 1979 European filing and the 1975 German one it cites.</li>
+</ul>
+<figure>
+<img src="../images/hassle-us3485835-table1.png" alt="US 3485835, Table I: code numbers without the H, with the substituents of each compound">
+<figcaption>US 3485835 (AB Hässle, filed 1968-04-10), Table I, first rows. The "Code Number" column prints the
+codes without the "H": 11/32 is H 11/32. Each row is one compound, given by the substituents of the generic
+formula. The fourth row, H 11/46, is one of the two rows I first read as ortho (learning 5). Page image from
+the Google Patents PDF.</figcaption>
+</figure>
+
+<p>Everything is in the repository: the <a href="https://github.com/kerfors/development-code-archaeology/blob/main/hassle_codes/inputs/">inputs</a>, with a findings file per session,
+and the <a href="https://github.com/kerfors/development-code-archaeology/blob/main/hassle_codes/notebooks/hassle_pubchem_patents.ipynb">PubChem notebook</a>.</p>
+<h2>What I learned</h2>
+<p><strong>1. For most of these compounds the patent is the only public link between code and structure.</strong> Of the 75
+structures built, 6 are in PubChem. None of the 6 carries its code. The name search found 47 codes with a
+submitter record carrying the code as a name, the earliest deposited in 2005. None of them is one of the 76
+table codes. For those, nobody has linked the code to a structure.</p>
+<p><strong>2. Code and structure printed together is the exception.</strong> I checked four families page by page:</p>
+<ul>
+<li>The 1965 family (Swedish priority SE 7128/65): eight members published 1966–69, in Belgium, the
+  Netherlands, France, Spain, Austria, Britain and Norway. They print the same compound tables, with no code
+  column. The codes appear first in the two US filings of 1969.</li>
+<li>The 1971 zimelidine family (SE 5496/71): the codes are printed in the Swedish, Belgian, French, Dutch,
+  British and US members. The German member, <a href="https://patents.google.com/patent/DE2220333A1/en">DE 2220333</a>,
+  numbers the compounds instead.</li>
+<li>The omeprazole filing of 1979 and the benzimidazole filing of 1975 print no codes at all.</li>
+</ul>
+<p>So there is no Hässle rule. A code table is a lucky find.</p>
+<p><strong>3. A code's first appearance dates the patent text, not the compound.</strong> The benzothiophenes were published
+in 1966. Their codes were published in 1969. The latest-possible date of those 24 codes stays 1969-11-10.</p>
+<p><strong>4. Codes can enter a family late.</strong> Five codes not in my lists appear first in the Belgian filing
+<a href="https://patents.google.com/patent/BE781105A/en">BE 781105</a> of 1972, each with a drawn structure:
+H 102/01, H 102/04, H 102/30, H 94/94 and H 99/68. They are not in the Swedish text. So the large list grew
+from 138 to 143 codes. One of them, H 102/01, is the first second number below 03.</p>
+<p><strong>5. The scan decides.</strong> Two benzofuran rows were read as ortho and are meta: H 11/46 is 3-methoxyphenyl,
+H 26/38 3-chlorophenyl. In these drawings the position is easy to misread. A second print of the
+benzothiophene table, <a href="https://patents.google.com/patent/US3594478A/en">US 3594478</a>, agrees in all 24 rows,
+including a conflict for H 53/84 that is in both prints. And Google Patents is not the printed page. For
+<a href="https://patents.google.com/patent/DE2548340A1/en">DE 2548340</a> it gives a publication date, a Swedish priority
+and an inventor's name that the printed cover does not have.</p>
+<p><strong>6. A patent mapping is a link, not ownership.</strong> PubChem maps three of the benzofurans to a 2013 patent
+application from Imperial Innovations, priority 2011. The compounds are from 1968. The mapping says the
+structure is in that text, nothing about who owned the code.</p>
+<p><strong>7. Submitter dates show who first named a structure.</strong> This is Chris's point, and it held here too. A
+compound record gets its date from the first structure deposited, often from patent extraction. The name comes
+later, from another depositor. Only the submitter records show who put the code on the structure, and when.
+Spelling matters for the search: H 149/94 is found only as "H-149/94", H 29/50 only as "H 29-50".</p>
+<p><strong>8. The answer on Losec.</strong> The 1979 European filing, <a href="https://patents.google.com/patent/EP0005129A1/en">EP 0005129</a>,
+has omeprazole as Example 23 and in claim 7, with Aktiebolaget Hässle as applicant. It does not print
+H 168/68. The examples go by number. The German filing it cites, DE 2548340 of 1975, is the same. The
+Swedish application of 1978 has no page images in the EPO service. So the patents tie the compound to Hässle,
+but never the code.</p>
+<figure>
+<img src="../images/hassle-ep0005129-table2.png" alt="EP 0005129, Table 2 continued: omeprazole as Example 23, identified by example number only">
+<figcaption>EP 0005129 A1 (Aktiebolaget Hässle, published 1979-10-31), p. 18, Table 2 continued. Example 23
+(R¹ 5-OCH₃, R³ CH₃, R⁴ OCH₃, R⁵ CH₃) is omeprazole. The compounds go by example number; "x" marks a
+previously known compound. No H codes. Page image from EPO Open Patent Services.</figcaption>
+</figure>
+
+<h2>The decision on H 168/68</h2>
+<p>The company for H 168/68 now rests on two records, not one. The code names the compound in sources that
+anyone can check, the earliest a PubMed record from 1983. The compound is claimed by AB Hässle in the 1979
+filing. I have decided that this is enough. On 27 November Hässle AB was added as the company on the
+<a href="https://www.wikidata.org/wiki/Q422210#P15001">H 168/68 statement</a>, with the patent as a second
+reference next to the PubMed record. It is a step from the bar in note 4, where the company was left out
+unless one record showed it. For Losec I think two records that each can be checked are better than a gap.</p>
+<h2>The numbers</h2>
+<p>The <a href="https://github.com/kerfors/development-code-archaeology/blob/main/collections/hassle_h_codes_all.csv">historical list</a> now has 143 codes, each with its sources and
+its earliest date. 86 of them are known only from patents. The
+<a href="https://github.com/kerfors/development-code-archaeology/blob/main/collections/hassle_h_codes_wikidata.csv">Wikidata list</a> still has 18 codes. 4 of them now say who
+conferred the code. The decision for H 168/68 is D16 on the <a href="../decisions.html">publication decisions</a> page,
+and the edit is recorded in <a href="https://github.com/kerfors/development-code-archaeology/blob/main/wikidata/batches/hassle_h_16868_p1027_20261127.csv"><code>wikidata/batches/</code></a>.
+The findings behind this note are in
+<a href="https://github.com/kerfors/development-code-archaeology/blob/main/hassle_codes/inputs/hassle_findings_2026-11-26.csv"><code>hassle_findings_2026-11-26.csv</code></a> and
+<a href="https://github.com/kerfors/development-code-archaeology/blob/main/hassle_codes/inputs/hassle_findings_2026-11-27.csv"><code>hassle_findings_2026-11-27.csv</code></a>, with a source for
+every value.</p>
+<h2>Closing for now</h2>
+<p>This was interesting archaeology, and I close the patent work here. Two questions stay with the record: what
+the Swedish applications say, and how the numbers were given. The patents show that a code is given per
+isolated substance and that close analogues sit on neighbouring numbers. They do not show what the number
+encodes. Chris has the note, and if he has input I will add it.</p>
+<p>The next step is back on Wikidata: the other development codes of the same compounds, not only the H codes.</p>
+<p>If you worked at Hässle, or know how the codes were given, I would still very much like to hear from you.</p>
+<p>This work was done together with Claude (Anthropic): transcription from page images, the notebooks, and
+checking each finding against its source.</p>
+<p class="written">Written 2026-11-27.</p>
+</main>
+<footer class="site"><div class="wrap">
+<p>Kerstin Forsberg. Text and data CC BY 4.0; code MIT. Developed with Claude (Anthropic); review decisions and
+published codes are confirmed by a person. Source: <a href="https://github.com/kerfors/development-code-archaeology">kerfors/development-code-archaeology</a>.</p>
+</div></footer>
+</body>
+</html>

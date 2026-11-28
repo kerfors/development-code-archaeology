@@ -8,16 +8,26 @@ number: 5
 
 # The Hässle codes in patents
 
-[Field note 4](04-hassle-what-we-learned.html) ended with Losec. Its code, H 168/68, could not be tied to
-Hässle from open records without patents, and I had chosen not to count patents. That was the next thing to
+[Field note 4](04-hassle-what-we-learned.html) followed the H codes of Hässle in Mölndal, the names a compound
+carried before it got an INN. Losec was H 168/68, metoprolol H 93/26, felodipine H 154/82. It started with a
+remark from [Chris Southan](https://www.linkedin.com/in/cdsouthan/), that MeSH could be useful for old codes.
+The collection became two lists: a historical list of 138 codes, each with its sources and earliest date, and a
+small list of 18 codes for substances with an INN. 17 of those went to Wikidata as development code statements.
+Only 3 said who conferred the code.
+
+Patents were already a large part of that record. 81 of the 138 codes were known only from patents: two
+Hässle code tables of 1968 and 1969, and the zimelidine patents of 1971. But patents are not my domain. I kept
+them visible, with dates and structures, and let no conclusion rest on a patent alone. That left Losec as the
+surprise. Its code could not be tied to Hässle from open records without patents. That was the next thing to
 dig into.
 
-Then [Chris Southan](https://www.linkedin.com/in/cdsouthan/) called. Patents are his field. Before the call I
-wrote him an overview of how the codes had been taken from patents so far. After it, he pointed me to his post
-[ACS Fall 2026 First disclosures: PubChem and patent mappings](https://cdsouthan.blogspot.com/2026/09/acs-fall-2026-first-disclosures-in.html).
-He starts from a code and a structure and goes to the patents through PubChem. My case is the opposite: old
-patents with codes, and few structures anyone has linked to them. So this note is about patents, as a source
-for codes.
+Then Chris called. Patents are his field. Before the call I wrote him an overview of how the codes had been
+taken from patents so far. After it, he pointed me to his post [ACS Fall 2026 First disclosures: PubChem and
+patent mappings](https://cdsouthan.blogspot.com/2026/09/acs-fall-2026-first-disclosures-in.html). He starts from
+a code and a structure and goes to the patents through PubChem. My case is the opposite: old patents with codes,
+and few structures anyone has linked to them. So this note is about patents, as a source for codes. They are
+still not my domain. But with what I learned from Chris, it was interesting to do some archaeology in them:
+reading old filings page by page, and asking what they can and cannot say about a code.
 
 ## What was done
 
@@ -122,15 +132,14 @@ The findings behind this note are in
 [`hassle_findings_2026-11-27.csv`](repo:hassle_codes/inputs/hassle_findings_2026-11-27.csv), with a source for
 every value.
 
-## Open
+## Closing for now
 
-- The questions to Chris: codes added at a later filing or left out of one member, whether such code tables
-  were common in other companies at that time, whether PubChem and SureChEMBL extract the tables of
-  patents this old, and whether we should deposit the code-to-structure links ourselves.
-- The Swedish applications, through the Swedish patent office.
-- How the numbers were given. The patents show that the code is given per isolated substance and that close
-  analogues sit on neighbouring numbers. They do not show what the number encodes. Hässle's archive at
-  Riksarkivet in Göteborg is still the place to ask.
+This was interesting archaeology, and I close the patent work here. Two questions stay with the record: what
+the Swedish applications say, and how the numbers were given. The patents show that a code is given per
+isolated substance and that close analogues sit on neighbouring numbers. They do not show what the number
+encodes. Chris has the note, and if he has input I will add it.
+
+The next step is back on Wikidata: the other development codes of the same compounds, not only the H codes.
 
 If you worked at Hässle, or know how the codes were given, I would still very much like to hear from you.
 
